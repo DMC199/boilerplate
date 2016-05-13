@@ -1,0 +1,31 @@
+# Unity Generated
+Temp
+Library
+UWP
+
+# vs/mono GeneratedExportedObj
+obj
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.bootproj
+
+# os generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# build dirs
+Builds
+
+# bobun crap
+*~
