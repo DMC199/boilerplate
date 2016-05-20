@@ -560,11 +560,33 @@ Prefab:
     - target: {fileID: 114000012667812730, guid: 8aaf37823b26ee449bb3b3d7775965c3,
         type: 2}
       propertyPath: ServerAddress
-      value: '172.16.0.138 '
+      value: 172.16.0.115
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013602799446, guid: 8aaf37823b26ee449bb3b3d7775965c3,
+        type: 2}
+      propertyPath: SessionName
+      value: Default
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1955984286 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012943254746, guid: b2db04283121ca74495c2ee000fb4243,
+    type: 2}
+  m_PrefabInternal: {fileID: 1404141837}
+--- !u!114 &1955984289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1955984286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a9570d6a51e464b8d2b0fb1d6d1c21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oldFocusedGameObject: {fileID: 0}
 --- !u!1001 &1997028096
 Prefab:
   m_ObjectHideFlags: 0
