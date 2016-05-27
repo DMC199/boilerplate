@@ -4,14 +4,9 @@ using System.Collections;
 
 public class FPSDisplay : MonoBehaviour {
 
-    public Text fpsText;
+    public TextMesh fpsText;
 
     float deltaTime = 0.0f;
-
-    void Start()
-    {
-        fpsText.color = Color.white;
-    }
 
     void Update()
     {
