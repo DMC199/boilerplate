@@ -14,6 +14,10 @@ public class LockObjToCam : MonoBehaviour {
     [SerializeField]
     private Transform m_Camera;
 
+    [Tooltip("Distance to keep debug text from cam")]
+    [SerializeField]
+    private float textDistance = 10f;
+
     private const float k_ExpDampingCoef = -20f;
 
 	// Use this for initialization
@@ -34,10 +38,10 @@ public class LockObjToCam : MonoBehaviour {
         while (true)
         {
             Quaternion rotation = m_Camera.localRotation;
-            float TargetDistance = Vector3.Distance(m_Object.position, m_Camera.position);
-            Vector3 MoveTo = m_Camera.position + (rotation * Vector3.forward) * TargetDistance;
+            Vector3 MoveTo = m_Camera.position + (rotation * Vector3.forward) * textDistance;
 
             m_Object.position = Vector3.Lerp(m_Object.position, MoveTo, m_ObjectMoveDampening * (1f - Mathf.Exp(k_ExpDampingCoef * Time.deltaTime)));
+            m_Object.forward = m_Camera.forward;
 
             yield return null;
         }
