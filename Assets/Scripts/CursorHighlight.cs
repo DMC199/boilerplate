@@ -16,7 +16,7 @@ public class CursorHighlight : MonoBehaviour {
 	void Update () {
         oldFocusedGameObject = FocusedGameObject;
 
-        if (GazeManager.Instance.Hit)
+        if (GazeManager.Instance && GazeManager.Instance.Hit)
         {
             RaycastHit hitInfo = GazeManager.Instance.HitInfo;
             if (hitInfo.collider != null)
