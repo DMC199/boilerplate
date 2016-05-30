@@ -513,6 +513,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0bb21ad6c2c6844abcd0c670a9e51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotationDuration: 6
+  RotationSpeed: 60
+  SpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.8
+      value: 2.8
+      inSlope: -0.0012
+      outSlope: -0.0012
+      tangentMode: 0
+    - time: 1.8
+      value: 1.5
+      inSlope: -1.2
+      outSlope: -1.2
+      tangentMode: 0
+    - time: 3
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   spherePrefab: {fileID: 1000010801647588, guid: e5e83beed745f0d468c18eb97cb43d3e,
     type: 2}
   cubePrefab: {fileID: 1000013679519094, guid: ff18e612c696297458a9363da729e45d, type: 2}
@@ -560,7 +588,7 @@ Prefab:
     - target: {fileID: 114000012667812730, guid: 8aaf37823b26ee449bb3b3d7775965c3,
         type: 2}
       propertyPath: ServerAddress
-      value: 172.16.0.115
+      value: 192.168.0.108
       objectReference: {fileID: 0}
     - target: {fileID: 114000013602799446, guid: 8aaf37823b26ee449bb3b3d7775965c3,
         type: 2}

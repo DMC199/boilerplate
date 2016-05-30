@@ -98,7 +98,7 @@ PlayerSettings:
   metroEnableIndependentInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
   xboxOneDisableKinectGpuReservation: 0
-  singlePassStereoRendering: 0
+  singlePassStereoRendering: 1
   protectGraphicsMemory: 0
   productGUID: 950cab9b3acaa264997fc955e15009cd
   AndroidBundleVersionCode: 1
@@ -366,7 +366,7 @@ PlayerSettings:
       CodeGeneration: False
       EnterpriseAuthentication: False
       HumanInterfaceDevice: False
-      InternetClient: False
+      InternetClient: True
       InternetClientServer: True
       Location: False
       Microphone: True
