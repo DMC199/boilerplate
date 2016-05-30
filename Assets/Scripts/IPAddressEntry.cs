@@ -19,7 +19,25 @@ public class IPAddressEntry : MonoBehaviour {
         {
             FullIpAddress += text;
         }
+        SuggestCharacter();
         GetComponent<TextMesh>().text = FullIpAddress;
+    }
+
+    void SuggestCharacter()
+    {
+        int length = FullIpAddress.Length;
+        int periodCount = FullIpAddress.Split('.').Length - 1;
+
+        if (length >= 3 && periodCount < 3)
+        {
+            if (!".".Equals(FullIpAddress.Substring(length-1, 1)) &&
+                !".".Equals(FullIpAddress.Substring(length-2, 1)) &&
+                !".".Equals(FullIpAddress.Substring(length-3, 1))
+                )
+            {
+                FullIpAddress += ".";
+            }
+        }
     }
 
     void Clear()
