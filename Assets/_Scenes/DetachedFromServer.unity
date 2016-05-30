@@ -2333,7 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0d868b18159b8469389b62ec13c0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IPAddressText: {fileID: 0}
+  IPAddressText: {fileID: 1534742771}
 --- !u!114 &1463882899
 MonoBehaviour:
   m_ObjectHideFlags: 0
