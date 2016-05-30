@@ -38,7 +38,7 @@ namespace HoloToolkit.Sharing
             ClientConfig config = new ClientConfig(this.ClientRole);
             config.SetIsAudioEndpoint(this.IsAudioEndpoint);
             config.SetLogWriter(this.logWriter);
-            config.SetServerAddress(this.ServerAddress);
+            config.SetServerAddress(PlayerPrefs.GetString("server-ip-address"));
             config.SetServerPort(this.ServerPort);
 
             this.xtoolsMgr = XToolsManager.Create(config);
