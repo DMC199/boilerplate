@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using HoloToolkit.Sharing;
 
 public class VoiceModelSpawn : MonoBehaviour
 {
@@ -17,29 +18,68 @@ public class VoiceModelSpawn : MonoBehaviour
     public GameObject cubePrefab;
     public GameObject cylinderPrefab;
 
+    public void Start()
+    {
+        CustomMessages.Instance.MessageHandlers[CustomMessages.TestMessageID.OsbPlaceObject] = this.ProcessRemotePlaceObject;
+    }
+
     public void SpawnSphere()
     {
-        SpawnObject(spherePrefab);
+        SpawnObject(0, spherePrefab, CustomMessages.OsbObjectType.Sphere);
     }
 
     public void SpawnCube()
     {
-        SpawnObject(cubePrefab);
+        SpawnObject(0, cubePrefab, CustomMessages.OsbObjectType.Cube);
     }
 
     public void SpawnCylinder()
     {
-        SpawnObject(cylinderPrefab);
+        SpawnObject(0, cylinderPrefab, CustomMessages.OsbObjectType.Cylinder);
     }
 
-    public void SpawnObject(GameObject spawnMe)
+    void ProcessRemotePlaceObject(NetworkInMessage msg)
     {
+        // Parse the message
+        long userID = msg.ReadInt64();
+        CustomMessages.OsbObjectType objType = (CustomMessages.OsbObjectType) msg.ReadByte();
+        Vector3 targetPosition = CustomMessages.Instance.ReadVector3(msg);
+
+        Transform anchor = ImportExportAnchorManager.Instance.gameObject.transform;
+
+        switch (objType)
+        {
+            case CustomMessages.OsbObjectType.Cube:
+                SpawnObject(cubePrefab, anchor.TransformPoint(targetPosition));
+                break;
+            case CustomMessages.OsbObjectType.Cylinder:
+                SpawnObject(cylinderPrefab, anchor.TransformPoint(targetPosition));
+                break;
+            case CustomMessages.OsbObjectType.Sphere:
+                SpawnObject(spherePrefab, anchor.TransformPoint(targetPosition));
+                break;
+        }
+    }
+
+
+    void SpawnObject(long UserId, GameObject spawnObject, CustomMessages.OsbObjectType objType)
+    {
+        // TODO clean up transforms
         Vector3 camTransform = Camera.main.transform.position;
-        Quaternion camRotation = Camera.main.transform.rotation;
 
         Vector3 targetPosition = new Vector3(camTransform.x, camTransform.y, camTransform.z + 3);
 
-        Instantiate(spawnMe, targetPosition, camRotation);
+        SpawnObject(spawnObject, targetPosition);
+
+        Transform anchor = ImportExportAnchorManager.Instance.gameObject.transform;
+        CustomMessages.Instance.SendPlaceObject(anchor.InverseTransformPoint(targetPosition), objType);
+    }
+
+    public void SpawnObject(GameObject spawnMe, Vector3 targetLocation)
+    {
+        Quaternion camRotation = Camera.main.transform.rotation;
+
+        Instantiate(spawnMe, targetLocation, camRotation);
         StartCoroutine(AnimatedOnSpawnRoutine(spawnMe));
     }
 
