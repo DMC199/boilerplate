@@ -18,6 +18,8 @@ public class VoiceModelSpawn : MonoBehaviour
     public GameObject cubePrefab;
     public GameObject cylinderPrefab;
 
+    public ArrayList objectsSpawned = new ArrayList();
+
     public void Start()
     {
         CustomMessages.Instance.MessageHandlers[CustomMessages.TestMessageID.OsbPlaceObject] = this.ProcessRemotePlaceObject;
@@ -66,8 +68,9 @@ public class VoiceModelSpawn : MonoBehaviour
     {
         // TODO clean up transforms
         Vector3 camTransform = Camera.main.transform.position;
+        Vector3 forward = Camera.main.transform.forward.normalized;
 
-        Vector3 targetPosition = new Vector3(camTransform.x, camTransform.y, camTransform.z + 3);
+        Vector3 targetPosition = camTransform + forward * 3;
 
         SpawnObject(spawnObject, targetPosition);
 
@@ -79,8 +82,18 @@ public class VoiceModelSpawn : MonoBehaviour
     {
         Quaternion camRotation = Camera.main.transform.rotation;
 
-        Instantiate(spawnMe, targetLocation, camRotation);
+        Object obj = Instantiate(spawnMe, targetLocation, camRotation);
+        objectsSpawned.Add(obj);
         StartCoroutine(AnimatedOnSpawnRoutine(spawnMe));
+    }
+
+    public void DeleteAll()
+    {
+        foreach (Object obj in objectsSpawned)
+        {
+            Destroy(obj);
+        }
+        objectsSpawned.Clear();
     }
 
     //TODO: Add to some sort of static, animation routines class
