@@ -1,0 +1,68 @@
+<grammar version="1.0" xml:lang="en-US" root="topLevel"
+ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+
+  <rule id="topLevel">
+	<one-of>
+		<item> <ruleref uri="#UnlockGear" /> <tag> out.Action = "unlock"; out.Gear = rules.UnlockGear;</tag> </item>
+		<item> <ruleref uri="#LockGear" /> <tag> out.Action = "lock"; out.Gear = rules.LockGear; </tag> </item>
+	</one-of>
+  </rule>
+
+  <rule id="UnlockGear" scope="public">
+    <ruleref uri="#unlockAction"/>
+    <item repeat="0-1">the</item>
+    <ruleref uri="#Gears"/>
+    <tag>out = rules.latest();</tag>
+  </rule>
+
+  <rule id="LockGear" scope="public">
+    <ruleref uri="#lockAction"/>
+    <item repeat="0-1">the</item>
+    <ruleref uri="#Gears"/>
+    <tag>out = rules.latest();</tag>
+  </rule>
+
+
+  <rule id="lockAction" scope="public">
+    <one-of>
+      <item> lock </item>
+      <item> stop </item>
+      <item> freeze </item>
+    </one-of>
+  </rule>
+
+  <rule id="unlockAction" scope="public">
+    <one-of>
+      <item> unlock </item>
+      <item> rotate </item>
+      <item> run </item>
+      <item> move </item>
+    </one-of>
+  </rule>
+
+  <rule id="Gears" scope="public">
+    <one-of>
+      <item>ring <tag>out = "ring";</tag></item>
+      <item>outside <tag> out = "ring";</tag></item>
+      <item>
+        big <tag> out = "ring"; </tag>
+      </item>
+      <item>
+        planet <tag> out = "planet"; </tag>
+      </item>
+      <item>
+        planets <tag> out = "planet"; </tag>
+      </item>
+      <item>
+        sun <tag> out = "sun"; </tag>
+      </item>
+      <item>
+        middle <tag> out = "sun"; </tag>
+      </item>
+      <item>
+        center <tag> out = "sun"; </tag>
+      </item>
+    </one-of>
+  </rule>
+  
+</grammar>
