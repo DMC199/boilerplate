@@ -19,6 +19,15 @@ public class CustomMessages : Singleton<CustomMessages>
         StageTransform,
         ResetStage,
         ExplodeTarget,
+        OsbPlaceObject,
+        Max
+    }
+    public enum OsbObjectType : byte
+    {
+        None = 0,
+        Sphere,
+        Cube,
+        Cylinder,
         Max
     }
 
@@ -135,6 +144,27 @@ public class CustomMessages : Singleton<CustomMessages>
                 MessageChannel.Avatar);
         }
     }
+    public void SendPlaceObject(Vector3 position, CustomMessages.OsbObjectType objType)
+    {
+        // If we are connected to a session, broadcast our head info
+        if (this.serverConnection != null && this.serverConnection.IsConnected())
+        {
+            // Create an outgoing network message to contain all the info we want to send
+            NetworkOutMessage msg = CreateMessage((byte)TestMessageID.OsbPlaceObject);
+
+            msg.Write((byte) objType);
+            AppendVector3(msg, position);
+
+            // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.  
+            this.serverConnection.Broadcast(
+                msg,
+                MessagePriority.Immediate,
+                MessageReliability.Reliable,
+                MessageChannel.Avatar);
+        }
+    }
+
+    
 
     public void SendUserAvatar(int UserAvatarID)
     {
