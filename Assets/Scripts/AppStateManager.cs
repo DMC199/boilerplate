@@ -67,6 +67,8 @@ public class AppStateManager : Singleton<AppStateManager>
         switch (CurrentAppState)
         {
             case AppState.PickingAvatar:
+                Debug.Log("AppStateManager Picking Avatar");
+
                 // Avatar picking is done when the avatar picker has been dismissed.
                 if (PlayerAvatarStore.Instance.PickerActive == false)
                 {
@@ -74,6 +76,8 @@ public class AppStateManager : Singleton<AppStateManager>
                 }
                 break;
             case AppState.WaitingForAnchor:
+                Debug.Log("AppStateManager WaitingForAnchor");
+
                 // Once the anchor is established we need to run spatial mapping for a 
                 // little while to build up some meshes.
                 if (ImportExportAnchorManager.Instance.AnchorEstablished)
@@ -88,6 +92,8 @@ public class AppStateManager : Singleton<AppStateManager>
                 }
                 break;
             case AppState.WaitingForStageTransform:
+                Debug.Log("AppStateManager WaitingForStageTransform ");
+
                 // Now if we have the stage transform we are ready to go.
                 if (HologramPlacement.Instance.GotTransform)
                 {
