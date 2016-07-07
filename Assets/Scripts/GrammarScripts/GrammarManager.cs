@@ -2,20 +2,34 @@
 using System.Collections;
 using UnityEngine.Windows.Speech;
 using System;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GrammarManager : MonoBehaviour {
 
     GrammarRecognizer grammar;
-    public GearMovement gearMover;
+
+    [System.Serializable]
+    public class GrammarEvent : UnityEvent<PhraseRecognizedEventArgs> { }
+
+    [Tooltip("Optional, specify a grammar XML file")]
+    public string grammarFile = "";
+
+    public GrammarEvent grammarRecognized;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
 
         String sceneName = SceneManager.GetActiveScene().name;
-        String grammarFile = Application.streamingAssetsPath + "/" + sceneName + "_grammar.xml";
+        String grammarFileToLoad = "";
 
-        if (System.IO.File.Exists(grammarFile))
+        if (grammarFile != "") {
+            grammarFileToLoad = Application.streamingAssetsPath + "/" + grammarFile;
+        } else {
+            grammarFileToLoad = Application.streamingAssetsPath + "/" + sceneName + "_grammar.xml";
+        }
+
+       if (System.IO.File.Exists(grammarFileToLoad))
         {
             PhraseRecognitionSystem.Shutdown();
 
@@ -27,55 +41,12 @@ public class GrammarManager : MonoBehaviour {
             grammar.Start();
         } else
         {
-            print("No grammar XML file found for scene: " + sceneName);
+            print("No grammar XML file loaded.");
         }
 	}
 
     private void Grammar_onPhraseRecognized(PhraseRecognizedEventArgs args)
     {
-        // print("Recognized:" + args.text);
- 
-        if ((args.semanticMeanings != null) && (args.semanticMeanings.Length > 0)) {
-
-            // print("Semantic values:" + args.semanticMeanings.Length);
-
-            String gear = "";
-            String action = "";
-
-            for (int i = 0; i < args.semanticMeanings.Length; i++)
-            {
-                if (args.semanticMeanings[i].key == "Action")
-                {
-                    action = args.semanticMeanings[i].values[0];
-                } else if (args.semanticMeanings[i].key == "Gear")
-                {
-                    gear = args.semanticMeanings[i].values[0];
-                }
-            }
-
-            bool lockState = false;
-            if(action == "lock")
-            {
-                lockState = true;
-            }
-
-            //print("Gear=" + gear + ", locked=" + lockState);
-
-            if (gear == "ring")
-            {
-                gearMover.ringLocked = lockState;
-               
-            }
-
-            if(gear == "planet")
-            {
-                gearMover.planetsLocked = lockState;
-            }
-        }
+        grammarRecognized.Invoke(args);
     }
-
-    // Update is called once per frame
-    void Update () {
-	
-	}
 }

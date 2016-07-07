@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Windows.Speech;
 using System.Collections;
 
 public class GearMovement : MonoBehaviour {
@@ -80,5 +81,48 @@ public class GearMovement : MonoBehaviour {
             }
         }
        //ringGear.rotation *= Quaternion.AngleAxis(amount, new Vector3(0, 0, 1));
+    }
+
+    public void onGrammarRecognized(PhraseRecognizedEventArgs args)
+    {
+        if ((args.semanticMeanings != null) && (args.semanticMeanings.Length > 0))
+        {
+
+            print("Semantic values:" + args.semanticMeanings.Length);
+
+            string gear = "";
+            string action = "";
+
+            for (int i = 0; i < args.semanticMeanings.Length; i++)
+            {
+                if (args.semanticMeanings[i].key == "Action")
+                {
+                    action = args.semanticMeanings[i].values[0];
+                }
+                else if (args.semanticMeanings[i].key == "Gear")
+                {
+                    gear = args.semanticMeanings[i].values[0];
+                }
+            }
+
+            bool lockState = false;
+            if (action == "lock")
+            {
+                lockState = true;
+            }
+
+            //print("Gear=" + gear + ", locked=" + lockState);
+
+            if (gear == "ring")
+            {
+                ringLocked = lockState;
+
+            }
+
+            if (gear == "planet")
+            {
+                planetsLocked = lockState;
+            }
+        }
     }
 }
