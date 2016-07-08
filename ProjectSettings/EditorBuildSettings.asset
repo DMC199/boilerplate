@@ -11,11 +11,11 @@ EditorBuildSettings:
     path: Assets/_Scenes/jhager_scene_0.unity
   - enabled: 0
     path: Assets/_Scenes/scene_0.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/scene_1.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/scene_2.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/scene_3.unity
   - enabled: 0
     path: Assets/_Scenes/SharedHolograms.unity

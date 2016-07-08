@@ -251,7 +251,6 @@ GameObject:
   - 114: {fileID: 862918648}
   - 114: {fileID: 862918647}
   - 114: {fileID: 862918649}
-  - 114: {fileID: 862918650}
   m_Layer: 0
   m_Name: HologramCollection
   m_TagString: Untagged
@@ -353,19 +352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5aa29064c2bf54b8f5e4c131498b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &862918650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 862918641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73110e8ad0e14c04a968ab879144ab15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 118774, guid: 286fb40bc02be9944850ac0c01150a16, type: 2}
-  Underworld: {fileID: 1000012806757510, guid: 0b771757763cbd447baad406e560914d, type: 2}
 --- !u!1001 &1404141837
 Prefab:
   m_ObjectHideFlags: 0
@@ -601,6 +587,7 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+  worldAnchor: {fileID: 1541406607}
 --- !u!4 &1745124208
 Transform:
   m_ObjectHideFlags: 0

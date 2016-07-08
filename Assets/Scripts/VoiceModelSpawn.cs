@@ -20,6 +20,8 @@ public class VoiceModelSpawn : MonoBehaviour
 
     public ArrayList objectsSpawned = new ArrayList();
 
+    public GameObject localWorldAnchor;
+
     public void Start()
     {
         CustomMessages.Instance.MessageHandlers[CustomMessages.TestMessageID.OsbPlaceObject] = this.ProcessRemotePlaceObject;
@@ -47,7 +49,7 @@ public class VoiceModelSpawn : MonoBehaviour
         CustomMessages.OsbObjectType objType = (CustomMessages.OsbObjectType) msg.ReadByte();
         Vector3 targetPosition = CustomMessages.Instance.ReadVector3(msg);
 
-        Transform anchor = ImportExportAnchorManager.Instance.gameObject.transform;
+        Transform anchor = localWorldAnchor.transform;
 
         switch (objType)
         {
@@ -74,7 +76,7 @@ public class VoiceModelSpawn : MonoBehaviour
 
         SpawnObject(spawnObject, targetPosition);
 
-        Transform anchor = ImportExportAnchorManager.Instance.gameObject.transform;
+        Transform anchor = localWorldAnchor.transform;
         CustomMessages.Instance.SendPlaceObject(anchor.InverseTransformPoint(targetPosition), objType);
     }
 

@@ -66,14 +66,19 @@ public class InstructionStateManager : MonoBehaviour
     void FadeToClear()
     {
         // Lerp the colour of the texture between itself and transparent.
-        curtain.color = Color.Lerp(curtain.color, Color.clear, fadeSpeed * Time.deltaTime);
+        if (curtain != null) {
+            curtain.color = Color.Lerp(curtain.color, Color.clear, fadeSpeed * Time.deltaTime);
+        }
     }
 
 
     void FadeToBlack()
     {
         // Lerp the colour of the texture between itself and black.
-        curtain.color = Color.Lerp(curtain.color, Color.black, fadeSpeed * Time.deltaTime);
+        if (curtain != null)
+        {
+            curtain.color = Color.Lerp(curtain.color, Color.black, fadeSpeed * Time.deltaTime);
+        }
     }
 
 
@@ -83,7 +88,7 @@ public class InstructionStateManager : MonoBehaviour
         FadeToClear();
 
         // If the texture is almost clear...
-        if (curtain.color.a <= 0.05f)
+        if (curtain != null && curtain.color.a <= 0.05f)
         {
             // ... set the colour to clear and disable the GUITexture.
             curtain.color = Color.clear;
@@ -98,13 +103,16 @@ public class InstructionStateManager : MonoBehaviour
     public void EndScene()
     {
         // Make sure the texture is enabled.
-        curtain.enabled = true;
+        if (curtain != null)
+        {
+            curtain.enabled = true;
+        }
 
         // Start fading towards black.
         FadeToBlack();
 
         // If the screen is almost black...
-        if (curtain.color.a >= 0.95f)
+        if (curtain != null && curtain.color.a >= 0.95f)
             // ... reload the level.
             Application.LoadLevel(sceneToLoad);
     }
