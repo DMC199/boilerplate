@@ -1,0 +1,7 @@
+<grammar version="1.0" xml:lang="en-US" root="topLevel"
+ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+
+  <rule id="topLevel">
+		<item> nav test <tag> out.Navigation = "nav";</tag> </item>
+  </rule>
+</grammar>

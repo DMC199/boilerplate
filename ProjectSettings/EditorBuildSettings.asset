@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/GrammarRecognizer.unity
   - enabled: 0
     path: Assets/_Scenes/DetachedFromServer.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scenes/scene_0.unity
   - enabled: 0
     path: Assets/_Scenes/scene_1.unity
