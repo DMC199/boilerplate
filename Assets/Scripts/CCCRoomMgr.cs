@@ -54,7 +54,6 @@ public class CCCRoomMgr : MonoBehaviour
         NetworkTransport.Send(socketId, connectionId, channelId, buffer, buffer.Length, out error);
     }
 
-    int count = 0;
 
     // Update is called once per frame
     void Update()
@@ -89,16 +88,7 @@ public class CCCRoomMgr : MonoBehaviour
                 break;
         }
 
-        count++;
-        if (count %300 == 0)
-        {
-            count = 0;
-            CCCRoomEvent ev = new CCCRoomEvent();
-            ev.prefabName = "Cube";
-            ev.eventType = "create";
 
-            SendMessage(ev);
-        }
 
     }
 
