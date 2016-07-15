@@ -72,6 +72,7 @@ public class CCCRoom : MonoBehaviour {
 
     public void Destroy(string uuid)
     {
+        //todo test this.  
         CCCRoomMgr.Instance.SendMessage(new CCCRoomEvent("destroy", uuid));
     }
 
@@ -90,35 +91,5 @@ public class CCCRoom : MonoBehaviour {
         Transform anchor = localAnchor.transform;
         Vector3 localPosition = anchor.TransformPoint(e.relativeToCommonAnchor);
         return localPosition;
-    }
-
-    int count = 0;
-    string lastUUID = null;
-
-    // Update is called once per frame
-    void Update () {
-        //simple test code to make it look like the cube is flying at you.  
-        count++;
-        if (count % 300 == 0)
-        {
-            count = 0;
-            if (lastUUID != null)
-            {
-                Destroy(lastUUID);
-            }
-            Vector3 camTransform = Camera.main.transform.position;
-            Vector3 forward = Camera.main.transform.forward.normalized;
-
-            Vector3 targetPosition = camTransform + forward * 3;
-            lastUUID = Create("cube", targetPosition);
-        }
-        if (lastUUID != null && count % 30 == 5)
-        {
-            Vector3 camTransform = Camera.main.transform.position;
-            Vector3 forward = Camera.main.transform.forward.normalized;
-            float  f = 2 * ((300 - count) / 300.0F) + 1;
-            Vector3 targetPosition = camTransform + forward * f;
-            Move(lastUUID, targetPosition);
-        }
     }
 }

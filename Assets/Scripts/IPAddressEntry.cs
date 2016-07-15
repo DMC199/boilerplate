@@ -4,7 +4,7 @@ using HoloToolkit.Sharing;
 
 public class IPAddressEntry : MonoBehaviour {
 
-    public string FullIpAddress = "172.16.0.130";  //default should be set here.  
+    public string FullIpAddress;   
 
     void AppendText(string text)
     {

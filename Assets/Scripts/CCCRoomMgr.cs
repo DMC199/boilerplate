@@ -9,6 +9,7 @@ public class CCCRoomMgr : MonoBehaviour
 {
     int channelId;
     int socketId;
+    int clientId;
     public int socketPort = 8935;
 
     int connectionId;
@@ -24,13 +25,13 @@ public class CCCRoomMgr : MonoBehaviour
         NetworkTransport.Init();
 
         ConnectionConfig config = new ConnectionConfig();
-
         channelId = config.AddChannel(QosType.Reliable);
 
         int maxConnections = 10;
         HostTopology topology = new HostTopology(config, maxConnections);
 
         socketId = NetworkTransport.AddHost(topology, socketPort);
+        clientId = NetworkTransport.AddHost(topology); 
         Debug.Log("Socket Open. SocketId is: " + socketId);
 
         Connect();
@@ -39,8 +40,11 @@ public class CCCRoomMgr : MonoBehaviour
     public void Connect()
     {
         byte error;
-        string hostIpAddress = PlayerPrefs.GetString("server-ip-address");  //todo use this.
-        connectionId = NetworkTransport.Connect(socketId, "127.0.0.1", socketPort, 0, out error);
+        string hostIpAddress = PlayerPrefs.GetString("server-ip-address");
+        connectionId = NetworkTransport.Connect(socketId, hostIpAddress, socketPort, 0, out error);
+        //todo trying to understand why there is a client and socket.  
+        //see https://gist.github.com/LinaAdkins/a3bc0cee6f39bfd80110
+        //connectionId = NetworkTransport.Connect(clientId, hostIpAddress, socketPort, 0, out error);
         Debug.Log("Connected to server. ConnectionId: " + connectionId);
     }
 
@@ -61,33 +65,37 @@ public class CCCRoomMgr : MonoBehaviour
         int recHostId;
         int recConnectionId;
         int recChannelId;
-        byte[] recBuffer = new byte[4096];
-        int bufferSize = 4096;
+        byte[] recBuffer = new byte[1024];
+        int bufferSize = 1024;
         int dataSize;
         byte error;
         NetworkEventType recNetworkEvent = NetworkTransport.Receive(out recHostId, out recConnectionId, out recChannelId, recBuffer, bufferSize, out dataSize, out error);
 
-        switch (recNetworkEvent)
+        do
         {
-            case NetworkEventType.Nothing:
-                break;
-            case NetworkEventType.ConnectEvent:
-                Debug.Log("incoming connection event received");
-                break;
-            case NetworkEventType.DataEvent:
-                Debug.Log("incoming data");
-                string result = Encoding.UTF8.GetString(recBuffer);
-                CCCRoomEvent myEvent = CCCRoomEvent.fromJson(result);
-           
-                Debug.Log("incoming message event received: " + myEvent);
-                HandleIncomingRoomEvent(myEvent);
 
-                break;
-            case NetworkEventType.DisconnectEvent:
-                Debug.Log("remote client event disconnected");
-                break;
-        }
+            switch (recNetworkEvent)
+            {
+                case NetworkEventType.Nothing:
+                    break;
+                case NetworkEventType.ConnectEvent:
+                    Debug.Log("incoming connection event received");
+                    break;
+                case NetworkEventType.DataEvent:
+                    Debug.Log("incoming data");
+                    string result = Encoding.UTF8.GetString(recBuffer);
+                    CCCRoomEvent myEvent = CCCRoomEvent.fromJson(result);
 
+                    Debug.Log("incoming message event received: " + myEvent);
+                    HandleIncomingRoomEvent(myEvent);
+
+                    break;
+                case NetworkEventType.DisconnectEvent:
+                    Debug.Log("remote client event disconnected");
+                    break;
+            }
+
+        } while (recNetworkEvent != NetworkEventType.Nothing);
 
 
     }

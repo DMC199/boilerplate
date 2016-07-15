@@ -247,6 +247,8 @@ GameObject:
   - 114: {fileID: 862918644}
   - 114: {fileID: 862918643}
   - 114: {fileID: 862918645}
+  - 114: {fileID: 862918647}
+  - 114: {fileID: 862918646}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -305,6 +307,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localAnchor: {fileID: 1541406607}
+--- !u!114 &862918646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862918641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b583411870850ed44b509b2e9425206c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RecognizerStart: 0
+  KeywordsAndResponses:
+  - Keyword: Spawn Cube
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 862918647}
+          m_MethodName: SpawnCube
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - Keyword: Calibrate
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 862918647}
+          m_MethodName: Calibrate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+--- !u!114 &862918647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862918641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94657fc58f48de148ac1edb05d9b3133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 862918645}
 --- !u!1001 &1404141837
 Prefab:
   m_ObjectHideFlags: 0
@@ -431,162 +492,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 45}
---- !u!1 &1745124206
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1745124208}
-  - 114: {fileID: 1745124207}
-  - 114: {fileID: 1745124209}
-  m_Layer: 0
-  m_Name: KeywordManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1745124207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1745124206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b583411870850ed44b509b2e9425206c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RecognizerStart: 0
-  KeywordsAndResponses:
-  - Keyword: Spawn Sphere
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1745124209}
-          m_MethodName: SpawnSphere
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Spawn Cube
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1745124209}
-          m_MethodName: SpawnCube
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Spawn Cylinder
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1745124209}
-          m_MethodName: SpawnCylinder
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - Keyword: Delete All
-    Response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1745124209}
-          m_MethodName: DeleteAll
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
---- !u!4 &1745124208
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1745124206}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1745124209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1745124206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0bb21ad6c2c6844abcd0c670a9e51f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotationDuration: 6
-  RotationSpeed: 60
-  SpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1.5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.8
-      value: 2.8
-      inSlope: -0.0012
-      outSlope: -0.0012
-      tangentMode: 0
-    - time: 1.8
-      value: 1.5
-      inSlope: -1.2
-      outSlope: -1.2
-      tangentMode: 0
-    - time: 3
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spherePrefab: {fileID: 1000010801647588, guid: e5e83beed745f0d468c18eb97cb43d3e,
-    type: 2}
-  cubePrefab: {fileID: 1000013679519094, guid: ff18e612c696297458a9363da729e45d, type: 2}
-  cylinderPrefab: {fileID: 1000010466543802, guid: 10eafb4ded9894d44842cde9fe6c26e5,
-    type: 2}
-  localWorldAnchor: {fileID: 0}
 --- !u!1001 &1856621042
 Prefab:
   m_ObjectHideFlags: 0
