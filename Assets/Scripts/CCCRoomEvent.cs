@@ -15,7 +15,8 @@ public class CCCRoomEvent :EventArgs
     //custom event
     //{ eventType="custom", data="BASE64-ENCODED-DATA" }
 
-    public string id;
+    public string eventId;
+    public string objectRef;
     public string eventType;
     public string prefabName;
     public Vector3 relativeToCommonAnchor;
@@ -29,27 +30,32 @@ public class CCCRoomEvent :EventArgs
 
     public CCCRoomEvent()
     {
-        this.id = Guid.NewGuid().ToString();
+        this.eventId = Guid.NewGuid().ToString();
+        this.objectRef = Guid.NewGuid().ToString();
     }
     public CCCRoomEvent(string eventType, string id)
     {
-        this.id = id;
+        this.eventId = Guid.NewGuid().ToString();
+        this.objectRef = id;
         this.eventType = eventType;
     }
     public CCCRoomEvent(string eventType, string id, string prefabName, Vector3 relativeToCommonAnchor)
     {
-        this.id = id;
+        this.eventId = Guid.NewGuid().ToString();
+        this.objectRef = id;
         this.eventType = eventType;
         this.prefabName = prefabName;
         this.relativeToCommonAnchor = relativeToCommonAnchor;
     }
 
-    public CCCRoomEvent(string eventType, string prefabName, Vector3 relativeToCommonAnchor)
+    public CCCRoomEvent(string eventType, string prefabName, Vector3 relativeToCommonAnchor, Quaternion facingDirection)
     {
-        this.id = Guid.NewGuid().ToString();
+        this.eventId = Guid.NewGuid().ToString();
+        this.objectRef = Guid.NewGuid().ToString();
         this.eventType = eventType;
         this.prefabName = prefabName;
         this.relativeToCommonAnchor = relativeToCommonAnchor;
+        this.facingDirection = facingDirection;
     }
 
     public static CCCRoomEvent fromJson(string json)

@@ -4,18 +4,35 @@ using UnityEngine.Networking;
 using System.IO;
 using System.Text;
 using System;
+using System.Collections.Generic;
 
 public class CCCRoomMgr : MonoBehaviour
 {
-    int channelId;
-    int socketId;
-    int clientId;
+    private class ConnectionInfo
+    {
+        public int hostId;
+        public int connectionId;
+        public int channelId;
+
+        public override bool Equals(object obj)
+        {
+            return hostId == ((ConnectionInfo) obj).hostId && 
+                connectionId == ((ConnectionInfo) obj).connectionId &&
+                channelId == ((ConnectionInfo) obj).channelId;
+        }
+
+        public override int GetHashCode()
+        {
+            return hostId + 37 * connectionId;
+        }
+    };
+
+    ConnectionInfo myConnectionInfo = new ConnectionInfo();
+    List<ConnectionInfo> clientConnections = new List<ConnectionInfo>();
+    HashSet<string> serverProcessedEvents = new HashSet<string>();
     public int socketPort = 8935;
 
-    int connectionId;
-
     public static CCCRoomMgr Instance = null;
-
 
     // Use this for initialization
     void Awake()
@@ -25,14 +42,13 @@ public class CCCRoomMgr : MonoBehaviour
         NetworkTransport.Init();
 
         ConnectionConfig config = new ConnectionConfig();
-        channelId = config.AddChannel(QosType.Reliable);
+        myConnectionInfo.channelId = config.AddChannel(QosType.Reliable);
 
         int maxConnections = 10;
         HostTopology topology = new HostTopology(config, maxConnections);
 
-        socketId = NetworkTransport.AddHost(topology, socketPort);
-        clientId = NetworkTransport.AddHost(topology); 
-        Debug.Log("Socket Open. SocketId is: " + socketId);
+        myConnectionInfo.hostId = NetworkTransport.AddHost(topology, socketPort);
+        Debug.Log("Socket Open. SocketId is: " + myConnectionInfo.hostId);
 
         Connect();
     }
@@ -40,22 +56,25 @@ public class CCCRoomMgr : MonoBehaviour
     public void Connect()
     {
         byte error;
+        //todo is there another way besides PlayerPrefs this should be grabbed to make this class more generic. (see also isServer)
         string hostIpAddress = PlayerPrefs.GetString("server-ip-address");
-        connectionId = NetworkTransport.Connect(socketId, hostIpAddress, socketPort, 0, out error);
-        //todo trying to understand why there is a client and socket.  
-        //see https://gist.github.com/LinaAdkins/a3bc0cee6f39bfd80110
-        //connectionId = NetworkTransport.Connect(clientId, hostIpAddress, socketPort, 0, out error);
-        Debug.Log("Connected to server. ConnectionId: " + connectionId);
+        myConnectionInfo.connectionId = NetworkTransport.Connect(myConnectionInfo.hostId, hostIpAddress, socketPort, 0, out error);
+        Debug.Log("Connected to server. ConnectionId: " + myConnectionInfo.connectionId);
     }
 
     public void SendMessage(CCCRoomEvent eventToSend)
     {
-        Debug.Log("Sending Message: " + eventToSend);
+        SendMessage(eventToSend, myConnectionInfo.hostId, myConnectionInfo.connectionId, myConnectionInfo.channelId);       
+    }
+
+    private void SendMessage(CCCRoomEvent eventToSend, int host, int connection, int channel)
+    {
+        Debug.Log("Sending Message: " + eventToSend + " to " + host + ":" + connection + ":" + channel);
 
         byte error;
         byte[] buffer = Encoding.UTF8.GetBytes(eventToSend.asJson());
 
-        NetworkTransport.Send(socketId, connectionId, channelId, buffer, buffer.Length, out error);
+        NetworkTransport.Send(host, connection, channel, buffer, buffer.Length, out error);
     }
 
 
@@ -69,17 +88,20 @@ public class CCCRoomMgr : MonoBehaviour
         int bufferSize = 1024;
         int dataSize;
         byte error;
-        NetworkEventType recNetworkEvent = NetworkTransport.Receive(out recHostId, out recConnectionId, out recChannelId, recBuffer, bufferSize, out dataSize, out error);
-
+        NetworkEventType recNetworkEvent;
         do
         {
+            recNetworkEvent = NetworkTransport.Receive(out recHostId, out recConnectionId, out recChannelId, recBuffer, bufferSize, out dataSize, out error);
 
             switch (recNetworkEvent)
             {
                 case NetworkEventType.Nothing:
                     break;
                 case NetworkEventType.ConnectEvent:
-                    Debug.Log("incoming connection event received");
+                    Debug.Log("incoming connection event received " + recHostId + ":" + recConnectionId + ":" + recChannelId);
+                    ConnectionInfo clientInfo = extractClientConnectionInfo(recHostId, recConnectionId, recChannelId);
+                    clientConnections.Add(clientInfo);
+                    //todo send the current state of the shared room.  
                     break;
                 case NetworkEventType.DataEvent:
                     Debug.Log("incoming data");
@@ -92,6 +114,8 @@ public class CCCRoomMgr : MonoBehaviour
                     break;
                 case NetworkEventType.DisconnectEvent:
                     Debug.Log("remote client event disconnected");
+                    ConnectionInfo disconnectedClientInfo = extractClientConnectionInfo(recHostId, recConnectionId, recChannelId);
+                    clientConnections.Remove(disconnectedClientInfo);
                     break;
             }
 
@@ -100,8 +124,32 @@ public class CCCRoomMgr : MonoBehaviour
 
     }
 
+    private ConnectionInfo extractClientConnectionInfo(int recHostId, int recConnectionId, int recChannelId)
+    {
+        ConnectionInfo clientInfo = new ConnectionInfo();
+        clientInfo.hostId = recHostId;
+        clientInfo.connectionId = recConnectionId;
+        clientInfo.channelId = recChannelId;
+        return clientInfo;
+    }
+
+    public bool isServer()
+    {
+        string hostIpAddress = PlayerPrefs.GetString("server-ip-address");
+        return "127.0.0.1".Equals(hostIpAddress);
+    }
+
     protected virtual void HandleIncomingRoomEvent(CCCRoomEvent e)
     {
+        if (isServer() && !serverProcessedEvents.Contains(e.eventId))
+        {
+            serverProcessedEvents.Add(e.eventId);
+            //propogate it to all the currently connected clients.
+            foreach (ConnectionInfo client in clientConnections)
+            {
+                SendMessage(e, client.hostId, client.connectionId, client.channelId);
+            }
+        }
         EventHandler<CCCRoomEvent> handler = OnIncomingRoomEvent;
         if (handler != null)
         {
