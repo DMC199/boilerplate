@@ -41,7 +41,7 @@ public class CCCSpawner : MonoBehaviour {
         //  3 meters from me (the camera)
         Vector3 targetPosition = camTransform + forward * 3;
         //  and have it facing the camera.  
-        Quaternion towardsMe = Quaternion.Inverse(Camera.main.transform.rotation);
+        Quaternion towardsMe = Quaternion.LookRotation(Camera.main.transform.forward);
 
         //  then put it in the room (which in turn should propogate it to everyone in the room)
         room.Create("cube", targetPosition, towardsMe);

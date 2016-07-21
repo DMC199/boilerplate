@@ -66,7 +66,8 @@ public class CCCRoom : MonoBehaviour {
         {
             if (e.prefabName != null && e.objectRef != null && e.relativeToCommonAnchor != null && !roomObjectsById.ContainsKey(e.objectRef))
             {
-                GameObject instance = (GameObject)Instantiate(Resources.Load(e.prefabName), TranslateAnchor(e, localAnchor), e.facingDirection);
+
+                GameObject instance = (GameObject)Instantiate(Resources.Load(e.prefabName), TranslateAnchor(e, localAnchor), TranslateQuaternion(localAnchor, e.facingDirection));
                 roomObjectsById.Add(e.objectRef, instance);
             }
         }
@@ -103,7 +104,7 @@ public class CCCRoom : MonoBehaviour {
         Vector3 relativeAnchorPosition = anchor.InverseTransformPoint(targetPosition);
         //todo add a warning if distance of vector is more than 3 meters
 
-        CCCRoomEvent ev = new CCCRoomEvent("create", prefabName, relativeAnchorPosition, camRotation);
+        CCCRoomEvent ev = new CCCRoomEvent("create", prefabName, relativeAnchorPosition, CalculateInverseQP(localAnchor, camRotation));
         CCCRoomMgr.Instance.SendMessage(ev);
         return ev.objectRef;
     }
@@ -111,7 +112,7 @@ public class CCCRoom : MonoBehaviour {
     public void Destroy(string uuid)
     {
         //todo test this.  
-        CCCRoomMgr.Instance.SendMessage(new CCCRoomEvent("destroy", uuid));
+        CCCRoomMgr.Instance.SendMessage(new CCCRoomEvent("destroy", uuid)); 
     }
 
     public void Move(string uuid, Vector3 newTargetPosition)
@@ -129,5 +130,17 @@ public class CCCRoom : MonoBehaviour {
         Transform anchor = localAnchor.transform;
         Vector3 localPosition = anchor.TransformPoint(e.relativeToCommonAnchor);
         return localPosition;
+    }
+
+    private static Quaternion CalculateInverseQP(GameObject localAnchor, Quaternion localRotation)
+    {
+        //from http://answers.unity3d.com/questions/35541/problem-finding-relative-rotation-from-one-quatern.html
+        //also https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation which says  p ↦ q p q−1
+        return Quaternion.Inverse(localAnchor.transform.rotation) * localRotation;
+    }
+
+    private static Quaternion TranslateQuaternion(GameObject localAnchor, Quaternion qp)
+    {
+        return qp * localAnchor.transform.localRotation;
     }
 }
