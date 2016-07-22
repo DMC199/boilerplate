@@ -31,6 +31,7 @@ public class CCCRoomMgr : MonoBehaviour
     List<ConnectionInfo> clientConnections = new List<ConnectionInfo>();
     HashSet<string> serverProcessedEvents = new HashSet<string>();
     public int socketPort = 8935;
+    int mServerSocket = -1;
 
     public static CCCRoomMgr Instance = null;
 
@@ -47,7 +48,10 @@ public class CCCRoomMgr : MonoBehaviour
         int maxConnections = 10;
         HostTopology topology = new HostTopology(config, maxConnections);
 
-        myConnectionInfo.hostId = NetworkTransport.AddHost(topology, socketPort);
+        //this device will listen on the specified socket for clients.       
+        mServerSocket = NetworkTransport.AddHost(topology, socketPort);
+        //it will also attach to the specified host, as a client.  
+        myConnectionInfo.hostId = NetworkTransport.AddHost(topology);
         Debug.Log("Socket Open. SocketId is: " + myConnectionInfo.hostId);
 
         Connect();
@@ -59,7 +63,19 @@ public class CCCRoomMgr : MonoBehaviour
         //todo is there another way besides PlayerPrefs this should be grabbed to make this class more generic. (see also isServer)
         string hostIpAddress = PlayerPrefs.GetString("server-ip-address");
         myConnectionInfo.connectionId = NetworkTransport.Connect(myConnectionInfo.hostId, hostIpAddress, socketPort, 0, out error);
+
+        LogNetworkError(error);
+
         Debug.Log("Connected to server. ConnectionId: " + myConnectionInfo.connectionId);
+    }
+
+    private static void LogNetworkError(byte error)
+    {
+        if (error != (byte)NetworkError.Ok)
+        {
+            NetworkError nerror = (NetworkError)error;
+            Debug.Log("Error " + nerror.ToString());
+        }
     }
 
     public void SendMessage(CCCRoomEvent eventToSend)
@@ -75,6 +91,8 @@ public class CCCRoomMgr : MonoBehaviour
         byte[] buffer = Encoding.UTF8.GetBytes(eventToSend.asJson());
 
         NetworkTransport.Send(host, connection, channel, buffer, buffer.Length, out error);
+
+        LogNetworkError(error);
     }
 
 
@@ -92,6 +110,8 @@ public class CCCRoomMgr : MonoBehaviour
         do
         {
             recNetworkEvent = NetworkTransport.Receive(out recHostId, out recConnectionId, out recChannelId, recBuffer, bufferSize, out dataSize, out error);
+
+            LogNetworkError(error);
 
             switch (recNetworkEvent)
             {
