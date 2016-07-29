@@ -60,7 +60,7 @@ public class GrammarManager : MonoBehaviour {
     {
         String path = Application.streamingAssetsPath + "/" + name + ".xml";
         if (System.IO.File.Exists(path))
-        {
+        { 
             GrammarRecognizer gm = new GrammarRecognizer(path, ConfidenceLevel.Low);
             gm.OnPhraseRecognized += Grammar_onPhraseRecognized;
 
