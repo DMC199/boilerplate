@@ -47,6 +47,26 @@ public class CCCSpawner : MonoBehaviour {
         room.Create("cube", targetPosition, towardsMe);
     }
 
+    public void SpawnTransmission()
+    {
+        if (room == null)
+        {
+            return;
+        }
+
+        Vector3 camTransform = Camera.main.transform.position;
+        Vector3 forward = Camera.main.transform.forward.normalized;
+
+        //we will spawn the gear animation 
+        //  3 meters from me (the camera)
+        Vector3 targetPosition = camTransform + forward * 3;
+        //  and have it facing the camera.  
+        Quaternion towardsMe = Quaternion.LookRotation(Camera.main.transform.forward);
+
+        //  then put it in the room (which in turn should propogate it to everyone in the room)
+        room.Create("transmission", targetPosition, towardsMe);
+    }
+
     public void Calibrate()
     {
         if (room == null)
