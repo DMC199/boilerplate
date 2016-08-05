@@ -2,14 +2,54 @@
   "steps": [
     [
       {
-        "name" :  "cube",
+        "name" :  "664 and 668",
         "visible": true,
         "position": [ 1, 5, 2 ],
-        "animation": "spinning"
+        "animation": "632- first gear"
       },
       {
-        "name": "sphere",
-        "visible" : false
+        "name": "672",
+        "visible": false
+      },
+      {
+        "name": "672 -planet gear 1",
+        "visible": false
+      },
+      {
+        "name": "672- planet gear 2",
+        "visible": false
+      },
+      {
+        "name": "672- planet gear 3",
+        "visible": false
+      },
+      {
+        "name": "672- planet gear 4",
+        "visible": false
+      },
+      {
+        "name": "632",
+        "visible": false
+      },
+      {
+        "name": "675",
+        "visible": false
+      },
+      {
+        "name": "680",
+        "visible": false
+      },
+      {
+        "name": "669",
+        "visible": false
+      },
+      {
+        "name": "681",
+        "visible": false
+      },
+      {
+        "name": "681-687",
+        "visible": false
       }
     ],
     [

@@ -24,6 +24,7 @@ public class Sequencer : MonoBehaviour {
 
     //UnityEditor
     public int currentStep;
+    public string jsonFileName;
 
     private int lastCurrentStep;
 
@@ -44,7 +45,7 @@ public class Sequencer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        string path = Application.dataPath + "/StreamingAssets/lesson-steps.json";
+        string path = Application.dataPath + "/StreamingAssets/" + jsonFileName + ".json";
         string jsonContents = File.ReadAllText(path);
         root = JSON.Parse(jsonContents);
 
