@@ -64,7 +64,7 @@ public class CCCSpawner : MonoBehaviour {
         Quaternion towardsMe = Quaternion.LookRotation(Camera.main.transform.forward);
 
         //  then put it in the room (which in turn should propogate it to everyone in the room)
-        room.Create("transmission", targetPosition, towardsMe);
+        room.Create("Assembly Animation2_ applied rotation", targetPosition, towardsMe);
     }
 
     public void Calibrate()
@@ -87,5 +87,25 @@ public class CCCSpawner : MonoBehaviour {
 
         //replay all the events we have captured with the new calibration
         room.Replay();
+    }
+
+    public void StartAnimation()
+    {
+        if (room == null)
+        {
+            return;
+        }
+
+        room.RunAnimationCommand(room.mostRecentObjectUUID, "play");
+    }
+
+    public void StopAnimation()
+    {
+        if (room == null)
+        {
+            return;
+        }
+
+        room.RunAnimationCommand(room.mostRecentObjectUUID, "stop");
     }
 }

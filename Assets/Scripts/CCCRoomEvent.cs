@@ -21,7 +21,7 @@ public class CCCRoomEvent :EventArgs
     public string prefabName;
     public Vector3 relativeToCommonAnchor;
     public Quaternion facingDirection;
-    //public byte[] data;
+    public string data;
 
     public string asJson()
     {
@@ -56,6 +56,18 @@ public class CCCRoomEvent :EventArgs
         this.prefabName = prefabName;
         this.relativeToCommonAnchor = relativeToCommonAnchor;
         this.facingDirection = facingDirection;
+        this.data = "";
+    }
+
+    public CCCRoomEvent(string eventType, string objRef, string actionDetails)
+    {
+        this.eventId = Guid.NewGuid().ToString();
+        this.objectRef = objRef;
+        this.eventType = eventType;
+        this.prefabName = "";
+        this.relativeToCommonAnchor = Vector3.zero;
+        this.facingDirection = Quaternion.identity;
+        this.data = actionDetails;
     }
 
     public static CCCRoomEvent fromJson(string json)

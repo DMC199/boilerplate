@@ -8,6 +8,9 @@ public class CCCRoom : MonoBehaviour {
     private Dictionary<string, GameObject> roomObjectsById = new Dictionary<string, GameObject>();
     private List<CCCRoomEvent> eventPlayByPlay = new List<CCCRoomEvent>();
 
+    //right now it keeps track of the most recently spawned...could be set to most recently focused.  
+    public string mostRecentObjectUUID;
+
     // Use this for initialization
     void Start () {
         CCCRoomMgr.Instance.OnIncomingRoomEvent += OnIncomingRoomEvent;
@@ -35,7 +38,7 @@ public class CCCRoom : MonoBehaviour {
             this.roomObjectsById = new Dictionary<string, GameObject>();
             foreach (CCCRoomEvent cccRoomEvent in eventPlayByPlay)
             {
-                ProcessEvent(cccRoomEvent, localAnchor, this.roomObjectsById);
+                ProcessEvent(cccRoomEvent, localAnchor);
             }
         }
     }
@@ -56,11 +59,11 @@ public class CCCRoom : MonoBehaviour {
         lock (eventPlayByPlay)
         {
             eventPlayByPlay.Add(e);            
-            ProcessEvent(e, this.localAnchor, this.roomObjectsById);
+            ProcessEvent(e, this.localAnchor);
         }
     }
 
-    private static void ProcessEvent(CCCRoomEvent e, GameObject localAnchor, Dictionary<string, GameObject> roomObjectsById)
+    private void ProcessEvent(CCCRoomEvent e, GameObject localAnchor)
     {
         if ("create".Equals(e.eventType))
         {
@@ -68,6 +71,7 @@ public class CCCRoom : MonoBehaviour {
             {
 
                 GameObject instance = (GameObject)Instantiate(Resources.Load(e.prefabName), TranslateAnchor(e, localAnchor), TranslateQuaternion(localAnchor, e.facingDirection));
+                mostRecentObjectUUID = e.objectRef;
                 roomObjectsById.Add(e.objectRef, instance);
             }
         }
@@ -90,6 +94,23 @@ public class CCCRoom : MonoBehaviour {
                 GameObject instance = roomObjectsById[e.objectRef];
                 instance.transform.position = TranslateAnchor(e, localAnchor);
                 //todo purge all previoius move events for this object id from the play by play.
+            }
+        }
+        else if ("animation".Equals(e.eventType))
+        {
+            if (e.objectRef != null && roomObjectsById.ContainsKey(e.objectRef))
+            {
+                GameObject instance = roomObjectsById[e.objectRef];
+                Animation animation = instance.GetComponent<Animation>();
+                if (e.data != null && "play".Equals(e.data) && animation != null) {
+                    animation.Play("Default Take");
+                } else if (e.data != null && "stop".Equals(e.data))
+                {
+                    animation.Stop();
+                } else if (animation == null)
+                {
+                    Debug.Log("animation not found");
+                }
             }
         }
         else
@@ -122,6 +143,12 @@ public class CCCRoom : MonoBehaviour {
         //todo add a warning if distance of vector is more than 3 meters
 
         CCCRoomEvent ev = new CCCRoomEvent("move", uuid, null, relativeAnchorPosition);
+        CCCRoomMgr.Instance.SendMessage(ev);
+    }
+
+    public void RunAnimationCommand(string uuid, string animationName)
+    {
+        CCCRoomEvent ev = new CCCRoomEvent("animation", uuid, animationName);
         CCCRoomMgr.Instance.SendMessage(ev);
     }
 
