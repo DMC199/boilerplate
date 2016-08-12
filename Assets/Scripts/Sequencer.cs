@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.Windows.Speech;
 using System.IO;
 
 public class Sequencer : MonoBehaviour {
@@ -41,6 +42,7 @@ public class Sequencer : MonoBehaviour {
         public string name;
         public bool visible;
         public Vector3 position;
+        public string animation;
     }
 
 	// Use this for initialization
@@ -85,6 +87,15 @@ public class Sequencer : MonoBehaviour {
                     print("ERROR!! All objects must have a name!");
                 }
 
+                if (infoNode["animation"] != null)
+                {
+                    objInfo.animation = infoNode["animation"].Value;
+                }
+                else
+                {
+                    objInfo.animation = "";
+                }
+
 
                 if (infoNode["position"] != null)
                 {
@@ -100,13 +111,43 @@ public class Sequencer : MonoBehaviour {
             steps.Add(step);
         }
 
-        print("I'm awake! Steps: " + steps.Count);
         setActiveStep(0);
     }
 
     public void Awake()
     {
        
+    }
+
+    public void NavigationGrammarRecognized(PhraseRecognizedEventArgs args)
+    {
+        foreach (SemanticMeaning meaning in args.semanticMeanings) {
+            if(meaning.key == "Direction")
+            {
+                string direction = meaning.values[0];
+                if(direction == "next")
+                {
+                    currentStep++;
+                } else
+                {
+                    currentStep--;
+                }
+            }
+
+            if(meaning.key == "GoToStep")
+            {
+                string stepNumberString = meaning.values[0];
+                currentStep = (int.Parse(stepNumberString) - 1);
+            }
+        }
+        
+        if(currentStep >= steps.Count)
+        {
+            currentStep = steps.Count - 1;
+        } else if(currentStep < 0)
+        {
+            currentStep = 0;
+        }
     }
 
     public void setActiveStep(int index)
@@ -120,6 +161,19 @@ public class Sequencer : MonoBehaviour {
             {
                 print("Setting " + obj.name + " to visible:" + obj.visible);
                 go.GetComponent<Renderer>().enabled = obj.visible;
+
+                if(!string.IsNullOrEmpty(obj.animation))
+                {
+                    print("Setting animation: " + obj.animation);
+                    Animation anim = go.GetComponent<Animation>();
+                    if(anim != null) {
+                        print("Found animation component, playing..");
+                        anim.Play(obj.animation);
+                    } else
+                    {
+                        print("Couldn't find animation component on game object!");
+                    }
+                }
             }
         }
     }

@@ -30,8 +30,6 @@ public class GrammarManager : MonoBehaviour {
             grammarFileToLoad = sceneName + "_grammar";
         }
 
-        loadGrammar("global_nav");
-
         if (loadGrammar(grammarFileToLoad))
         {
             setGrammar(grammarFileToLoad);

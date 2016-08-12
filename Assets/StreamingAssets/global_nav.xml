@@ -2,6 +2,19 @@
  xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
 
   <rule id="topLevel">
-		<item> nav test <tag> out.Navigation = "nav";</tag> </item>
+		<one-of>
+			<item>next step<tag> out.Direction = "next";</tag></item>
+			<item>previous step<tag> out.Direction = "previous";</tag></item>
+			<item><ruleref uri="#JumpToStep" /><tag> out.GoToStep = rules.JumpToStep;  </tag></item>
+		</one-of>
+  </rule>
+  
+  <rule id="JumpToStep" scope="public">
+    <item>Jump to</item>
+	 <item repeat="0-1">step</item>
+	<one-of>
+		<item>1<tag>out = "1";</tag></item>
+		<item>2<tag>out = "2";</tag></item>
+	</one-of>
   </rule>
 </grammar>
