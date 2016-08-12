@@ -30,7 +30,7 @@ public class CCCRoomMgr : MonoBehaviour
     ConnectionInfo myConnectionInfo = new ConnectionInfo();
     List<ConnectionInfo> clientConnections = new List<ConnectionInfo>();
     HashSet<string> serverProcessedEvents = new HashSet<string>();
-    public int socketPort = 8935;
+    public int socketPort = 11764;
     int mServerSocket = -1;
 
     public static CCCRoomMgr Instance = null;

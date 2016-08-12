@@ -96,7 +96,7 @@ public class CCCSpawner : MonoBehaviour {
             return;
         }
 
-        room.RunAnimationCommand(room.mostRecentObjectUUID, "play");
+        room.RunAnimationCommand(room.mostRecentObjectUUID, true, "Default Take");
     }
 
     public void StopAnimation()
@@ -106,6 +106,6 @@ public class CCCSpawner : MonoBehaviour {
             return;
         }
 
-        room.RunAnimationCommand(room.mostRecentObjectUUID, "stop");
+        room.RunAnimationCommand(room.mostRecentObjectUUID, false, "Default Take");
     }
 }

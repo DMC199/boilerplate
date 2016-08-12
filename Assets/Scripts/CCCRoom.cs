@@ -102,9 +102,10 @@ public class CCCRoom : MonoBehaviour {
             {
                 GameObject instance = roomObjectsById[e.objectRef];
                 Animation animation = instance.GetComponent<Animation>();
-                if (e.data != null && "play".Equals(e.data) && animation != null) {
-                    animation.Play("Default Take");
-                } else if (e.data != null && "stop".Equals(e.data))
+                if (e.data != null && e.data.StartsWith("play:") && animation != null) {
+                    string animationName = e.data.Substring("play:".Length);
+                    animation.Play(animationName);
+                } else if (e.data != null && e.data.StartsWith("stop:"))
                 {
                     animation.Stop();
                 } else if (animation == null)
@@ -146,9 +147,13 @@ public class CCCRoom : MonoBehaviour {
         CCCRoomMgr.Instance.SendMessage(ev);
     }
 
-    public void RunAnimationCommand(string uuid, string animationName)
+
+    /**
+     * On what object to play or stop the animation.   
+     **/
+    public void RunAnimationCommand(string uuid, bool play, string animationName)
     {
-        CCCRoomEvent ev = new CCCRoomEvent("animation", uuid, animationName);
+        CCCRoomEvent ev = new CCCRoomEvent("animation", uuid, play ? "play:" : "stop:" + animationName);
         CCCRoomMgr.Instance.SendMessage(ev);
     }
 
