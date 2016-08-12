@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 84cee32348efae348b173a182284e2ea
+timeCreated: 1469763925
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: input_carrier_assembly
+    100004: input_carrier_assembly_EMPTY
+    100006: input_shaft
+    100008: input_shaft_EMPTY
+    100010: input_sprag_and_sun_gear
+    100012: input_sprag_and_sun_gear_EMPTY
+    100014: planet_1
+    100016: planet_2
+    100018: planet_3
+    100020: planet_4
+    100022: planet_carrier_1
+    100024: planet_gear_empty_2
+    100026: planet_gears_EMPTY
+    100028: reaction_carrier_assembly
+    100030: reaction_carrier_assembly_001
+    100032: reaction_carrier_assembly_002
+    100034: reaction_carrier_assembly_003
+    100036: reaction_carrier_assembly_004
+    100038: reaction_carrier_assembly_005
+    100040: reaction_carrier_assembly_EMPTY
+    100042: reaction_sun_gear
+    100044: reaction_sun_gear_EMPTY
+    100046: reverse_reaction_drum
+    100048: reverse_reaction_drum_EMPTY
+    100050: support_inner
+    100052: support_inner_EMPTY
+    100054: support_roller_clutch
+    100056: support_roller_clutch_EMPTY
+    400000: //RootNode
+    400002: input_carrier_assembly
+    400004: input_carrier_assembly_EMPTY
+    400006: input_shaft
+    400008: input_shaft_EMPTY
+    400010: input_sprag_and_sun_gear
+    400012: input_sprag_and_sun_gear_EMPTY
+    400014: planet_1
+    400016: planet_2
+    400018: planet_3
+    400020: planet_4
+    400022: planet_carrier_1
+    400024: planet_gear_empty_2
+    400026: planet_gears_EMPTY
+    400028: reaction_carrier_assembly
+    400030: reaction_carrier_assembly_001
+    400032: reaction_carrier_assembly_002
+    400034: reaction_carrier_assembly_003
+    400036: reaction_carrier_assembly_004
+    400038: reaction_carrier_assembly_005
+    400040: reaction_carrier_assembly_EMPTY
+    400042: reaction_sun_gear
+    400044: reaction_sun_gear_EMPTY
+    400046: reverse_reaction_drum
+    400048: reverse_reaction_drum_EMPTY
+    400050: support_inner
+    400052: support_inner_EMPTY
+    400054: support_roller_clutch
+    400056: support_roller_clutch_EMPTY
+    2300000: input_carrier_assembly
+    2300002: input_shaft
+    2300004: input_sprag_and_sun_gear
+    2300006: planet_1
+    2300008: planet_2
+    2300010: planet_3
+    2300012: planet_4
+    2300014: planet_carrier_1
+    2300016: reaction_carrier_assembly
+    2300018: reaction_carrier_assembly_001
+    2300020: reaction_carrier_assembly_002
+    2300022: reaction_carrier_assembly_003
+    2300024: reaction_carrier_assembly_004
+    2300026: reaction_carrier_assembly_005
+    2300028: reaction_sun_gear
+    2300030: reverse_reaction_drum
+    2300032: support_inner
+    2300034: support_roller_clutch
+    3300000: input_carrier_assembly
+    3300002: input_shaft
+    3300004: input_sprag_and_sun_gear
+    3300006: planet_1
+    3300008: planet_2
+    3300010: planet_3
+    3300012: planet_4
+    3300014: planet_carrier_1
+    3300016: reaction_carrier_assembly
+    3300018: reaction_carrier_assembly_001
+    3300020: reaction_carrier_assembly_002
+    3300022: reaction_carrier_assembly_003
+    3300024: reaction_carrier_assembly_004
+    3300026: reaction_carrier_assembly_005
+    3300028: reaction_sun_gear
+    3300030: reverse_reaction_drum
+    3300032: support_inner
+    3300034: support_roller_clutch
+    4300000: support_inner
+    4300002: reaction_carrier_assembly_001
+    4300004: reaction_carrier_assembly
+    4300006: reaction_carrier_assembly_005
+    4300008: reaction_carrier_assembly_004
+    4300010: reaction_carrier_assembly_003
+    4300012: reaction_carrier_assembly_002
+    4300014: input_sprag_and_sun_gear
+    4300016: input_shaft
+    4300018: reverse_reaction_drum
+    4300020: input_carrier_assembly
+    4300022: planet_carrier_1
+    4300024: planet_1
+    4300026: planet_2
+    4300028: planet_3
+    4300030: planet_4
+    4300032: reaction_sun_gear
+    4300034: support_roller_clutch
+    7400000: Default Take
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

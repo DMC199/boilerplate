@@ -4,7 +4,7 @@ using HoloToolkit.Sharing;
 
 public class IPAddressEntry : MonoBehaviour {
 
-    public string FullIpAddress = "";
+    public string FullIpAddress;   
 
     void AppendText(string text)
     {
@@ -19,16 +19,16 @@ public class IPAddressEntry : MonoBehaviour {
         {
             FullIpAddress += text;
         }
-        SuggestCharacter();
+        SuggestCharacter(text);
         GetComponent<TextMesh>().text = FullIpAddress;
     }
 
-    void SuggestCharacter()
+    void SuggestCharacter(string lastCharacter)
     {
         int length = FullIpAddress.Length;
         int periodCount = FullIpAddress.Split('.').Length - 1;
 
-        if (length >= 3 && periodCount < 3)
+        if (length >= 3 && periodCount < 3 && !(lastCharacter.Equals("\b") || lastCharacter.Equals("\\b")))
         {
             if (!".".Equals(FullIpAddress.Substring(length-1, 1)) &&
                 !".".Equals(FullIpAddress.Substring(length-2, 1)) &&
@@ -52,6 +52,10 @@ public class IPAddressEntry : MonoBehaviour {
         if (PlayerPrefs.HasKey("server-ip-address"))
         {
             FullIpAddress = PlayerPrefs.GetString("server-ip-address");
+            GetComponent<TextMesh>().text = FullIpAddress;
+        }
+        else
+        {
             GetComponent<TextMesh>().text = FullIpAddress;
         }
     }

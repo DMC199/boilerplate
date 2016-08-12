@@ -9,6 +9,6 @@ public class ActionInitiated : MonoBehaviour {
     {
         string serverIpAddress = IPAddressText.GetComponent<TextMesh>().text;
         PlayerPrefs.SetString("server-ip-address", serverIpAddress);
-        SceneManager.LoadScene("scene_0");
+        SceneManager.LoadScene("jhager_scene_1");
     }
 }

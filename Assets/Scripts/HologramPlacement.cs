@@ -38,10 +38,11 @@ public class HologramPlacement : Singleton<HologramPlacement>
 
         // Setup a keyword recognizer to enable resetting the target location.
         List<string> keywords = new List<string>();
-        keywords.Add("Reset Target");
+        keywords.Add("Calibrate World Anchor");
         keywordRecognizer = new KeywordRecognizer(keywords.ToArray());
         keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
         keywordRecognizer.Start();
+
     }
 
     /// <summary>
@@ -52,7 +53,11 @@ public class HologramPlacement : Singleton<HologramPlacement>
     /// <param name="args">information to help route the voice command.</param>
     private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
-        ResetStage();
+        // Place the cursor at the calculated position.
+        this.gameObject.transform.position = GazeManager.Instance.Position;
+
+        // Orient the cursor to match the surface being gazed at.
+        gameObject.transform.up = GazeManager.Instance.Normal;
     }
 
     /// <summary>
@@ -70,7 +75,6 @@ public class HologramPlacement : Singleton<HologramPlacement>
         CustomMessages.Instance.SendResetStage();
 
         // And we need to reset the object to its start animation state.
-        GetComponent<EnergyHubBase>().ResetAnimation();
     }
 
     /// <summary>
@@ -141,7 +145,7 @@ public class HologramPlacement : Singleton<HologramPlacement>
                 {
                     // This triggers the animation sequence for the model and 
                     // puts the cool materials on the model.
-                    GetComponent<EnergyHubBase>().SendMessage("OnSelect");
+                   // GetComponent<EnergyHubBase>().SendMessage("OnSelect");
                 }
             }
         }
@@ -224,7 +228,7 @@ public class HologramPlacement : Singleton<HologramPlacement>
         // swap its materials.
         if (disabledRenderers.Count == 0 && GotTransform == false)
         {
-            GetComponent<EnergyHubBase>().SendMessage("OnSelect");
+            //GetComponent<EnergyHubBase>().SendMessage("OnSelect");
         }
 
         GotTransform = true;
@@ -237,7 +241,6 @@ public class HologramPlacement : Singleton<HologramPlacement>
     {
         GotTransform = false;
 
-        GetComponent<EnergyHubBase>().ResetAnimation();
         AppStateManager.Instance.ResetStage();
     }
 }

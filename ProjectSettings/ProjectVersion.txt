@@ -1,2 +1,6 @@
+<<<<<<< HEAD
+m_EditorVersion: 5.4.0b22-HTP
+=======
 m_EditorVersion: 5.4.0b18-HTP
+>>>>>>> develop
 m_StandardAssetsVersion: 0
