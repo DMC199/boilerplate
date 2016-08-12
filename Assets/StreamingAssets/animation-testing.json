@@ -1,0 +1,30 @@
+{
+  "steps": [
+    [
+      {
+        "name" :  "664 and 668",
+        "visible": true,
+        "position": [ 1, 5, 2 ],
+        "animation": "664 and 668- first gear"
+      },
+	  {
+		"name" : "632",
+		"visible" : true,
+		"animation" : "632- stationary" 
+	  }
+    ],
+    [
+      {
+        "name" :  "664 and 668",
+        "visible": false,
+        "position": [ 1, 5, 2 ],
+        "animation": "664 and 668- first gear"
+      },
+	  {
+		"name" : "632",
+		"visible" : true,
+		"animation" : "632- first gear" 
+	  }
+    ]
+  ]
+}

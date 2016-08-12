@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Windows.Speech;
 
 public class InstructionStateManager : MonoBehaviour
 {
@@ -115,5 +116,25 @@ public class InstructionStateManager : MonoBehaviour
         if (curtain != null && curtain.color.a >= 0.95f)
             // ... reload the level.
             Application.LoadLevel(sceneToLoad);
+    }
+
+    public void OnGrammarRecognized(PhraseRecognizedEventArgs args)
+    {
+        if ((args.semanticMeanings != null) && (args.semanticMeanings.Length > 0))
+        {
+
+            print("Semantic values:" + args.semanticMeanings.Length);
+
+            string nav = "";
+
+            for (int i = 0; i < args.semanticMeanings.Length; i++)
+            {
+                if (args.semanticMeanings[i].key == "Navigation")
+                {
+                    sceneToLoad = GetNextScene();
+                    sceneEnding = true;
+                }
+            }
+        }
     }
 }
