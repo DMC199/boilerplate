@@ -28,16 +28,25 @@ public class CCCRoomEvent :EventArgs
         return JsonUtility.ToJson(this);
     }
 
-    public CCCRoomEvent()
+    public CCCRoomEvent(string eventType)
     {
         this.eventId = Guid.NewGuid().ToString();
-        this.objectRef = Guid.NewGuid().ToString();
+        this.objectRef = "";
+        this.eventType = eventType;
+        this.prefabName = "";
+        this.relativeToCommonAnchor = Vector3.zero;
+        this.facingDirection = Quaternion.identity;
+        this.data = "";
     }
     public CCCRoomEvent(string eventType, string id)
     {
         this.eventId = Guid.NewGuid().ToString();
         this.objectRef = id;
         this.eventType = eventType;
+        this.prefabName = "";
+        this.relativeToCommonAnchor = Vector3.zero;
+        this.facingDirection = Quaternion.identity;
+        this.data = "";
     }
     public CCCRoomEvent(string eventType, string id, string prefabName, Vector3 relativeToCommonAnchor)
     {
@@ -46,6 +55,8 @@ public class CCCRoomEvent :EventArgs
         this.eventType = eventType;
         this.prefabName = prefabName;
         this.relativeToCommonAnchor = relativeToCommonAnchor;
+        this.facingDirection = Quaternion.identity;
+        this.data = "";
     }
 
     public CCCRoomEvent(string eventType, string prefabName, Vector3 relativeToCommonAnchor, Quaternion facingDirection)

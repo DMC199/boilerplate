@@ -108,4 +108,14 @@ public class CCCSpawner : MonoBehaviour {
 
         room.RunAnimationCommand(room.mostRecentObjectUUID, false, "Default Take");
     }
+
+    public void ClearAll()
+    {
+        if (room == null)
+        {
+            return;
+        }
+
+        room.ClearAll();
+    }
 }

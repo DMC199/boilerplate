@@ -114,9 +114,14 @@ public class CCCRoom : MonoBehaviour {
                 }
             }
         }
-        else
+        else if ("clear-all".Equals(e.eventType))
         {
-
+            foreach (KeyValuePair<string, GameObject> entry in roomObjectsById)
+            {
+                Destroy(entry.Value);              
+            }
+            roomObjectsById.Clear();
+            eventPlayByPlay.Clear();
         }
     }
 
@@ -135,6 +140,11 @@ public class CCCRoom : MonoBehaviour {
     {
         //todo test this.  
         CCCRoomMgr.Instance.SendMessage(new CCCRoomEvent("destroy", uuid)); 
+    }
+
+    public void ClearAll()
+    {
+        CCCRoomMgr.Instance.SendMessage(new CCCRoomEvent("clear-all"));
     }
 
     public void Move(string uuid, Vector3 newTargetPosition)
