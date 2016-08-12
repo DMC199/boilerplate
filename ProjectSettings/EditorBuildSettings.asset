@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/GrammarRecognizer.unity
   - enabled: 0
     path: Assets/_Scenes/DetachedFromServer.unity
@@ -19,3 +19,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/scene_3.unity
   - enabled: 0
     path: Assets/_Scenes/SharedHolograms.unity
+  - enabled: 0
+    path: Assets/_Scenes/json_example.unity
+  - enabled: 1
+    path: Assets/_Scenes/multiple_fbx_animations.unity
