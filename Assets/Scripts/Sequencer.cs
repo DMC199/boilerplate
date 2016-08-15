@@ -7,27 +7,14 @@ using System.IO;
 
 public class Sequencer : MonoBehaviour {
 
-
-    /*public int CurrentStep {
-        get
-        {
-            return _currentStep;
-        }
-
-        set
-        {
-            print("CHANGE IS COMING!");
-            _currentStep = value;
-            setActiveStep(_currentStep);
-        }
-      
-    }*/
-
     //UnityEditor
+    public CCCRoom room;
     public int currentStep;
+    public float lerpTime = 1.0f;
     public string jsonFileName;
 
     private int lastCurrentStep;
+    private bool doLerp = false;
 
     JSONNode root;
     List<StepInfo> steps;
@@ -119,6 +106,26 @@ public class Sequencer : MonoBehaviour {
        
     }
 
+    public void NextStep()
+    {
+        currentStep++;
+
+        if (currentStep >= steps.Count)
+        {
+            currentStep = 0;
+        }
+    }
+
+    public void LastStep()
+    {
+        currentStep--;
+
+        if(currentStep < 0)
+        {
+            currentStep = steps.Count - 1;
+        }
+    }
+
     public void NavigationGrammarRecognized(PhraseRecognizedEventArgs args)
     {
         foreach (SemanticMeaning meaning in args.semanticMeanings) {
@@ -127,10 +134,10 @@ public class Sequencer : MonoBehaviour {
                 string direction = meaning.values[0];
                 if(direction == "next")
                 {
-                    currentStep++;
+                    NextStep();
                 } else
                 {
-                    currentStep--;
+                    LastStep();
                 }
             }
 
@@ -141,13 +148,7 @@ public class Sequencer : MonoBehaviour {
             }
         }
         
-        if(currentStep >= steps.Count)
-        {
-            currentStep = steps.Count - 1;
-        } else if(currentStep < 0)
-        {
-            currentStep = 0;
-        }
+
     }
 
     public void setActiveStep(int index)
@@ -157,21 +158,54 @@ public class Sequencer : MonoBehaviour {
         foreach(ObjectStepInfo obj in step.objects)
         {
             GameObject go = GameObject.Find(obj.name);
-            if(go != null)
+            if (go != null)
             {
                 print("Setting " + obj.name + " to visible:" + obj.visible);
-                go.GetComponent<Renderer>().enabled = obj.visible;
+                Renderer parentRenderer = go.GetComponent<Renderer>();
+                if (parentRenderer == null)
+                {
+                    foreach (Transform child in go.transform)
+                    {
+                        child.GetComponent<Renderer>().enabled = obj.visible;
+                    }
+                }
+                else
+                {
+                    parentRenderer.enabled = obj.visible;
+                }
 
-                if(!string.IsNullOrEmpty(obj.animation))
+                if (obj.position != new Vector3(0, 0, 0) && go.transform.localPosition == new Vector3(0, 0, 0))
+                {
+                    go.transform.localPosition = obj.position;
+                }
+                else if (obj.position == new Vector3(0, 0, 0) && go.transform.localPosition != new Vector3(0, 0, 0))
+                {
+                    doLerp = true;
+                    LerpPart(go.transform, go.transform.localPosition, obj.position);
+                    print("Lerp me right round baby, right round");
+                }
+
+                if (!string.IsNullOrEmpty(obj.animation))
                 {
                     print("Setting animation: " + obj.animation);
                     Animation anim = go.GetComponent<Animation>();
-                    if(anim != null) {
-                        print("Found animation component, playing..");
+                    if (anim != null)
+                    {
+                        print("Found animation component, playing.. " + obj.animation);
                         anim.Play(obj.animation);
-                    } else
+                    }
+                    else
                     {
                         print("Couldn't find animation component on game object!");
+                    }
+                }
+                else
+                {
+                    Animation anim = go.GetComponent<Animation>();
+                    if (anim != null)
+                    {
+                        print("Stopping anim...");
+                        anim.Stop();
                     }
                 }
             }
@@ -186,9 +220,40 @@ public class Sequencer : MonoBehaviour {
         result.z = values[2].AsFloat;
         return result;
     }
+
+    void LerpPart(Transform tTrans, Vector3 start, Vector3 end)
+    {
+        if(doLerp == true)
+        {
+            StartCoroutine(LerpMachine(tTrans, start, end, lerpTime));
+            doLerp = false;
+        }
+    }
+
+    IEnumerator LerpMachine(Transform targetTransform, Vector3 startPos, Vector3 endPos, float time)
+    {
+        var i = 0.0f;
+        var rate = 1.0f / time;
+        while (i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
+            targetTransform.localPosition = Vector3.Lerp(startPos, endPos, i);
+            yield return null;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            NextStep();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            LastStep();
+        }
+
 	    if(currentStep != lastCurrentStep)
         {
             setActiveStep(currentStep);
