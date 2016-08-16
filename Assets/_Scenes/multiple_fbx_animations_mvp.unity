@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692558, g: 0.49678743, b: 0.57508624, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692576, g: 0.49678737, b: 0.57508504, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -415,9 +415,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 831236088}
-  m_LocalRotation: {x: 0, y: -0.7660445, z: 0, w: 0.64278764}
-  m_LocalPosition: {x: 0.31859463, y: 0.0000012665987, z: 0.7011518}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.331, y: 0, z: 1.5}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_Children:
   - {fileID: 1272274575}
   - {fileID: 789358313}
@@ -430,7 +431,6 @@ Transform:
   - {fileID: 280140038}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -100, z: 0}
 --- !u!1 &855055232
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,10 +516,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &855055238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,10 +591,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.33841822, y: 0.005593106, z: 0.76490283}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &975695253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +656,7 @@ Light:
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
@@ -681,10 +682,10 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!4 &1272274575 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f6d5f7805f849f24d82fd54c88682415, type: 3}

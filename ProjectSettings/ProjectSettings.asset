@@ -4,13 +4,14 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
+  productGUID: 950cab9b3acaa264997fc955e15009cd
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Microsoft Corporation
-  productName: SharedHolograms
+  companyName: Oregon Story Board
+  productName: Transmission
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenStyle: 0
@@ -70,7 +71,7 @@ PlayerSettings:
   n3dsDisableStereoscopicView: 0
   n3dsEnableSharedListOpt: 1
   n3dsEnableVSync: 0
-  uiUse16BitDepthBuffer: 0
+  uiUse16BitDepthBuffer: 1
   ignoreAlphaClear: 0
   xboxOneResolution: 0
   xboxOneMonoLoggingLevel: 0
@@ -101,7 +102,6 @@ PlayerSettings:
   xboxOneDisableKinectGpuReservation: 0
   singlePassStereoRendering: 1
   protectGraphicsMemory: 0
-  productGUID: 950cab9b3acaa264997fc955e15009cd
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -290,6 +290,7 @@ PlayerSettings:
   ps4attribMoveSupport: 0
   ps4attrib3DSupport: 0
   ps4attribShareSupport: 0
+  ps4attribExclusiveVR: 0
   ps4disableAutoHideSplash: 0
   ps4IncludedModules: []
   monoEnv: 
@@ -343,7 +344,7 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols: {}
-  metroPackageName: SharedHolograms
+  metroPackageName: Transmission
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
@@ -352,7 +353,7 @@ PlayerSettings:
   metroCertificateNotAfter: 80252f6068c0d201
   metroApplicationDescription: SharedHolograms
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Transmission
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
