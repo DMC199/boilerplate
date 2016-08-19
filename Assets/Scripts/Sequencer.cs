@@ -208,11 +208,11 @@ public class Sequencer : MonoBehaviour {
                     parentRenderer.enabled = obj.visible;
                 }
 
-                if (obj.position != new Vector3(0, 0, 0) && go.transform.localPosition == new Vector3(0, 0, 0))
+                if (!obj.position.Equals(Vector3.zero) && go.transform.localPosition.Equals(Vector3.zero))
                 {
                     go.transform.localPosition = obj.position;
                 }
-                else if (obj.position == new Vector3(0, 0, 0) && go.transform.localPosition != new Vector3(0, 0, 0))
+                else if (obj.position.Equals(Vector3.zero) && !go.transform.localPosition.Equals(Vector3.zero))
                 {
                     doLerp = true;
                     LerpPart(go.transform, go.transform.localPosition, obj.position);
