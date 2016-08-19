@@ -22,6 +22,7 @@ public class CCCRoomEvent :EventArgs
     public Vector3 relativeToCommonAnchor;
     public Quaternion facingDirection;
     public string data;
+    public int intData;
 
     public string asJson()
     {
@@ -37,6 +38,7 @@ public class CCCRoomEvent :EventArgs
         this.relativeToCommonAnchor = Vector3.zero;
         this.facingDirection = Quaternion.identity;
         this.data = "";
+        this.intData = 0;
     }
     public CCCRoomEvent(string eventType, string id)
     {
@@ -47,6 +49,7 @@ public class CCCRoomEvent :EventArgs
         this.relativeToCommonAnchor = Vector3.zero;
         this.facingDirection = Quaternion.identity;
         this.data = "";
+        this.intData = 0;
     }
     public CCCRoomEvent(string eventType, string id, string prefabName, Vector3 relativeToCommonAnchor)
     {
@@ -57,6 +60,7 @@ public class CCCRoomEvent :EventArgs
         this.relativeToCommonAnchor = relativeToCommonAnchor;
         this.facingDirection = Quaternion.identity;
         this.data = "";
+        this.intData = 0;
     }
 
     public CCCRoomEvent(string eventType, string prefabName, Vector3 relativeToCommonAnchor, Quaternion facingDirection)
@@ -68,6 +72,7 @@ public class CCCRoomEvent :EventArgs
         this.relativeToCommonAnchor = relativeToCommonAnchor;
         this.facingDirection = facingDirection;
         this.data = "";
+        this.intData = 0;
     }
 
     public CCCRoomEvent(string eventType, string objRef, string actionDetails)
@@ -79,6 +84,19 @@ public class CCCRoomEvent :EventArgs
         this.relativeToCommonAnchor = Vector3.zero;
         this.facingDirection = Quaternion.identity;
         this.data = actionDetails;
+        this.intData = 0;
+    }
+
+    public CCCRoomEvent(int step)
+    {
+        this.eventId = Guid.NewGuid().ToString();
+        this.objectRef = "";
+        this.eventType = "step-changed";
+        this.prefabName = "";
+        this.relativeToCommonAnchor = Vector3.zero;
+        this.facingDirection = Quaternion.identity;
+        this.data = "";
+        this.intData = step;
     }
 
     public static CCCRoomEvent fromJson(string json)

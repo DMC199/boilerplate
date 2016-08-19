@@ -6,6 +6,7 @@
 			<item>next step<tag> out.Direction = "next";</tag></item>
 			<item>previous step<tag> out.Direction = "previous";</tag></item>
 			<item><ruleref uri="#JumpToStep" /><tag> out.GoToStep = rules.JumpToStep;  </tag></item>
+			<item>calibrate<tag> out.Action = "calibrate"; </tag> </item>
 		</one-of>
   </rule>
   

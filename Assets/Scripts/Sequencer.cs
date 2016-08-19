@@ -103,7 +103,23 @@ public class Sequencer : MonoBehaviour {
 
     public void Awake()
     {
-       
+        room.OnPropagateRoomEvent += Room_OnPropagateRoomEvent;
+    }
+
+    public void triggerActiveStep(int step)
+    {
+        if (room != null)
+        {
+            room.RunStepChangeCommand(step);
+        }
+    }
+
+    private void Room_OnPropagateRoomEvent(object sender, CCCRoomEvent e)
+    {
+        if ("step-changed".Equals(e.eventType))
+        {
+            this.setActiveStep(e.intData);
+        }
     }
 
     public void NextStep()
@@ -112,8 +128,10 @@ public class Sequencer : MonoBehaviour {
 
         if (currentStep >= steps.Count)
         {
-            currentStep = 0;
+            currentStep = 0;          
         }
+
+        triggerActiveStep(currentStep);
     }
 
     public void LastStep()
@@ -124,6 +142,8 @@ public class Sequencer : MonoBehaviour {
         {
             currentStep = steps.Count - 1;
         }
+
+        triggerActiveStep(currentStep);
     }
 
     public void NavigationGrammarRecognized(PhraseRecognizedEventArgs args)
@@ -145,6 +165,20 @@ public class Sequencer : MonoBehaviour {
             {
                 string stepNumberString = meaning.values[0];
                 currentStep = (int.Parse(stepNumberString) - 1);
+
+                triggerActiveStep(currentStep);
+            }
+
+            if (meaning.key == "Action")
+            {
+                Debug.Log("Calibrating");
+                if ("calibrate".Equals(meaning.values[0]))
+                {
+                    if (room != null)
+                    {
+                        room.Calibrate();
+                    }
+                }
             }
         }
         
@@ -254,10 +288,5 @@ public class Sequencer : MonoBehaviour {
             LastStep();
         }
 
-	    if(currentStep != lastCurrentStep)
-        {
-            setActiveStep(currentStep);
-            lastCurrentStep = currentStep;
-        }
 	}
 }

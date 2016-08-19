@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class CCCRoom : MonoBehaviour {
 
@@ -10,6 +11,10 @@ public class CCCRoom : MonoBehaviour {
 
     //right now it keeps track of the most recently spawned...could be set to most recently focused.  
     public string mostRecentObjectUUID;
+
+    //propagate unknown events.  
+    public event EventHandler<CCCRoomEvent> OnPropagateRoomEvent;
+
 
     // Use this for initialization
     void Start () {
@@ -123,6 +128,14 @@ public class CCCRoom : MonoBehaviour {
             roomObjectsById.Clear();
             eventPlayByPlay.Clear();
         }
+        else
+        {
+            EventHandler<CCCRoomEvent> handler = OnPropagateRoomEvent;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
     }
 
     public string Create(string prefabName, Vector3 targetPosition, Quaternion camRotation)
@@ -157,6 +170,11 @@ public class CCCRoom : MonoBehaviour {
         CCCRoomMgr.Instance.SendMessage(ev);
     }
 
+    public void RunStepChangeCommand(int step)
+    {
+        CCCRoomEvent ev = new CCCRoomEvent(step);
+        CCCRoomMgr.Instance.SendMessage(ev);
+    }
 
     /**
      * On what object to play or stop the animation.   
@@ -184,5 +202,22 @@ public class CCCRoom : MonoBehaviour {
     private static Quaternion TranslateQuaternion(GameObject localAnchor, Quaternion qp)
     {
         return qp * localAnchor.transform.localRotation;
+    }
+
+    public void Calibrate()
+    {
+        Vector3 camTransform = Camera.main.transform.position;
+        Vector3 forward = Camera.main.transform.forward.normalized;
+
+        Vector3 targetPosition = camTransform + forward * 1.0F;
+
+        localAnchor.transform.position = targetPosition;
+
+        //we may want to use the real world surface normal.
+        Quaternion targetRotation = Camera.main.transform.rotation;
+        localAnchor.transform.rotation = targetRotation;
+
+        //replay all the events we have captured with the new calibration
+        Replay();
     }
 }

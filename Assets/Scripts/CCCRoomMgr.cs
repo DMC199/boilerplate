@@ -5,6 +5,10 @@ using System.IO;
 using System.Text;
 using System;
 using System.Collections.Generic;
+#if !UNITY_EDITOR
+using Windows;
+using System.Threading.Tasks;
+#endif
 
 public class CCCRoomMgr : MonoBehaviour
 {
@@ -30,6 +34,7 @@ public class CCCRoomMgr : MonoBehaviour
     ConnectionInfo myConnectionInfo = new ConnectionInfo();
     List<ConnectionInfo> clientConnections = new List<ConnectionInfo>();
     HashSet<string> serverProcessedEvents = new HashSet<string>();
+    private string hostIpAddress;
     public int socketPort = 11764;
     int mServerSocket = -1;
 
@@ -57,11 +62,55 @@ public class CCCRoomMgr : MonoBehaviour
         Connect();
     }
 
+#if !UNITY_EDITOR
+
+    public async Task<string> configJson()
+    {
+        Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+        try
+        {
+            Windows.Storage.StorageFile configFile = await storageFolder.GetFileAsync("config.json");
+
+            var buffer = await Windows.Storage.FileIO.ReadBufferAsync(configFile);
+
+
+            using (var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(buffer))
+            {
+                string text = dataReader.ReadString(buffer.Length);
+                Debug.Log("read " + text);
+                return text;
+            }
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+    }
+
+    public async void configureIpAddress()
+    {
+        string configJson = await this.configJson();
+        if (!"".Equals(configJson))
+        {
+            Config configuration = JsonUtility.FromJson<Config>(configJson);
+            if (!"".Equals(configuration.ipAddress))
+            {
+                this.hostIpAddress = configuration.ipAddress;
+            }
+        }
+    }
+#endif
+
     public void Connect()
     {
         byte error;
         //todo is there another way besides PlayerPrefs this should be grabbed to make this class more generic. (see also isServer)
-        string hostIpAddress = PlayerPrefs.GetString("server-ip-address");
+        this.hostIpAddress = "127.0.0.1"; // PlayerPrefs.GetString("server-ip-address");
+                                          //string sAttr = ConfigurationManager.AppSettings.Get("ip-address");
+#if !UNITY_EDITOR
+        configureIpAddress();
+#endif
         myConnectionInfo.connectionId = NetworkTransport.Connect(myConnectionInfo.hostId, hostIpAddress, socketPort, 0, out error);
 
         LogNetworkError(error);
