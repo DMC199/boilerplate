@@ -5,56 +5,39 @@
       "state": [
         {
           "name": "632",
-          "visible": false,
-          "animation": ""
+          "visible": false
         },
         {
           "name": "664 and 668",
           "visible": false,
-          "position": [ ],
-          "animation": ""
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "673",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         }
       ]
     },
@@ -62,57 +45,39 @@
       "name": "step 2",
       "state": [
         {
-          "name": "632",
-          "visible": true,
-          "animation": ""
+          "name": "632"
         },
         {
           "name": "664 and 668",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "673",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         }
       ]
     },
@@ -121,56 +86,39 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "673",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         }
       ]
     },
@@ -179,56 +127,39 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ 0, 0, -10 ],
-          "animation": ""
+          "position": [ 0, 0, -10 ]
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "673",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         }
       ]
     },
@@ -237,56 +168,39 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "673",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         }
       ]
     },
@@ -295,56 +209,39 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ 0, 0, -8 ],
-          "animation": ""
+          "position": [ 0, 0, -8 ]
         },
         {
           "name": "673",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ 0, 0, -16 ],
-          "animation": ""
+          "position": [ 0, 0, -16 ]
         }
       ]
     },
@@ -353,55 +250,37 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
-          "name": "672",
-          "visible": true,
-          "position": [ ],
-          "animation": ""
+          "name": "672"
         },
         {
           "name": "673",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
@@ -411,60 +290,41 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear",
           "alpha": 0
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear",
           "alpha": 0
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
-          "animation": "",
           "alpha": 1
         },
         {
           "name": "673",
-          "visible": true,
           "position": [ 0, 0, -10 ],
-          "animation": "",
           "alpha": 1
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
-          "name": "planet gears",
-          "visible": true,
-          "position": [ ],
-          "animation": ""
+          "name": "planet gears"
         }
       ]
     },
@@ -473,55 +333,38 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
           "animation": "672- first gear"
         },
         {
           "name": "673",
-          "visible": true,
-          "position": [ ],
           "animation": "673- first gear"
         },
         {
           "name": "680",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "681",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
@@ -531,55 +374,38 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
           "animation": "672- first gear"
         },
         {
           "name": "673",
-          "visible": true,
-          "position": [ ],
           "animation": "673- first gear"
         },
         {
           "name": "680",
-          "visible": true,
-          "position": [ 0, 0, -8 ],
-          "animation": ""
+          "position": [ 0, 0, -8 ]
         },
         {
           "name": "681",
-          "visible": true,
-          "position": [ 0, 0, -16 ],
-          "animation": ""
+          "position": [ 0, 0, -16 ]
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
@@ -589,55 +415,38 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
           "animation": "672- first gear"
         },
         {
           "name": "673",
-          "visible": true,
-          "position": [ ],
           "animation": "673- first gear"
         },
         {
           "name": "680",
-          "visible": true,
-          "position": [ ],
           "animation": "680- first gear"
         },
         {
           "name": "681",
-          "visible": true,
-          "position": [ ],
           "animation": "681- first gear"
         },
         {
           "name": "688",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
@@ -647,55 +456,38 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
           "animation": "672- first gear"
         },
         {
           "name": "673",
-          "visible": true,
-          "position": [ ],
           "animation": "673- first gear"
         },
         {
           "name": "680",
-          "visible": true,
-          "position": [ ],
           "animation": "680- first gear"
         },
         {
           "name": "681",
-          "visible": true,
-          "position": [ ],
           "animation": "681- first gear"
         },
         {
           "name": "688",
-          "visible": true,
-          "position": [ 0, 0, -10 ],
-          "animation": ""
+          "position": [ 0, 0, -10 ]
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
@@ -705,55 +497,38 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": false,
-          "position": [ ],
-          "animation": ""
+          "visible": false
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
           "animation": "672- first gear"
         },
         {
           "name": "673",
-          "visible": true,
-          "position": [ ],
           "animation": "673- first gear"
         },
         {
           "name": "680",
-          "visible": true,
-          "position": [ ],
           "animation": "680- first gear"
         },
         {
           "name": "681",
-          "visible": true,
-          "position": [ ],
           "animation": "681- first gear"
         },
         {
           "name": "688",
-          "visible": true,
-          "position": [ ],
           "animation": "688- first gear"
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
@@ -763,55 +538,38 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
           "name": "669",
-          "visible": true,
-          "position": [ 0, 0, -25 ],
-          "animation": ""
+          "position": [ 0, 0, -25 ]
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
           "animation": "672- first gear"
         },
         {
           "name": "673",
-          "visible": true,
-          "position": [ ],
           "animation": "673- first gear"
         },
         {
           "name": "680",
-          "visible": true,
-          "position": [ ],
           "animation": "680- first gear"
         },
         {
           "name": "681",
-          "visible": true,
-          "position": [ ],
           "animation": "681- first gear"
         },
         {
           "name": "688",
-          "visible": true,
-          "position": [ ],
           "animation": "688- first gear"
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
@@ -821,55 +579,37 @@
       "state": [
         {
           "name": "632",
-          "visible": true,
           "animation": "632- first gear"
         },
         {
           "name": "664 and 668",
-          "visible": true,
-          "position": [ ],
           "animation": "664 and 668- first gear"
         },
         {
-          "name": "669",
-          "visible": true,
-          "position": [ ],
-          "animation": ""
+          "name": "669"
         },
         {
           "name": "672",
-          "visible": true,
-          "position": [ ],
           "animation": "672- first gear"
         },
         {
           "name": "673",
-          "visible": true,
-          "position": [ ],
           "animation": "673- first gear"
         },
         {
           "name": "680",
-          "visible": true,
-          "position": [ ],
           "animation": "680- first gear"
         },
         {
           "name": "681",
-          "visible": true,
-          "position": [ ],
           "animation": "681- first gear"
         },
         {
           "name": "688",
-          "visible": true,
-          "position": [ ],
           "animation": "688- first gear"
         },
         {
           "name": "planet gears",
-          "visible": true,
-          "position": [ ],
           "animation": "planet center- first gear"
         }
       ]
