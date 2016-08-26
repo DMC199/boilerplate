@@ -219,7 +219,7 @@ public class Sequencer : MonoBehaviour {
                 {
                     foreach (Transform child in go.transform)
                     {
-                 //       child.GetComponent<Renderer>().enabled = obj.visible;
+                        child.GetComponent<Renderer>().enabled = obj.visible;
                     }
                 }
                 else
