@@ -13,6 +13,8 @@ public class Sequencer : MonoBehaviour {
     public float lerpTime = 1.0f;
     public string jsonFileName;
 
+    public GameObject callout;
+
     private int lastCurrentStep;
     private bool doLerp = false;
 
@@ -22,6 +24,11 @@ public class Sequencer : MonoBehaviour {
     public class StepInfo
     {
         public string name;
+
+        public bool hasCallout;
+        public string calloutText;
+        public Vector3 calloutTarget;
+
         public List<ObjectStepInfo> objects;
     }
 
@@ -54,6 +61,17 @@ public class Sequencer : MonoBehaviour {
             if (stepInfo["name"] != null)
             {
                 step.name = stepInfo["name"];
+            }
+
+            if (stepInfo["callout"] != null)
+            {
+                JSONNode calloutInfo = stepInfo["callout"];
+                step.hasCallout = true;
+                step.calloutText = calloutInfo["text"];
+                step.calloutTarget = parseVector(calloutInfo["target"].AsArray);
+            } else
+            {
+                step.hasCallout = false;
             }
 
             JSONArray objectsInStep = stepInfo["state"].AsArray;
@@ -130,6 +148,9 @@ public class Sequencer : MonoBehaviour {
         if (room != null)
         {
             room.RunStepChangeCommand(step);
+        } else
+        {
+            setActiveStep(step);
         }
     }
 
@@ -227,6 +248,7 @@ public class Sequencer : MonoBehaviour {
                     parentRenderer.enabled = obj.visible;
                 }
 
+
                 if (!obj.position.Equals(Vector3.zero) && go.transform.localPosition.Equals(Vector3.zero))
                 {
                     go.transform.localPosition = obj.position;
@@ -285,6 +307,19 @@ public class Sequencer : MonoBehaviour {
                     }
                 }
             }
+        }
+
+        // Update the callout text overlay.
+        if (step.hasCallout)
+        {
+            TextMesh mesh = callout.GetComponent<TextMesh>();
+            mesh.text = step.calloutText;
+            mesh.color = new Color(1,1,1,1);
+            //mesh.transform.transform.
+        } else
+        {
+            TextMesh mesh = callout.GetComponent<TextMesh>();
+            mesh.color = new Color(1, 1, 1, 0);
         }
     }
 

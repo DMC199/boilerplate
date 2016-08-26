@@ -83,6 +83,11 @@
     },
     {
       "name": "step 3",
+      "callout" : {
+        "text" : "This is a sample callout for step 3.",
+        "position" : [0, 0.175, 1.5],
+        "target": [0, 2, 3]
+      },
       "state": [
         {
           "name": "632",
@@ -303,13 +308,11 @@
           "visible": false
         },
         {
-          "name": "672",
-          "alpha": 1
+          "name": "672"
         },
         {
           "name": "673",
-          "position": [ 0, 0, -10 ],
-          "alpha": 1
+          "position": [ 0, 0, -10 ]
         },
         {
           "name": "680",
