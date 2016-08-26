@@ -21,6 +21,7 @@ public class Sequencer : MonoBehaviour {
 
     public class StepInfo
     {
+        public string name;
         public List<ObjectStepInfo> objects;
     }
 
@@ -30,6 +31,7 @@ public class Sequencer : MonoBehaviour {
         public bool visible;
         public Vector3 position;
         public string animation;
+        public float alpha;
     }
 
 	// Use this for initialization
@@ -46,8 +48,16 @@ public class Sequencer : MonoBehaviour {
 
         for (int i = 0; i < jsonSteps.Count; i++)
         {
-            JSONArray objectsInStep = jsonSteps[i].AsArray;
+            JSONNode stepInfo = jsonSteps[i];
             StepInfo step = new StepInfo();
+
+            if (stepInfo["name"] != null)
+            {
+                step.name = stepInfo["name"];
+            }
+
+            JSONArray objectsInStep = stepInfo["state"].AsArray;
+           
             step.objects = new List<ObjectStepInfo>();
 
             for (int o = 0; o < objectsInStep.Count; o++)
@@ -91,6 +101,15 @@ public class Sequencer : MonoBehaviour {
                 {
                     objInfo.position = new Vector3();
                 }
+
+                if (infoNode["alpha"] != null)
+                {
+                    objInfo.alpha = infoNode["alpha"].AsFloat;
+                } else
+                {
+                    objInfo.alpha = 1;
+                }
+
                 step.objects.Add(objInfo);
             }
 
@@ -188,19 +207,19 @@ public class Sequencer : MonoBehaviour {
     public void setActiveStep(int index)
     {
         StepInfo step = steps[index];
-        
+        print("Setting active step to: " + steps[index].name);
         foreach(ObjectStepInfo obj in step.objects)
         {
             GameObject go = GameObject.Find(obj.name);
             if (go != null)
             {
-                print("Setting " + obj.name + " to visible:" + obj.visible);
+               // print("Setting " + obj.name + " to visible:" + obj.visible);
                 Renderer parentRenderer = go.GetComponent<Renderer>();
                 if (parentRenderer == null)
                 {
                     foreach (Transform child in go.transform)
                     {
-                        child.GetComponent<Renderer>().enabled = obj.visible;
+                 //       child.GetComponent<Renderer>().enabled = obj.visible;
                     }
                 }
                 else
@@ -216,16 +235,16 @@ public class Sequencer : MonoBehaviour {
                 {
                     doLerp = true;
                     LerpPart(go.transform, go.transform.localPosition, obj.position);
-                    print("Lerp me right round baby, right round");
+                   /// print("Lerp me right round baby, right round");
                 }
 
                 if (!string.IsNullOrEmpty(obj.animation))
                 {
-                    print("Setting animation: " + obj.animation);
+                    //print("Setting animation: " + obj.animation);
                     Animation anim = go.GetComponent<Animation>();
                     if (anim != null)
                     {
-                        print("Found animation component, playing.. " + obj.animation);
+                        //print("Found animation component, playing.. " + obj.animation);
                         anim.Play(obj.animation);
                     }
                     else
@@ -238,8 +257,31 @@ public class Sequencer : MonoBehaviour {
                     Animation anim = go.GetComponent<Animation>();
                     if (anim != null)
                     {
-                        print("Stopping anim...");
+                        //print("Stopping anim...");
                         anim.Stop();
+                    }
+                }
+
+                Renderer renderer = go.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    Material[] mats = go.GetComponent<Renderer>().materials;
+
+                    for (int m = 0; m < mats.Length; m++)
+                    {
+                        if (mats[m].name != "tic mark (Instance)")
+                        {
+                            Color newColor = new Color(mats[m].color.r, mats[m].color.g, mats[m].color.b, obj.alpha);
+                            mats[m].color = newColor;
+                            if (obj.alpha != 1)
+                            {
+                                mats[m].SetFloat("_Mode", 3.0f);
+                            }
+                            else
+                            {
+                                mats[m].SetFloat("_Mode", 0.0f);
+                            }
+                        }
                     }
                 }
             }
@@ -288,5 +330,10 @@ public class Sequencer : MonoBehaviour {
             LastStep();
         }
 
+	    /*if(currentStep != lastCurrentStep)
+        {
+            lastCurrentStep = currentStep;
+            setActiveStep(currentStep);
+        }*/
 	}
 }
