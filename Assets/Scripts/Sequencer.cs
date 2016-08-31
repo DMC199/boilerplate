@@ -103,7 +103,15 @@ public class Sequencer : MonoBehaviour {
 
     public void Awake()
     {
-        room.OnPropagateRoomEvent += Room_OnPropagateRoomEvent;
+        if (room != null)
+        {
+            room.OnPropagateRoomEvent += Room_OnPropagateRoomEvent;
+        }
+        else
+        {
+            Debug.LogError("No Room defined for at Sequencer.Awake");
+        }
+
     }
 
     public void triggerActiveStep(int step)
@@ -111,6 +119,9 @@ public class Sequencer : MonoBehaviour {
         if (room != null)
         {
             room.RunStepChangeCommand(step);
+        }else
+        {
+            Debug.LogError("No Room defined at Sequencer.triggerActiveStep " + step );
         }
     }
 

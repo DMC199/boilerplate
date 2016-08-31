@@ -18,6 +18,7 @@ public class CCCRoom : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Debug.Log("START ROOM");
         CCCRoomMgr.Instance.OnIncomingRoomEvent += OnIncomingRoomEvent;
 	}
 

@@ -531,6 +531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf70f27caefdeb479d9bf960f027894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oldFocusedGameObject: {fileID: 0}
+  <FocusedGameObject>k__BackingField: {fileID: 0}
 --- !u!114 &855055239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +548,85 @@ MonoBehaviour:
   RaycastLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
+--- !u!1 &900163500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 900163504}
+  - 33: {fileID: 900163503}
+  - 65: {fileID: 900163502}
+  - 23: {fileID: 900163501}
+  m_Layer: 0
+  m_Name: Calibration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &900163501
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900163500}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &900163502
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900163500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &900163503
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900163500}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &900163504
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900163500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!4 &966757473 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d01904b2e66532a4999dfc77228c2a03, type: 3}
@@ -560,6 +641,9 @@ GameObject:
   - 4: {fileID: 975695252}
   - 114: {fileID: 975695251}
   - 114: {fileID: 975695253}
+  - 114: {fileID: 975695256}
+  - 114: {fileID: 975695255}
+  - 114: {fileID: 975695254}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -578,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e381a3075f1d5cf42b651aa56b99a41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 0}
+  room: {fileID: 975695256}
   currentStep: 0
   lerpTime: 1
   jsonFileName: animation-mvp
@@ -623,6 +707,43 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: GrammarManager+GrammarEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &975695254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975695250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94657fc58f48de148ac1edb05d9b3133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 975695256}
+--- !u!114 &975695255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975695250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e171ca800b90940906bf84c1a7b378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socketPort: 11764
+--- !u!114 &975695256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975695250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd9007097006e4b9b157260f08caf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localAnchor: {fileID: 900163500}
+  mostRecentObjectUUID: 
 --- !u!1 &1111862888
 GameObject:
   m_ObjectHideFlags: 0
