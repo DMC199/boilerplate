@@ -12,16 +12,21 @@ public class Sequencer : MonoBehaviour {
     public int currentStep;
     public float lerpTime = 1.0f;
     public string jsonFileName;
+    public GameObject stepLabel;
+
 
     private int lastCurrentStep;
     private bool doLerp = false;
+    private TextMesh stepLabelMesh;
 
     JSONNode root;
     List<StepInfo> steps;
 
     public class StepInfo
     {
-        public List<ObjectStepInfo> objects;
+        public int stepid;
+        public string label;
+        public List<ObjectStepInfo> state;
     }
 
     public class ObjectStepInfo
@@ -29,6 +34,7 @@ public class Sequencer : MonoBehaviour {
         public string name;
         public bool visible;
         public Vector3 position;
+        public float tweentime;
         public string animation;
     }
 
@@ -46,9 +52,13 @@ public class Sequencer : MonoBehaviour {
 
         for (int i = 0; i < jsonSteps.Count; i++)
         {
-            JSONArray objectsInStep = jsonSteps[i].AsArray;
+            JSONNode jStep = jsonSteps[i];
             StepInfo step = new StepInfo();
-            step.objects = new List<ObjectStepInfo>();
+            step.stepid = jStep["stepid"].AsInt;
+            step.label = jStep["label"];
+            step.state = new List<ObjectStepInfo>();
+
+            JSONArray objectsInStep = jStep["state"].AsArray;
 
             for (int o = 0; o < objectsInStep.Count; o++)
             {
@@ -91,7 +101,16 @@ public class Sequencer : MonoBehaviour {
                 {
                     objInfo.position = new Vector3();
                 }
-                step.objects.Add(objInfo);
+
+                if (infoNode["tweentime"] != null)
+                {
+                    objInfo.tweentime = infoNode["tweentime"].AsFloat;
+                }
+                else
+                {
+                    objInfo.tweentime = lerpTime;
+                }
+                step.state.Add(objInfo);
             }
 
             //StepInfo info = new StepInfo();
@@ -106,6 +125,11 @@ public class Sequencer : MonoBehaviour {
         if (room != null)
         {
             room.OnPropagateRoomEvent += Room_OnPropagateRoomEvent;
+
+            if (stepLabel != null)
+            {
+                stepLabelMesh = stepLabel.GetComponent<TextMesh>();
+            }
         }
         else
         {
@@ -199,13 +223,14 @@ public class Sequencer : MonoBehaviour {
     public void setActiveStep(int index)
     {
         StepInfo step = steps[index];
-        
-        foreach(ObjectStepInfo obj in step.objects)
+        if(stepLabelMesh!=null) stepLabelMesh.text = step.stepid + ": " + step.label;
+
+        foreach (ObjectStepInfo obj in step.state)
         {
             GameObject go = GameObject.Find(obj.name);
             if (go != null)
             {
-                print("Setting " + obj.name + " to visible:" + obj.visible);
+                Debug.Log("Setting " + obj.name + " to visible:" + obj.visible);
                 Renderer parentRenderer = go.GetComponent<Renderer>();
                 if (parentRenderer == null)
                 {
@@ -226,8 +251,7 @@ public class Sequencer : MonoBehaviour {
                 else if (obj.position.Equals(Vector3.zero) && !go.transform.localPosition.Equals(Vector3.zero))
                 {
                     doLerp = true;
-                    LerpPart(go.transform, go.transform.localPosition, obj.position);
-                    print("Lerp me right round baby, right round");
+                    LerpPart(go.transform, go.transform.localPosition, obj.position, obj.tweentime);
                 }
 
                 if (!string.IsNullOrEmpty(obj.animation))
@@ -266,11 +290,11 @@ public class Sequencer : MonoBehaviour {
         return result;
     }
 
-    void LerpPart(Transform tTrans, Vector3 start, Vector3 end)
+    void LerpPart(Transform tTrans, Vector3 start, Vector3 end, float duration)
     {
         if(doLerp == true)
         {
-            StartCoroutine(LerpMachine(tTrans, start, end, lerpTime));
+            StartCoroutine(LerpMachine(tTrans, start, end, duration));
             doLerp = false;
         }
     }
