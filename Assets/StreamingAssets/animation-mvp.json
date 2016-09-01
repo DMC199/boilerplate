@@ -1,4 +1,5 @@
 {
+
 	"steps": [{
 		"stepid": 0,
 		"label": "Transmission",
@@ -809,4 +810,624 @@
 			"animation": "planet center- first gear"
 		}]
 	}]
+=======
+  "steps": [
+    {
+      "name": "step 1",
+      "state": [
+        {
+          "name": "632",
+          "visible": false
+        },
+        {
+          "name": "664 and 668",
+          "visible": false,
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "visible": false
+        },
+        {
+          "name": "673",
+          "visible": false
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "name": "step 2",
+      "state": [
+        {
+          "name": "632"
+        },
+        {
+          "name": "664 and 668",
+          "visible": false
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "visible": false
+        },
+        {
+          "name": "673",
+          "visible": false
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "name": "step 3",
+      "callout" : {
+        "text" : "This is a sample callout for step 3.",
+        "position" : [0, 0.175, 1.5],
+        "target": [0, 2, 3]
+      },
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "visible": false
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "visible": false
+        },
+        {
+          "name": "673",
+          "visible": false
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "name": "step 4",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "position": [ 0, 0, -10 ]
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "visible": false
+        },
+        {
+          "name": "673",
+          "visible": false
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "name": "step 5",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "visible": false
+        },
+        {
+          "name": "673",
+          "visible": false
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "name": "step 6",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "position": [ 0, 0, -8 ]
+        },
+        {
+          "name": "673",
+          "visible": false
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "position": [ 0, 0, -16 ]
+        }
+      ]
+    },
+    {
+      "name": "step 7",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672"
+        },
+        {
+          "name": "673",
+          "visible": false
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    },
+    {
+      "name": "step 8",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear",
+          "alpha": 0
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear",
+          "alpha": 0
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672"
+        },
+        {
+          "name": "673",
+          "position": [ 0, 0, -10 ]
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears"
+        }
+      ]
+    },
+    {
+      "name": "step 9",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "animation": "672- first gear"
+        },
+        {
+          "name": "673",
+          "animation": "673- first gear"
+        },
+        {
+          "name": "680",
+          "visible": false
+        },
+        {
+          "name": "681",
+          "visible": false
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    },
+    {
+      "name": "step 10",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "animation": "672- first gear"
+        },
+        {
+          "name": "673",
+          "animation": "673- first gear"
+        },
+        {
+          "name": "680",
+          "position": [ 0, 0, -8 ]
+        },
+        {
+          "name": "681",
+          "position": [ 0, 0, -16 ]
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    },
+    {
+      "name": "step 11",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "animation": "672- first gear"
+        },
+        {
+          "name": "673",
+          "animation": "673- first gear"
+        },
+        {
+          "name": "680",
+          "animation": "680- first gear"
+        },
+        {
+          "name": "681",
+          "animation": "681- first gear"
+        },
+        {
+          "name": "688",
+          "visible": false
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    },
+    {
+      "name": "step 12",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "animation": "672- first gear"
+        },
+        {
+          "name": "673",
+          "animation": "673- first gear"
+        },
+        {
+          "name": "680",
+          "animation": "680- first gear"
+        },
+        {
+          "name": "681",
+          "animation": "681- first gear"
+        },
+        {
+          "name": "688",
+          "position": [ 0, 0, -10 ]
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    },
+    {
+      "name": "step 13",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "visible": false
+        },
+        {
+          "name": "672",
+          "animation": "672- first gear"
+        },
+        {
+          "name": "673",
+          "animation": "673- first gear"
+        },
+        {
+          "name": "680",
+          "animation": "680- first gear"
+        },
+        {
+          "name": "681",
+          "animation": "681- first gear"
+        },
+        {
+          "name": "688",
+          "animation": "688- first gear"
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    },
+    {
+      "name": "step 14",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669",
+          "position": [ 0, 0, -25 ]
+        },
+        {
+          "name": "672",
+          "animation": "672- first gear"
+        },
+        {
+          "name": "673",
+          "animation": "673- first gear"
+        },
+        {
+          "name": "680",
+          "animation": "680- first gear"
+        },
+        {
+          "name": "681",
+          "animation": "681- first gear"
+        },
+        {
+          "name": "688",
+          "animation": "688- first gear"
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    },
+    {
+      "name": "step 15",
+      "state": [
+        {
+          "name": "632",
+          "animation": "632- first gear"
+        },
+        {
+          "name": "664 and 668",
+          "animation": "664 and 668- first gear"
+        },
+        {
+          "name": "669"
+        },
+        {
+          "name": "672",
+          "animation": "672- first gear"
+        },
+        {
+          "name": "673",
+          "animation": "673- first gear"
+        },
+        {
+          "name": "680",
+          "animation": "680- first gear"
+        },
+        {
+          "name": "681",
+          "animation": "681- first gear"
+        },
+        {
+          "name": "688",
+          "animation": "688- first gear"
+        },
+        {
+          "name": "planet gears",
+          "animation": "planet center- first gear"
+        }
+      ]
+    }
+  ]
 }

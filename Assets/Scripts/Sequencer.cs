@@ -15,6 +15,8 @@ public class Sequencer : MonoBehaviour {
     public GameObject stepLabel;
 
 
+    public GameObject callout;
+
     private int lastCurrentStep;
     private bool doLerp = false;
     private TextMesh stepLabelMesh;
@@ -24,9 +26,15 @@ public class Sequencer : MonoBehaviour {
 
     public class StepInfo
     {
-        public int stepid;
-        public string label;
-        public List<ObjectStepInfo> state;
+
+        public string name;
+
+        public bool hasCallout;
+        public string calloutText;
+        public Vector3 calloutTarget;
+
+        public List<ObjectStepInfo> objects;
+
     }
 
     public class ObjectStepInfo
@@ -36,6 +44,7 @@ public class Sequencer : MonoBehaviour {
         public Vector3 position;
         public float tweentime;
         public string animation;
+        public float alpha;
     }
 
 	// Use this for initialization
@@ -52,6 +61,7 @@ public class Sequencer : MonoBehaviour {
 
         for (int i = 0; i < jsonSteps.Count; i++)
         {
+
             JSONNode jStep = jsonSteps[i];
             StepInfo step = new StepInfo();
             step.stepid = jStep["stepid"].AsInt;
@@ -59,6 +69,26 @@ public class Sequencer : MonoBehaviour {
             step.state = new List<ObjectStepInfo>();
 
             JSONArray objectsInStep = jStep["state"].AsArray;
+
+			/*
+            if (jStep["name"] != null)
+            {
+                step.name = stepInfo["name"];
+            }
+
+            if (jStep["callout"] != null)
+            {
+                JSONNode calloutInfo = stepInfo["callout"];
+                step.hasCallout = true;
+                step.calloutText = calloutInfo["text"];
+                step.calloutTarget = parseVector(calloutInfo["target"].AsArray);
+            } else
+            {
+                step.hasCallout = false;
+            }*/
+
+            JSONArray objectsInStep = stepInfo["state"].AsArray;
+
 
             for (int o = 0; o < objectsInStep.Count; o++)
             {
@@ -111,6 +141,17 @@ public class Sequencer : MonoBehaviour {
                     objInfo.tweentime = lerpTime;
                 }
                 step.state.Add(objInfo);
+
+                if (infoNode["alpha"] != null)
+                {
+                    objInfo.alpha = infoNode["alpha"].AsFloat;
+                } else
+                {
+                    objInfo.alpha = 1;
+                }
+
+                step.objects.Add(objInfo);
+
             }
 
             //StepInfo info = new StepInfo();
@@ -143,9 +184,12 @@ public class Sequencer : MonoBehaviour {
         if (room != null)
         {
             room.RunStepChangeCommand(step);
+
         }else
         {
             Debug.LogError("No Room defined at Sequencer.triggerActiveStep " + step );
+			 setActiveStep(step);
+
         }
     }
 
@@ -223,6 +267,7 @@ public class Sequencer : MonoBehaviour {
     public void setActiveStep(int index)
     {
         StepInfo step = steps[index];
+
         if(stepLabelMesh!=null) stepLabelMesh.text = step.stepid + ": " + step.label;
 
         foreach (ObjectStepInfo obj in step.state)
@@ -231,6 +276,7 @@ public class Sequencer : MonoBehaviour {
             if (go != null)
             {
                 Debug.Log("Setting " + obj.name + " to visible:" + obj.visible);
+
                 Renderer parentRenderer = go.GetComponent<Renderer>();
                 if (parentRenderer == null)
                 {
@@ -244,6 +290,7 @@ public class Sequencer : MonoBehaviour {
                     parentRenderer.enabled = obj.visible;
                 }
 
+
                 if (!obj.position.Equals(Vector3.zero) && go.transform.localPosition.Equals(Vector3.zero))
                 {
                     go.transform.localPosition = obj.position;
@@ -251,16 +298,18 @@ public class Sequencer : MonoBehaviour {
                 else if (obj.position.Equals(Vector3.zero) && !go.transform.localPosition.Equals(Vector3.zero))
                 {
                     doLerp = true;
+
                     LerpPart(go.transform, go.transform.localPosition, obj.position, obj.tweentime);
+
                 }
 
                 if (!string.IsNullOrEmpty(obj.animation))
                 {
-                    print("Setting animation: " + obj.animation);
+                    //print("Setting animation: " + obj.animation);
                     Animation anim = go.GetComponent<Animation>();
                     if (anim != null)
                     {
-                        print("Found animation component, playing.. " + obj.animation);
+                        //print("Found animation component, playing.. " + obj.animation);
                         anim.Play(obj.animation);
                     }
                     else
@@ -273,11 +322,47 @@ public class Sequencer : MonoBehaviour {
                     Animation anim = go.GetComponent<Animation>();
                     if (anim != null)
                     {
-                        print("Stopping anim...");
+                        //print("Stopping anim...");
                         anim.Stop();
                     }
                 }
+
+                Renderer renderer = go.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    Material[] mats = go.GetComponent<Renderer>().materials;
+
+                    for (int m = 0; m < mats.Length; m++)
+                    {
+                        if (mats[m].name != "tic mark (Instance)")
+                        {
+                            Color newColor = new Color(mats[m].color.r, mats[m].color.g, mats[m].color.b, obj.alpha);
+                            mats[m].color = newColor;
+                            if (obj.alpha != 1)
+                            {
+                                mats[m].SetFloat("_Mode", 3.0f);
+                            }
+                            else
+                            {
+                                mats[m].SetFloat("_Mode", 0.0f);
+                            }
+                        }
+                    }
+                }
             }
+        }
+
+        // Update the callout text overlay.
+        if (step.hasCallout)
+        {
+            TextMesh mesh = callout.GetComponent<TextMesh>();
+            mesh.text = step.calloutText;
+            mesh.color = new Color(1,1,1,1);
+            //mesh.transform.transform.
+        } else
+        {
+            TextMesh mesh = callout.GetComponent<TextMesh>();
+            mesh.color = new Color(1, 1, 1, 0);
         }
     }
 
@@ -323,5 +408,10 @@ public class Sequencer : MonoBehaviour {
             LastStep();
         }
 
+	    /*if(currentStep != lastCurrentStep)
+        {
+            lastCurrentStep = currentStep;
+            setActiveStep(currentStep);
+        }*/
 	}
 }
