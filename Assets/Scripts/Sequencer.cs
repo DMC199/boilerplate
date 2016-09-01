@@ -33,8 +33,10 @@ public class Sequencer : MonoBehaviour {
         public string calloutText;
         public Vector3 calloutTarget;
 
-        public List<ObjectStepInfo> objects;
-
+        public int stepid;
+        public string label;
+        public List<ObjectStepInfo> state = new List<ObjectStepInfo>();
+        
     }
 
     public class ObjectStepInfo
@@ -86,10 +88,7 @@ public class Sequencer : MonoBehaviour {
             {
                 step.hasCallout = false;
             }*/
-
-            JSONArray objectsInStep = stepInfo["state"].AsArray;
-
-
+            
             for (int o = 0; o < objectsInStep.Count; o++)
             {
                 ObjectStepInfo objInfo = new ObjectStepInfo();
@@ -150,7 +149,7 @@ public class Sequencer : MonoBehaviour {
                     objInfo.alpha = 1;
                 }
 
-                step.objects.Add(objInfo);
+                step.state.Add(objInfo);
 
             }
 
@@ -351,7 +350,7 @@ public class Sequencer : MonoBehaviour {
                 }
             }
         }
-
+        /*
         // Update the callout text overlay.
         if (step.hasCallout)
         {
@@ -363,7 +362,7 @@ public class Sequencer : MonoBehaviour {
         {
             TextMesh mesh = callout.GetComponent<TextMesh>();
             mesh.color = new Color(1, 1, 1, 0);
-        }
+        }*/
     }
 
     Vector3 parseVector(JSONArray values)
