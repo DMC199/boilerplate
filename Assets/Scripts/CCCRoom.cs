@@ -6,6 +6,7 @@ using System;
 public class CCCRoom : MonoBehaviour {
 
     public GameObject localAnchor;
+    public GameObject targetModel;
     private Dictionary<string, GameObject> roomObjectsById = new Dictionary<string, GameObject>();
     private List<CCCRoomEvent> eventPlayByPlay = new List<CCCRoomEvent>();
 
@@ -22,6 +23,17 @@ public class CCCRoom : MonoBehaviour {
         CCCRoomMgr.Instance.OnIncomingRoomEvent += OnIncomingRoomEvent;
 	}
 
+    void Update()
+    {
+        if( CCCRoomMgr.Instance.isConnected()) {
+            localAnchor.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else
+        {
+            localAnchor.GetComponent<Renderer>().material.color = Color.red;
+        }
+    }
+
     public void Replay()
     {
         //set that we are replaying (grab a lock against play by play)
@@ -31,6 +43,12 @@ public class CCCRoom : MonoBehaviour {
         if (localAnchor == null)
         {
             Debug.Log("Set Local Anchor before handling incoming request");
+            return;
+        }
+
+        if(targetModel == null)
+        {
+            Debug.Log("Set Target Model before handling incoming request");
             return;
         }
 
@@ -64,8 +82,15 @@ public class CCCRoom : MonoBehaviour {
 
         lock (eventPlayByPlay)
         {
-            eventPlayByPlay.Add(e);            
-            ProcessEvent(e, this.localAnchor);
+            try
+            {
+                eventPlayByPlay.Add(e);            
+                ProcessEvent(e, this.localAnchor);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Exception in OnIncomingRoomEvent " + ex.Message);
+            }
         }
     }
 
@@ -141,6 +166,7 @@ public class CCCRoom : MonoBehaviour {
 
     public string Create(string prefabName, Vector3 targetPosition, Quaternion camRotation)
     {
+
         Transform anchor = localAnchor.transform;
         Vector3 relativeAnchorPosition = anchor.InverseTransformPoint(targetPosition);
         //todo add a warning if distance of vector is more than 3 meters
@@ -148,6 +174,7 @@ public class CCCRoom : MonoBehaviour {
         CCCRoomEvent ev = new CCCRoomEvent("create", prefabName, relativeAnchorPosition, CalculateInverseQP(localAnchor, camRotation));
         CCCRoomMgr.Instance.SendMessage(ev);
         return ev.objectRef;
+
     }
 
     public void Destroy(string uuid)
@@ -208,16 +235,25 @@ public class CCCRoom : MonoBehaviour {
     public void Calibrate()
     {
         Vector3 camTransform = Camera.main.transform.position;
-        Vector3 forward = Camera.main.transform.forward.normalized;
+        Vector3 forward = Camera.main.transform.forward.normalized;//z - how far away
 
-        Vector3 targetPosition = camTransform + forward * 1.0F;
-
+        Vector3 targetPosition = camTransform + forward * 1.0F;//should this be on meter or where we interect with real world
         localAnchor.transform.position = targetPosition;
 
         //we may want to use the real world surface normal.
         Quaternion targetRotation = Camera.main.transform.rotation;
         localAnchor.transform.rotation = targetRotation;
 
+        Vector3 modelPostition = targetPosition + (Vector3.up.normalized * 0.4f) + (Vector3.right.normalized * 0.4f);
+        targetModel.transform.position = modelPostition;
+
+        Vector3 lookatPostition = new Vector3(Camera.main.transform.position.x,
+                                     targetModel.transform.position.y,
+                                     Camera.main.transform.position.z);
+
+        targetModel.transform.LookAt(lookatPostition);
+        targetModel.transform.Rotate(0, 90, 0);
+        //targetModel.transform.rotation = Quaternion.AngleAxis(-90, Vector3.up);
         //replay all the events we have captured with the new calibration
         Replay();
     }

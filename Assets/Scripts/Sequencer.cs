@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Windows.Speech;
 using System.IO;
+using System;
 
 public class Sequencer : MonoBehaviour {
 
@@ -180,15 +181,14 @@ public class Sequencer : MonoBehaviour {
 
     public void triggerActiveStep(int step)
     {
-        if (room != null)
+        if (room != null && CCCRoomMgr.Instance.isConnected() )
         {
             room.RunStepChangeCommand(step);
 
         }else
         {
-            Debug.LogError("No Room defined at Sequencer.triggerActiveStep " + step );
-			 setActiveStep(step);
-
+            if( room == null ) Debug.LogError("No Room defined at Sequencer.triggerActiveStep " + step );
+			setActiveStep(step);
         }
     }
 
@@ -226,41 +226,52 @@ public class Sequencer : MonoBehaviour {
 
     public void NavigationGrammarRecognized(PhraseRecognizedEventArgs args)
     {
-        foreach (SemanticMeaning meaning in args.semanticMeanings) {
-            if(meaning.key == "Direction")
-            {
-                string direction = meaning.values[0];
-                if(direction == "next")
-                {
-                    NextStep();
-                } else
-                {
-                    LastStep();
-                }
-            }
 
-            if(meaning.key == "GoToStep")
+        try
+        {
+            foreach (SemanticMeaning meaning in args.semanticMeanings)
             {
-                string stepNumberString = meaning.values[0];
-                currentStep = (int.Parse(stepNumberString) - 1);
-
-                triggerActiveStep(currentStep);
-            }
-
-            if (meaning.key == "Action")
-            {
-                Debug.Log("Calibrating");
-                if ("calibrate".Equals(meaning.values[0]))
+                //process commands if you are a server or if you are a client but not connected
+                if (CCCRoomMgr.Instance.isServer() || (CCCRoomMgr.Instance.isClient() && !CCCRoomMgr.Instance.isConnected() ))
                 {
-                    if (room != null)
+                    if (meaning.key == "Direction")
                     {
-                        room.Calibrate();
+                        string direction = meaning.values[0];
+                        if (direction == "next")
+                        {
+                            NextStep();
+                        }
+                        else
+                        {
+                            LastStep();
+                        }
+                    }
+
+                    if (meaning.key == "GoToStep")
+                    {
+                        string stepNumberString = meaning.values[0];
+                        currentStep = (int.Parse(stepNumberString) - 1);
+
+                        triggerActiveStep(currentStep);
+                    }
+                }
+
+                if (meaning.key == "Action")
+                {
+                    Debug.Log("Calibrating");
+                    if ("calibrate".Equals(meaning.values[0]))
+                    {
+                        if (room != null)
+                        {
+                            room.Calibrate();
+                        }
                     }
                 }
             }
+        }catch( Exception ex)
+        {
+            Debug.LogError("Exception in Sequencer NavigationGrammarRecognized " + ex.Message);
         }
-        
-
     }
 
     public void setActiveStep(int index)
@@ -274,7 +285,7 @@ public class Sequencer : MonoBehaviour {
             GameObject go = GameObject.Find(obj.name);
             if (go != null)
             {
-                Debug.Log("Setting " + obj.name + " to visible:" + obj.visible);
+                //Debug.Log("Setting " + obj.name + " to visible:" + obj.visible);
 
                 Renderer parentRenderer = go.GetComponent<Renderer>();
                 if (parentRenderer == null)

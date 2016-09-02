@@ -5,9 +5,12 @@ using System.IO;
 using System.Text;
 using System;
 using System.Collections.Generic;
+
 #if !UNITY_EDITOR
 using Windows;
 using System.Threading.Tasks;
+using Windows.Networking;
+using Windows.Networking.Connectivity;
 #endif
 
 public class CCCRoomMgr : MonoBehaviour
@@ -35,6 +38,7 @@ public class CCCRoomMgr : MonoBehaviour
     List<ConnectionInfo> clientConnections = new List<ConnectionInfo>();
     HashSet<string> serverProcessedEvents = new HashSet<string>();
     private string hostIpAddress;
+    private string localIpAddress;
     public int socketPort = 11764;
     int mServerSocket = -1;
 
@@ -57,7 +61,7 @@ public class CCCRoomMgr : MonoBehaviour
         mServerSocket = NetworkTransport.AddHost(topology, socketPort);
         //it will also attach to the specified host, as a client.  
         myConnectionInfo.hostId = NetworkTransport.AddHost(topology);
-        Debug.Log("Socket Open. SocketId is: " + myConnectionInfo.hostId);
+        //Debug.Log("Socket Open. SocketId is: " + myConnectionInfo.hostId);
 
         Connect();
     }
@@ -78,7 +82,7 @@ public class CCCRoomMgr : MonoBehaviour
             using (var dataReader = Windows.Storage.Streams.DataReader.FromBuffer(buffer))
             {
                 string text = dataReader.ReadString(buffer.Length);
-                Debug.Log("read " + text);
+                Debug.Log("Config.json reads: " + text);
                 return text;
             }
         }
@@ -97,17 +101,33 @@ public class CCCRoomMgr : MonoBehaviour
             if (!"".Equals(configuration.ipAddress))
             {
                 this.hostIpAddress = configuration.ipAddress;
+                Debug.Log("config.json hostIpAddress is " + this.hostIpAddress);
             }
         }
+
+
+        foreach (HostName localHostName in NetworkInformation.GetHostNames())
+        {
+            if (localHostName.IPInformation != null)
+            {
+                if (localHostName.Type == HostNameType.Ipv4)
+                {                    
+                    this.localIpAddress = localHostName.ToString();
+                    Debug.Log("localIpAddress is " + this.localIpAddress);
+                    break;
+                }
+            }
+        }
+
     }
 #endif
 
     public void Connect()
     {
         byte error;
-        //todo is there another way besides PlayerPrefs this should be grabbed to make this class more generic. (see also isServer)
-        this.hostIpAddress = "127.0.0.1"; // PlayerPrefs.GetString("server-ip-address");
-                                          //string sAttr = ConfigurationManager.AppSettings.Get("ip-address");
+        this.localIpAddress = this.hostIpAddress = "127.0.0.1";
+        
+
 #if !UNITY_EDITOR
         configureIpAddress();
 #endif
@@ -115,7 +135,7 @@ public class CCCRoomMgr : MonoBehaviour
 
         LogNetworkError(error);
 
-        Debug.Log("Connected to server. ConnectionId: " + myConnectionInfo.connectionId);
+        Debug.LogFormat("Connected to server: {0} ConnectionId: {1} ", hostIpAddress,  myConnectionInfo.connectionId);
     }
 
     private static void LogNetworkError(byte error)
@@ -123,7 +143,7 @@ public class CCCRoomMgr : MonoBehaviour
         if (error != (byte)NetworkError.Ok)
         {
             NetworkError nerror = (NetworkError)error;
-            Debug.Log("Error " + nerror.ToString());
+            Debug.LogError("Network Error " + nerror.ToString());
         }
     }
 
@@ -204,8 +224,20 @@ public class CCCRoomMgr : MonoBehaviour
 
     public bool isServer()
     {
-        string hostIpAddress = PlayerPrefs.GetString("server-ip-address");
-        return "127.0.0.1".Equals(hostIpAddress);
+        bool serverIsLocal = localIpAddress.Equals(hostIpAddress);      
+        return serverIsLocal;
+    }
+
+    public bool isConnected()
+    {
+        bool isConnected = clientConnections.Count > 0;
+        return isConnected;
+    }
+
+    public bool isClient()
+    {
+        bool isClient = !localIpAddress.Equals(hostIpAddress);
+        return isClient;
     }
 
     protected virtual void HandleIncomingRoomEvent(CCCRoomEvent e)
@@ -216,6 +248,7 @@ public class CCCRoomMgr : MonoBehaviour
             //propogate it to all the currently connected clients.
             foreach (ConnectionInfo client in clientConnections)
             {
+                Debug.LogFormat("Send commande {0}, to {1}", e.eventType, client.hostId);
                 SendMessage(e, client.hostId, client.connectionId, client.channelId);
             }
         }
