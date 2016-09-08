@@ -14,21 +14,22 @@
     <item>Jump to</item>
 	 <item repeat="0-1">step</item>
 	<one-of>
-		<item>1<tag>out = "1";</tag></item>
-		<item>2<tag>out = "2";</tag></item>
-		<item>3<tag>out = "3";</tag></item>
-		
-		<item>6<tag>out = "4";</tag></item>
-		
-		<item>8<tag>out = "5";</tag></item>
-		<item>9<tag>out = "6";</tag></item>
-		
-		<item>11<tag>out = "7";</tag></item>
-		<item>12<tag>out = "8";</tag></item>
-		<item>13<tag>out = "9";</tag></item>
-		<item>14<tag>out = "10";</tag></item>
-		<item>15<tag>out = "11";</tag></item>
-		
+		<item>1<tag>out = "0";</tag></item>
+		<item>2<tag>out = "1";</tag></item>
+		<item>3<tag>out = "2";</tag></item>
+		<item>4<tag>out = "3";</tag></item>
+		<item>5<tag>out = "4";</tag></item>
+		<item>6<tag>out = "5";</tag></item>
+		<item>7<tag>out = "6";</tag></item>
+		<item>8<tag>out = "7";</tag></item>
+		<item>9<tag>out = "8";</tag></item>
+		<item>10<tag>out = "9";</tag></item>
+		<item>11<tag>out = "10";</tag></item>
+		<item>12<tag>out = "11";</tag></item>
+		<item>13<tag>out = "12";</tag></item>
+		<item>14<tag>out = "13";</tag></item>
+		<item>15<tag>out = "14";</tag></item>
+		<item>16<tag>out = "15";</tag></item>
 	</one-of>
   </rule>
 </grammar>

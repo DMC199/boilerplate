@@ -237,7 +237,7 @@ public class CCCRoom : MonoBehaviour {
         Vector3 camTransform = Camera.main.transform.position;
         Vector3 forward = Camera.main.transform.forward.normalized;//z - how far away
 
-        Vector3 targetPosition = camTransform + forward * 1.0F;//should this be on meter or where we interect with real world
+        Vector3 targetPosition = camTransform + forward * 1.0F;//should this be one meter or where we interect with real world
         localAnchor.transform.position = targetPosition;
 
         //we may want to use the real world surface normal.

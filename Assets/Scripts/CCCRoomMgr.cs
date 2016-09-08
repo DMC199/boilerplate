@@ -88,6 +88,7 @@ public class CCCRoomMgr : MonoBehaviour
         }
         catch (Exception e)
         {
+            Debug.LogError("Could not find config.json");
             return "";
         }
     }
@@ -224,7 +225,7 @@ public class CCCRoomMgr : MonoBehaviour
 
     public bool isServer()
     {
-        bool serverIsLocal = localIpAddress.Equals(hostIpAddress);      
+        bool serverIsLocal = localIpAddress.Equals(hostIpAddress) || hostIpAddress.Equals("127.0.0.1");
         return serverIsLocal;
     }
 
