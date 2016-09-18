@@ -73,7 +73,7 @@ public class CCCRoom : MonoBehaviour {
         {
             return;
         }
-        Debug.Log("CCCRoom.OnIncomingRoomEvent");
+        //Debug.Log("CCCRoom.OnIncomingRoomEvent");
         if (localAnchor == null)
         {
             Debug.Log("Set Local Anchor before handling incoming request");

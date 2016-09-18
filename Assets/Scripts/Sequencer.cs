@@ -318,23 +318,52 @@ public class Sequencer : MonoBehaviour {
                 else if (obj.position.Equals(Vector3.zero) && !go.transform.localPosition.Equals(Vector3.zero))
                 {
                     doLerp = true;
-
                     LerpPart(go.transform, go.transform.localPosition, obj.position, obj.tweentime);
-
+                }else if(!obj.position.Equals(Vector3.zero) && !go.transform.localPosition.Equals(Vector3.zero))
+                {
+                    doLerp = true;
+                    LerpPart(go.transform, go.transform.localPosition, obj.position, obj.tweentime);
                 }
 
                 if (!string.IsNullOrEmpty(obj.animation))
                 {
-                    //print("Setting animation: " + obj.animation);
-                    Animation anim = go.GetComponent<Animation>();
-                    if (anim != null)
+                    if (obj.animation.IndexOf(',') > 0)
                     {
-                        //print("Found animation component, playing.. " + obj.animation);
-                        anim.Play(obj.animation);
+                        //it's mutliple
+                        string[] animations = obj.animation.Split(',');
+                        Animation anim = go.GetComponent<Animation>();
+                        foreach ( string a in animations)
+                        {
+                            AnimationState s = anim[a];
+                            if(s != null) {
+                                s.wrapMode = WrapMode.Loop;
+                                s.enabled = true;
+                                s.blendMode = AnimationBlendMode.Blend;
+                                anim.Blend(a);
+                            }
+                            else
+                            {
+                                print("Couldn't find animation " + a);
+                            }
+                        }
+
                     }
                     else
-                    {
-                        print("Couldn't find animation component on game object!");
+                    { 
+                        Animation anim = go.GetComponent<Animation>();
+                        if (anim != null)
+                        {
+                            AnimationState s = anim[obj.animation];
+                            if(s != null) {
+                                s.wrapMode = WrapMode.Loop;
+                                s.enabled = true;
+                                anim.Play(obj.animation);
+                            }
+                        }
+                        else
+                        {
+                            print("Couldn't find animation "+ obj.animation);
+                        }
                     }
                 }
                 else
@@ -354,8 +383,10 @@ public class Sequencer : MonoBehaviour {
 
                     for (int m = 0; m < mats.Length; m++)
                     {
+                        mats[m].EnableKeyword("_ALPHAPREMULTIPLY_ON");
+
                         if (mats[m].name != "tic mark (Instance)")
-                        {
+                        {   
                             Color newColor = new Color(mats[m].color.r, mats[m].color.g, mats[m].color.b, obj.alpha);
                             mats[m].color = newColor;
                             if (obj.alpha != 1)

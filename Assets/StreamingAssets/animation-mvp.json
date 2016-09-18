@@ -1,5 +1,4 @@
 {
-
 	"steps": [{
 		"stepid": 0,
 		"label": "Transmission",
@@ -7,46 +6,38 @@
 			"name": "632",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "664 and 668",
 			"visible": false,
 			"position": [],
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "clutch pack 657",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "clutch pack 656",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "672",
 			"visible": false,
 			"position": [],
 			"animation": ""
-		}, 
-		{
+		}, {
 			"name": "673",
 			"visible": false,
 			"position": [],
 			"animation": ""
-		}, 
-		{
+		}, {
 			"name": "675-planet gears",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "672-planet gears",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
@@ -56,14 +47,17 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
-		},
-		{
+		}, {
+			"name": "682- 687",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
 			"name": "688",
 			"visible": false,
 			"position": [],
@@ -76,23 +70,20 @@
 			"name": "632",
 			"visible": true,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "664 and 668",
 			"visible": false,
 			"position": [],
 			"animation": ""
-		},{
+		}, {
 			"name": "clutch pack 657",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "clutch pack 656",
 			"visible": false,
 			"animation": ""
-		},
-		 {
+		}, {
 			"name": "672",
 			"visible": false,
 			"position": [],
@@ -103,12 +94,25 @@
 			"position": [],
 			"animation": ""
 		}, {
+			"name": "675-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "672-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -130,16 +134,15 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
-		},{
+		}, {
 			"name": "clutch pack 657",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "clutch pack 656",
 			"visible": false,
 			"animation": ""
-		},{
+		}, {
 			"name": "672",
 			"visible": false,
 			"position": [],
@@ -150,12 +153,25 @@
 			"position": [],
 			"animation": ""
 		}, {
+			"name": "675-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "672-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -172,7 +188,7 @@
 			"name": "632",
 			"visible": true,
 			"animation": ""
-		},{
+		}, {
 			"name": "664 and 668",
 			"visible": true,
 			"position": [0, 0, -10],
@@ -181,8 +197,7 @@
 			"name": "clutch pack 657",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "clutch pack 656",
 			"visible": false,
 			"animation": ""
@@ -197,12 +212,25 @@
 			"position": [],
 			"animation": ""
 		}, {
+			"name": "675-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "672-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -224,13 +252,12 @@
 			"visible": true,
 			"position": [0, 0, -10],
 			"animation": ""
-		},{
+		}, {
 			"name": "clutch pack 657",
 			"visible": true,
 			"position": [0, 0.2, 0],
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "clutch pack 656",
 			"position": [0, 0, -10],
 			"visible": true,
@@ -246,12 +273,25 @@
 			"position": [],
 			"animation": ""
 		}, {
+			"name": "675-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "672-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -303,6 +343,11 @@
 			"position": [],
 			"animation": ""
 		}, {
+			"name": "682- 687",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
 			"name": "688",
 			"visible": false,
 			"position": [],
@@ -314,11 +359,21 @@
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": "632- first gear"
+			"animation": "",
+			"alpha": 0.1
 		}, {
 			"name": "664 and 668",
 			"visible": true,
-			"position": [0, 0, -10],
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
 			"animation": ""
 		}, {
 			"name": "672",
@@ -331,12 +386,25 @@
 			"position": [],
 			"animation": ""
 		}, {
+			"name": "675-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "672-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -359,6 +427,15 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": false,
 			"position": [],
@@ -369,12 +446,25 @@
 			"position": [],
 			"animation": ""
 		}, {
+			"name": "675-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "672-planet gears",
+			"visible": false,
+			"animation": ""
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -397,6 +487,15 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": true,
 			"position": [0, 0, -8],
@@ -410,18 +509,22 @@
 			"name": "675-planet gears",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "672-planet gears",
 			"visible": true,
 			"animation": ""
-		},{
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -444,6 +547,15 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": true,
 			"position": [],
@@ -457,18 +569,22 @@
 			"name": "675-planet gears",
 			"visible": false,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": ""
-		},{
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -491,6 +607,15 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": true,
 			"position": [],
@@ -504,18 +629,22 @@
 			"name": "675-planet gears",
 			"visible": true,
 			"animation": ""
-		},
-		{
+		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": ""
-		},{
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+		}, {
 			"name": "678",
 			"visible": false,
 			"position": [],
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -538,6 +667,15 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": true,
 			"position": [],
@@ -545,8 +683,16 @@
 		}, {
 			"name": "673",
 			"visible": true,
-			"position": [0,0,0],
-			"animation": "673- first gear"
+			"position": [0, 0, 0],
+			"animation": ""
+		}, {
+			"name": "675-planet gears",
+			"visible": true,
+			"animation": "673 planet 1|624- first gear,673 planet 2|624- first gear,673 planet 3|624- first gear,673 planet 4|624- first gear"
+		}, {
+			"name": "672-planet gears",
+			"visible": true,
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
 		}, {
 			"name": "678",
 			"visible": false,
@@ -554,6 +700,11 @@
 			"animation": ""
 		}, {
 			"name": "681",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
 			"visible": false,
 			"position": [],
 			"animation": ""
@@ -576,6 +727,15 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": true,
 			"position": [],
@@ -584,7 +744,15 @@
 			"name": "673",
 			"visible": true,
 			"position": [],
-			"animation": "673- first gear"
+			"animation": ""
+		}, {
+			"name": "675-planet gears",
+			"visible": true,
+			"animation": "673 planet 1|624- first gear,673 planet 2|624- first gear,673 planet 3|624- first gear,673 planet 4|624- first gear"
+		}, {
+			"name": "672-planet gears",
+			"visible": true,
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
 		}, {
 			"name": "678",
 			"visible": true,
@@ -592,8 +760,13 @@
 			"animation": ""
 		}, {
 			"name": "681",
-			"visible": true,
-			"position": [0, 0, -8],
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
+			"visible": false,
+			"position": [],
 			"animation": ""
 		}, {
 			"name": "688",
@@ -614,6 +787,15 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": true,
 			"position": [],
@@ -622,17 +804,30 @@
 			"name": "673",
 			"visible": true,
 			"position": [],
-			"animation": "673- first gear"
+			"animation": ""
+		}, {
+			"name": "675-planet gears",
+			"visible": true,
+			"animation": "673 planet 1|624- first gear,673 planet 2|624- first gear,673 planet 3|624- first gear,673 planet 4|624- first gear"
+		}, {
+			"name": "672-planet gears",
+			"visible": true,
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
 		}, {
 			"name": "678",
 			"visible": true,
-			"position": [0,0,0],
+			"position": [0, 0, 0],
 			"animation": "678- first gear"
 		}, {
 			"name": "681",
-			"visible": true,
-			"position": [0,0,0],
-			"animation": "681- first gear"
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "682- 687",
+			"visible": false,
+			"position": [],
+			"animation": ""
 		}, {
 			"name": "688",
 			"visible": false,
@@ -652,15 +847,32 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
+		}, {
 			"name": "672",
 			"visible": true,
 			"position": [],
 			"animation": "672- first gear"
-		},{
+		}, {
 			"name": "673",
 			"visible": true,
 			"position": [],
 			"animation": "673- first gear"
+		}, {
+			"name": "675-planet gears",
+			"visible": true,
+			"animation": "673 planet 1|624- first gear,673 planet 2|624- first gear,673 planet 3|624- first gear,673 planet 4|624- first gear"
+		}, {
+			"name": "672-planet gears",
+			"visible": true,
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
 		}, {
 			"name": "678",
 			"visible": true,
@@ -669,17 +881,17 @@
 		}, {
 			"name": "681",
 			"visible": true,
-			"position": [],
+			"position": [0, 0, -8],
 			"animation": ""
 		}, {
 			"name": "682- 687",
 			"visible": true,
-			"position": [0,0,-8],
+			"position": [0, 0, -14],
 			"animation": ""
 		}, {
 			"name": "688",
 			"visible": true,
-			"position": [],
+			"position": [0, 0, -4],
 			"animation": ""
 		}]
 	}, {
@@ -695,10 +907,14 @@
 			"position": [],
 			"animation": "664 and 668- first gear"
 		}, {
-			"name": "planet gears",
+			"name": "clutch pack 657",
 			"visible": true,
 			"position": [],
-			"animation": "planet center- first gear"
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"animation": ""
 		}, {
 			"name": "672",
 			"visible": true,
@@ -709,6 +925,14 @@
 			"visible": true,
 			"position": [],
 			"animation": "673- first gear"
+		}, {
+			"name": "675-planet gears",
+			"visible": true,
+			"animation": "673 planet 1|624- first gear,673 planet 2|624- first gear,673 planet 3|624- first gear,673 planet 4|624- first gear"
+		}, {
+			"name": "672-planet gears",
+			"visible": true,
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
 		}, {
 			"name": "678",
 			"visible": true,
@@ -722,9 +946,9 @@
 		}, {
 			"name": "682- 687",
 			"visible": true,
-			"position":  [0,0,0],
+			"position": [0, 0, 0],
 			"animation": "688- first gear"
-		},{
+		}, {
 			"name": "688",
 			"visible": true,
 			"position": [0, 0, 20],

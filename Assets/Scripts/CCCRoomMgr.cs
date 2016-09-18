@@ -155,7 +155,7 @@ public class CCCRoomMgr : MonoBehaviour
 
     private void SendMessage(CCCRoomEvent eventToSend, int host, int connection, int channel)
     {
-        Debug.Log("Sending Message: " + eventToSend + " to " + host + ":" + connection + ":" + channel);
+        //Debug.Log("Sending Message: " + eventToSend + " to " + host + ":" + connection + ":" + channel);
 
         byte error;
         byte[] buffer = Encoding.UTF8.GetBytes(eventToSend.asJson());
@@ -188,22 +188,22 @@ public class CCCRoomMgr : MonoBehaviour
                 case NetworkEventType.Nothing:
                     break;
                 case NetworkEventType.ConnectEvent:
-                    Debug.Log("incoming connection event received " + recHostId + ":" + recConnectionId + ":" + recChannelId);
+                    //Debug.Log("incoming connection event received " + recHostId + ":" + recConnectionId + ":" + recChannelId);
                     ConnectionInfo clientInfo = extractClientConnectionInfo(recHostId, recConnectionId, recChannelId);
                     clientConnections.Add(clientInfo);
                     //todo send the current state of the shared room.  
                     break;
                 case NetworkEventType.DataEvent:
-                    Debug.Log("incoming data");
+                    //Debug.Log("incoming data");
                     string result = Encoding.UTF8.GetString(recBuffer);
                     CCCRoomEvent myEvent = CCCRoomEvent.fromJson(result);
 
-                    Debug.Log("incoming message event received: " + myEvent);
+                    //Debug.Log("incoming message event received: " + myEvent);
                     HandleIncomingRoomEvent(myEvent);
 
                     break;
                 case NetworkEventType.DisconnectEvent:
-                    Debug.Log("remote client event disconnected");
+                    //Debug.Log("remote client event disconnected");
                     ConnectionInfo disconnectedClientInfo = extractClientConnectionInfo(recHostId, recConnectionId, recChannelId);
                     clientConnections.Remove(disconnectedClientInfo);
                     break;
@@ -249,7 +249,7 @@ public class CCCRoomMgr : MonoBehaviour
             //propogate it to all the currently connected clients.
             foreach (ConnectionInfo client in clientConnections)
             {
-                Debug.LogFormat("Send commande {0}, to {1}", e.eventType, client.hostId);
+                //Debug.LogFormat("Send commande {0}, to {1}", e.eventType, client.hostId);
                 SendMessage(e, client.hostId, client.connectionId, client.channelId);
             }
         }
