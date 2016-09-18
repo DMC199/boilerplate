@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 53b0e01a85e3d874da352504b36331e6
-timeCreated: 1472665840
+guid: 91eb5d5531f05cc4c9711feccf73f9ac
+timeCreated: 1473987657
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,10 +9,48 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: 673 planet 4
-    7400000: 673- stationary
-    7400002: 673 planet 4- first gear
+    4300000: 682- 687
+    7400000: 682- 687|624- first gear
+    7400002: 682- 687|624- stationary
+    7400004: 682- 687|624A- apply
+    7400006: 682- 687|624B- apply
+    7400008: 682- 687|624C- apply
+    7400010: 682- 687|624D- apply
+    7400012: 682- 687|625- first gear
+    7400014: 682- 687|625- stationary
+    7400016: 682- 687|625A- apply
+    7400018: 682- 687|625B- apply
+    7400020: 682- 687|625C- apply
+    7400022: 682- 687|625D- apply
+    7400024: 682- 687|632- first gear
+    7400026: 682- 687|632- stationary
+    7400028: 682- 687|664 and 668- first gear
+    7400030: 682- 687|664 and 668- stationary
+    7400032: 682- 687|669- stationary
+    7400034: 682- 687|672 planet 2- first gear
+    7400036: 682- 687|672- first gear
+    7400038: 682- 687|672- stationary
+    7400040: 682- 687|673 planet 1- first gear
+    7400042: 682- 687|673 planet 3- first gear
+    7400044: 682- 687|673 planet 4- first gear
+    7400046: 682- 687|673- first gear
+    7400048: 682- 687|673- stationary
+    7400050: 682- 687|678- first gear
+    7400052: 682- 687|680- stationary
+    7400054: 682- 687|681- first gear
+    7400056: 682- 687|681- stationary
+    7400058: 682- 687|688- first gear
+    7400060: 682- 687|688- stationary
+    7400062: 682- 687|planet 1- first gear
+    7400064: 682- 687|planet 1-stationary
+    7400066: 682- 687|planet 2- first gear
+    7400068: 682- 687|planet 2- stationary
+    7400070: 682- 687|planet 3- first gear
+    7400072: 682- 687|planet 3- stationary
+    7400074: 682- 687|planet 4- first gear
+    7400076: 682- 687|planet 4- stationary
     9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -71,7 +109,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

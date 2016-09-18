@@ -279,7 +279,7 @@ public class Sequencer : MonoBehaviour {
         StepInfo step = steps[index];
 
         if(stepLabelMesh!=null) stepLabelMesh.text = step.stepid + ": " + step.label;
-
+        
         foreach (ObjectStepInfo obj in step.state)
         {
             GameObject go = GameObject.Find(obj.name);
@@ -292,7 +292,17 @@ public class Sequencer : MonoBehaviour {
                 {
                     foreach (Transform child in go.transform)
                     {
-                        child.GetComponent<Renderer>().enabled = obj.visible;
+                        Renderer childRender = child.GetComponent<Renderer>();
+                        if(childRender== null)
+                        {
+                            foreach (Transform child2 in child.transform)
+                            {
+                                child2.GetComponent<Renderer>().enabled = obj.visible;
+                            }
+
+                        } else {
+                            childRender.enabled = obj.visible;
+                        }
                     }
                 }
                 else

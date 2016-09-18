@@ -1,0 +1,427 @@
+fileFormatVersion: 2
+guid: 80875ff0f3c0a984e845ccb3d5cc6df4
+timeCreated: 1473987594
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 624A
+    100002: 624B
+    100004: 624C
+    100006: 624D
+    100008: //RootNode
+    100010: 656A
+    100012: 656B
+    100014: 656C
+    100016: 656D
+    400000: 624A
+    400002: 624B
+    400004: 624C
+    400006: 624D
+    400008: //RootNode
+    400010: 656A
+    400012: 656B
+    400014: 656C
+    400016: 656D
+    2300000: 624A
+    2300002: 624B
+    2300004: 624C
+    2300006: 624D
+    2300008: 656A
+    2300010: 656B
+    2300012: 656C
+    2300014: 656D
+    3300000: 624A
+    3300002: 624B
+    3300004: 624C
+    3300006: 624D
+    3300008: 656A
+    3300010: 656B
+    3300012: 656C
+    3300014: 656D
+    4300000: 624C
+    4300002: 624D
+    4300004: 624B
+    4300006: 624A
+    4300008: 656C
+    4300010: 656D
+    4300012: 656B
+    4300014: 656A
+    7400000: 624C|624- first gear
+    7400002: 624C|624- stationary
+    7400004: 624C|624A- apply
+    7400006: 624C|624B- apply
+    7400008: 624C|624C- apply
+    7400010: 624C|624D- apply
+    7400012: 624C|625- first gear
+    7400014: 624C|625- stationary
+    7400016: 624C|625A- apply
+    7400018: 624C|625B- apply
+    7400020: 624C|625C- apply
+    7400022: 624C|625D- apply
+    7400024: 624C|632- first gear
+    7400026: 624C|632- stationary
+    7400028: 624C|664 and 668- first gear
+    7400030: 624C|664 and 668- stationary
+    7400032: 624C|669- stationary
+    7400034: 624C|672 planet 2- first gear
+    7400036: 624C|672- first gear
+    7400038: 624C|672- stationary
+    7400040: 624C|673 planet 1- first gear
+    7400042: 624C|673 planet 3- first gear
+    7400044: 624C|673 planet 4- first gear
+    7400046: 624C|673- first gear
+    7400048: 624C|673- stationary
+    7400050: 624C|678- first gear
+    7400052: 624C|680- stationary
+    7400054: 624C|681- first gear
+    7400056: 624C|681- stationary
+    7400058: 624C|688- first gear
+    7400060: 624C|688- stationary
+    7400062: 624C|planet 1- first gear
+    7400064: 624C|planet 1-stationary
+    7400066: 624C|planet 2- first gear
+    7400068: 624C|planet 2- stationary
+    7400070: 624C|planet 3- first gear
+    7400072: 624C|planet 3- stationary
+    7400074: 624C|planet 4- first gear
+    7400076: 624C|planet 4- stationary
+    7400078: 624D|624- first gear
+    7400080: 624D|624- stationary
+    7400082: 624D|624A- apply
+    7400084: 624D|624B- apply
+    7400086: 624D|624C- apply
+    7400088: 624D|624D- apply
+    7400090: 624D|625- first gear
+    7400092: 624D|625- stationary
+    7400094: 624D|625A- apply
+    7400096: 624D|625B- apply
+    7400098: 624D|625C- apply
+    7400100: 624D|625D- apply
+    7400102: 624D|632- first gear
+    7400104: 624D|632- stationary
+    7400106: 624D|664 and 668- first gear
+    7400108: 624D|664 and 668- stationary
+    7400110: 624D|669- stationary
+    7400112: 624D|672 planet 2- first gear
+    7400114: 624D|672- first gear
+    7400116: 624D|672- stationary
+    7400118: 624D|673 planet 1- first gear
+    7400120: 624D|673 planet 3- first gear
+    7400122: 624D|673 planet 4- first gear
+    7400124: 624D|673- first gear
+    7400126: 624D|673- stationary
+    7400128: 624D|678- first gear
+    7400130: 624D|680- stationary
+    7400132: 624D|681- first gear
+    7400134: 624D|681- stationary
+    7400136: 624D|688- first gear
+    7400138: 624D|688- stationary
+    7400140: 624D|planet 1- first gear
+    7400142: 624D|planet 1-stationary
+    7400144: 624D|planet 2- first gear
+    7400146: 624D|planet 2- stationary
+    7400148: 624D|planet 3- first gear
+    7400150: 624D|planet 3- stationary
+    7400152: 624D|planet 4- first gear
+    7400154: 624D|planet 4- stationary
+    7400156: 624B|624- first gear
+    7400158: 624B|624- stationary
+    7400160: 624B|624A- apply
+    7400162: 624B|624B- apply
+    7400164: 624B|624C- apply
+    7400166: 624B|624D- apply
+    7400168: 624B|625- first gear
+    7400170: 624B|625- stationary
+    7400172: 624B|625A- apply
+    7400174: 624B|625B- apply
+    7400176: 624B|625C- apply
+    7400178: 624B|625D- apply
+    7400180: 624B|632- first gear
+    7400182: 624B|632- stationary
+    7400184: 624B|664 and 668- first gear
+    7400186: 624B|664 and 668- stationary
+    7400188: 624B|669- stationary
+    7400190: 624B|672 planet 2- first gear
+    7400192: 624B|672- first gear
+    7400194: 624B|672- stationary
+    7400196: 624B|673 planet 1- first gear
+    7400198: 624B|673 planet 3- first gear
+    7400200: 624B|673 planet 4- first gear
+    7400202: 624B|673- first gear
+    7400204: 624B|673- stationary
+    7400206: 624B|678- first gear
+    7400208: 624B|680- stationary
+    7400210: 624B|681- first gear
+    7400212: 624B|681- stationary
+    7400214: 624B|688- first gear
+    7400216: 624B|688- stationary
+    7400218: 624B|planet 1- first gear
+    7400220: 624B|planet 1-stationary
+    7400222: 624B|planet 2- first gear
+    7400224: 624B|planet 2- stationary
+    7400226: 624B|planet 3- first gear
+    7400228: 624B|planet 3- stationary
+    7400230: 624B|planet 4- first gear
+    7400232: 624B|planet 4- stationary
+    7400234: 624A|624- first gear
+    7400236: 624A|624- stationary
+    7400238: 624A|624A- apply
+    7400240: 624A|624B- apply
+    7400242: 624A|624C- apply
+    7400244: 624A|624D- apply
+    7400246: 624A|625- first gear
+    7400248: 624A|625- stationary
+    7400250: 624A|625A- apply
+    7400252: 624A|625B- apply
+    7400254: 624A|625C- apply
+    7400256: 624A|625D- apply
+    7400258: 624A|632- first gear
+    7400260: 624A|632- stationary
+    7400262: 624A|664 and 668- first gear
+    7400264: 624A|664 and 668- stationary
+    7400266: 624A|669- stationary
+    7400268: 624A|672 planet 2- first gear
+    7400270: 624A|672- first gear
+    7400272: 624A|672- stationary
+    7400274: 624A|673 planet 1- first gear
+    7400276: 624A|673 planet 3- first gear
+    7400278: 624A|673 planet 4- first gear
+    7400280: 624A|673- first gear
+    7400282: 624A|673- stationary
+    7400284: 624A|678- first gear
+    7400286: 624A|680- stationary
+    7400288: 624A|681- first gear
+    7400290: 624A|681- stationary
+    7400292: 624A|688- first gear
+    7400294: 624A|688- stationary
+    7400296: 624A|planet 1- first gear
+    7400298: 624A|planet 1-stationary
+    7400300: 624A|planet 2- first gear
+    7400302: 624A|planet 2- stationary
+    7400304: 624A|planet 3- first gear
+    7400306: 624A|planet 3- stationary
+    7400308: 624A|planet 4- first gear
+    7400310: 624A|planet 4- stationary
+    7400312: 656C|624A- apply
+    7400314: 656C|624B- apply
+    7400316: 656C|624C- apply
+    7400318: 656C|624D- apply
+    7400320: 656C|625- first gear
+    7400322: 656C|625- stationary
+    7400324: 656C|625A- apply
+    7400326: 656C|625B- apply
+    7400328: 656C|625C- apply
+    7400330: 656C|625D- apply
+    7400332: 656C|632- first gear
+    7400334: 656C|632- stationary
+    7400336: 656C|656- first gear
+    7400338: 656C|656- stationary
+    7400340: 656C|664 and 668- first gear
+    7400342: 656C|664 and 668- stationary
+    7400344: 656C|669- stationary
+    7400346: 656C|672 planet 2- first gear
+    7400348: 656C|672- first gear
+    7400350: 656C|672- stationary
+    7400352: 656C|673 planet 1- first gear
+    7400354: 656C|673 planet 3- first gear
+    7400356: 656C|673 planet 4- first gear
+    7400358: 656C|673- first gear
+    7400360: 656C|673- stationary
+    7400362: 656C|678- first gear
+    7400364: 656C|680- stationary
+    7400366: 656C|681- first gear
+    7400368: 656C|681- stationary
+    7400370: 656C|688- first gear
+    7400372: 656C|688- stationary
+    7400374: 656C|planet 1- first gear
+    7400376: 656C|planet 1-stationary
+    7400378: 656C|planet 2- first gear
+    7400380: 656C|planet 2- stationary
+    7400382: 656C|planet 3- first gear
+    7400384: 656C|planet 3- stationary
+    7400386: 656C|planet 4- first gear
+    7400388: 656C|planet 4- stationary
+    7400390: 656D|624A- apply
+    7400392: 656D|624B- apply
+    7400394: 656D|624C- apply
+    7400396: 656D|624D- apply
+    7400398: 656D|625- first gear
+    7400400: 656D|625- stationary
+    7400402: 656D|625A- apply
+    7400404: 656D|625B- apply
+    7400406: 656D|625C- apply
+    7400408: 656D|625D- apply
+    7400410: 656D|632- first gear
+    7400412: 656D|632- stationary
+    7400414: 656D|656- first gear
+    7400416: 656D|656- stationary
+    7400418: 656D|664 and 668- first gear
+    7400420: 656D|664 and 668- stationary
+    7400422: 656D|669- stationary
+    7400424: 656D|672 planet 2- first gear
+    7400426: 656D|672- first gear
+    7400428: 656D|672- stationary
+    7400430: 656D|673 planet 1- first gear
+    7400432: 656D|673 planet 3- first gear
+    7400434: 656D|673 planet 4- first gear
+    7400436: 656D|673- first gear
+    7400438: 656D|673- stationary
+    7400440: 656D|678- first gear
+    7400442: 656D|680- stationary
+    7400444: 656D|681- first gear
+    7400446: 656D|681- stationary
+    7400448: 656D|688- first gear
+    7400450: 656D|688- stationary
+    7400452: 656D|planet 1- first gear
+    7400454: 656D|planet 1-stationary
+    7400456: 656D|planet 2- first gear
+    7400458: 656D|planet 2- stationary
+    7400460: 656D|planet 3- first gear
+    7400462: 656D|planet 3- stationary
+    7400464: 656D|planet 4- first gear
+    7400466: 656D|planet 4- stationary
+    7400468: 656B|624A- apply
+    7400470: 656B|624B- apply
+    7400472: 656B|624C- apply
+    7400474: 656B|624D- apply
+    7400476: 656B|625- first gear
+    7400478: 656B|625- stationary
+    7400480: 656B|625A- apply
+    7400482: 656B|625B- apply
+    7400484: 656B|625C- apply
+    7400486: 656B|625D- apply
+    7400488: 656B|632- first gear
+    7400490: 656B|632- stationary
+    7400492: 656B|656- first gear
+    7400494: 656B|656- stationary
+    7400496: 656B|664 and 668- first gear
+    7400498: 656B|664 and 668- stationary
+    7400500: 656B|669- stationary
+    7400502: 656B|672 planet 2- first gear
+    7400504: 656B|672- first gear
+    7400506: 656B|672- stationary
+    7400508: 656B|673 planet 1- first gear
+    7400510: 656B|673 planet 3- first gear
+    7400512: 656B|673 planet 4- first gear
+    7400514: 656B|673- first gear
+    7400516: 656B|673- stationary
+    7400518: 656B|678- first gear
+    7400520: 656B|680- stationary
+    7400522: 656B|681- first gear
+    7400524: 656B|681- stationary
+    7400526: 656B|688- first gear
+    7400528: 656B|688- stationary
+    7400530: 656B|planet 1- first gear
+    7400532: 656B|planet 1-stationary
+    7400534: 656B|planet 2- first gear
+    7400536: 656B|planet 2- stationary
+    7400538: 656B|planet 3- first gear
+    7400540: 656B|planet 3- stationary
+    7400542: 656B|planet 4- first gear
+    7400544: 656B|planet 4- stationary
+    7400546: 656A|624A- apply
+    7400548: 656A|624B- apply
+    7400550: 656A|624C- apply
+    7400552: 656A|624D- apply
+    7400554: 656A|625- first gear
+    7400556: 656A|625- stationary
+    7400558: 656A|625A- apply
+    7400560: 656A|625B- apply
+    7400562: 656A|625C- apply
+    7400564: 656A|625D- apply
+    7400566: 656A|632- first gear
+    7400568: 656A|632- stationary
+    7400570: 656A|656- first gear
+    7400572: 656A|656- stationary
+    7400574: 656A|664 and 668- first gear
+    7400576: 656A|664 and 668- stationary
+    7400578: 656A|669- stationary
+    7400580: 656A|672 planet 2- first gear
+    7400582: 656A|672- first gear
+    7400584: 656A|672- stationary
+    7400586: 656A|673 planet 1- first gear
+    7400588: 656A|673 planet 3- first gear
+    7400590: 656A|673 planet 4- first gear
+    7400592: 656A|673- first gear
+    7400594: 656A|673- stationary
+    7400596: 656A|678- first gear
+    7400598: 656A|680- stationary
+    7400600: 656A|681- first gear
+    7400602: 656A|681- stationary
+    7400604: 656A|688- first gear
+    7400606: 656A|688- stationary
+    7400608: 656A|planet 1- first gear
+    7400610: 656A|planet 1-stationary
+    7400612: 656A|planet 2- first gear
+    7400614: 656A|planet 2- stationary
+    7400616: 656A|planet 3- first gear
+    7400618: 656A|planet 3- stationary
+    7400620: 656A|planet 4- first gear
+    7400622: 656A|planet 4- stationary
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
