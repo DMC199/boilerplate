@@ -52,6 +52,10 @@ public class Sequencer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+    
+        Application.SetStackTraceLogType( LogType.Log, StackTraceLogType.None );
+
         string path = Application.dataPath + "/StreamingAssets/" + jsonFileName + ".json";
         string jsonContents = File.ReadAllText(path);
         root = JSON.Parse(jsonContents);
@@ -140,14 +144,15 @@ public class Sequencer : MonoBehaviour {
                 {
                     objInfo.tweentime = lerpTime;
                 }
-                step.state.Add(objInfo);
+             
 
                 if (infoNode["alpha"] != null)
                 {
+                    Debug.LogFormat("Obj {0} alpha {1}", objInfo.name, infoNode["alpha"]);
                     objInfo.alpha = infoNode["alpha"].AsFloat;
                 } else
                 {
-                    objInfo.alpha = 1;
+                    objInfo.alpha = 1.0f;
                 }
 
                 step.state.Add(objInfo);
@@ -203,7 +208,7 @@ public class Sequencer : MonoBehaviour {
     public void NextStep()
     {
         currentStep++;
-
+        
         if (currentStep >= steps.Count)
         {
             currentStep = 0;          
@@ -276,7 +281,11 @@ public class Sequencer : MonoBehaviour {
 
     public void setActiveStep(int index)
     {
-        StepInfo step = steps[index];
+        if (currentStep == index) return;
+
+        currentStep = index;
+        
+        StepInfo step = steps[currentStep];
 
         if(stepLabelMesh!=null) stepLabelMesh.text = step.stepid + ": " + step.label;
         
@@ -285,8 +294,9 @@ public class Sequencer : MonoBehaviour {
             GameObject go = GameObject.Find(obj.name);
             if (go != null)
             {
-                //Debug.Log("Setting " + obj.name + " to visible:" + obj.visible);
+                if(obj.visible == true) Debug.Log("Setting " + obj.name + "," + go.name + " to visible:" + obj.visible + " step:" + index);
 
+                //enable up and down the hierarchy
                 Renderer parentRenderer = go.GetComponent<Renderer>();
                 if (parentRenderer == null)
                 {
@@ -310,7 +320,7 @@ public class Sequencer : MonoBehaviour {
                     parentRenderer.enabled = obj.visible;
                 }
 
-
+                //set the location
                 if (!obj.position.Equals(Vector3.zero) && go.transform.localPosition.Equals(Vector3.zero))
                 {
                     go.transform.localPosition = obj.position;
@@ -325,6 +335,7 @@ public class Sequencer : MonoBehaviour {
                     LerpPart(go.transform, go.transform.localPosition, obj.position, obj.tweentime);
                 }
 
+                //animate, blend multiple animations
                 if (!string.IsNullOrEmpty(obj.animation))
                 {
                     if (obj.animation.IndexOf(',') > 0)
@@ -376,26 +387,37 @@ public class Sequencer : MonoBehaviour {
                     }
                 }
 
-                Renderer renderer = go.GetComponent<Renderer>();
-                if (renderer != null)
+                //set the color
+                if (obj.visible)
                 {
-                    Material[] mats = go.GetComponent<Renderer>().materials;
-
-                    for (int m = 0; m < mats.Length; m++)
+                    Renderer renderer = go.GetComponent<Renderer>();
+                    if (renderer != null)
                     {
-                        mats[m].EnableKeyword("_ALPHAPREMULTIPLY_ON");
+                        Material[] mats = go.GetComponent<Renderer>().materials;
 
-                        if (mats[m].name != "tic mark (Instance)")
-                        {   
-                            Color newColor = new Color(mats[m].color.r, mats[m].color.g, mats[m].color.b, obj.alpha);
-                            mats[m].color = newColor;
-                            if (obj.alpha != 1)
+                        for (int m = 0; m < mats.Length; m++)
+                        {
+                            Material mat = mats[m];
+
+                            if (mat.name != "stripe (Instance)")
                             {
-                                mats[m].SetFloat("_Mode", 3.0f);
-                            }
-                            else
-                            {
-                                mats[m].SetFloat("_Mode", 0.0f);
+                                Color newColor = new Color(mat.color.r, mat.color.g, mat.color.b, obj.alpha);
+                                mat.SetColor("_Color", newColor);
+
+                                if (obj.alpha != 1.0f)
+                                {
+                                    //Debug.LogFormat("Transparency for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
+                                    mat.SetFloat("_Mode", 2.0f);
+
+                                    SetupMaterialWithBlendMode(mat, 2);
+                                }
+                                else
+                                {
+                                    //Debug.LogFormat("Opaque for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
+                                    mat.SetFloat("_Mode", 0.0f);
+
+                                    SetupMaterialWithBlendMode(mat, 0);
+                                }
                             }
                         }
                     }
@@ -465,4 +487,48 @@ public class Sequencer : MonoBehaviour {
             setActiveStep(currentStep);
         }*/
 	}
+
+    //helper function to move between render modes
+    public static void SetupMaterialWithBlendMode(Material material, int blendMode)
+    {
+        switch (blendMode)
+        {
+            case 0://opaque
+                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+                material.SetInt("_ZWrite", 1);
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.DisableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                material.renderQueue = -1;
+                break;
+            case 1://cutout:
+                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+                material.SetInt("_ZWrite", 1);
+                material.EnableKeyword("_ALPHATEST_ON");
+                material.DisableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                material.renderQueue = 2450;
+                break;
+            case 2://fade
+                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                material.SetInt("_ZWrite", 0);
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.EnableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                material.renderQueue = 3000;
+                break;
+            case 3://transparent
+                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                material.SetInt("_ZWrite", 0);
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.DisableKeyword("_ALPHABLEND_ON");
+                material.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+                material.renderQueue = 3000;
+                break;
+        }
+    }
 }

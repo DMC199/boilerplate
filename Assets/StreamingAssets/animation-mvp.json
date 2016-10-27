@@ -69,7 +69,8 @@
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": ""
+			"animation": "",
+			"alpha": 1.0
 		}, {
 			"name": "664 and 668",
 			"visible": false,
@@ -128,7 +129,8 @@
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": "632- first gear"
+			"animation": "632- first gear",
+			"alpha": 1.0
 		}, {
 			"name": "664 and 668",
 			"visible": false,
@@ -187,7 +189,8 @@
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": ""
+			"animation": "",
+			"alpha": 0.3
 		}, {
 			"name": "664 and 668",
 			"visible": true,
@@ -246,7 +249,8 @@
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": "632- first gear"
+			"animation": "632- first gear",
+			"alpha": 0.3
 		}, {
 			"name": "664 and 668",
 			"visible": true,
@@ -307,7 +311,8 @@
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": "632- first gear"
+			"animation": "632- first gear",
+			"alpha": 0.3
 		}, {
 			"name": "664 and 668",
 			"visible": true,
@@ -355,72 +360,12 @@
 		}]
 	}, {
 		"stepid": 6,
-		"label": "Sprag Clutch Assembly 664 and 668",
-		"state": [{
-			"name": "632",
-			"visible": true,
-			"animation": "",
-			"alpha": 0.1
-		}, {
-			"name": "664 and 668",
-			"visible": true,
-			"position": [],
-			"animation": ""
-		}, {
-			"name": "clutch pack 657",
-			"visible": true,
-			"position": [],
-			"animation": ""
-		}, {
-			"name": "clutch pack 656",
-			"visible": true,
-			"animation": ""
-		}, {
-			"name": "672",
-			"visible": false,
-			"position": [],
-			"animation": ""
-		}, {
-			"name": "673",
-			"visible": false,
-			"position": [],
-			"animation": ""
-		}, {
-			"name": "675-planet gears",
-			"visible": false,
-			"animation": ""
-		}, {
-			"name": "672-planet gears",
-			"visible": false,
-			"animation": ""
-		}, {
-			"name": "678",
-			"visible": false,
-			"position": [],
-			"animation": ""
-		}, {
-			"name": "681",
-			"visible": false,
-			"position": [],
-			"animation": ""
-		}, {
-			"name": "682- 687",
-			"visible": false,
-			"position": [],
-			"animation": ""
-		}, {
-			"name": "688",
-			"visible": false,
-			"position": [],
-			"animation": ""
-		}]
-	}, {
-		"stepid": 7,
 		"label": "Sprag Clutch Assembly - Input Clutch Applied",
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": "632- first gear"
+			"animation": "632- first gear",
+			"alpha":0.3
 		}, {
 			"name": "664 and 668",
 			"visible": true,
@@ -475,12 +420,13 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 8,
+		"stepid": 7,
 		"label": "Input Carrier Assembly - 672",
 		"state": [{
 			"name": "632",
 			"visible": true,
-			"animation": "632- first gear"
+			"animation": "632- first gear",
+			"alpha": 1.0
 		}, {
 			"name": "664 and 668",
 			"visible": true,
@@ -535,7 +481,7 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 9,
+		"stepid": 8,
 		"label": "Input Carrier Assembly - 672",
 		"state": [{
 			"name": "632",
@@ -595,7 +541,7 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 10,
+		"stepid": 9,
 		"label": "Reaction Carrier Assembly",
 		"state": [{
 			"name": "632",
@@ -655,7 +601,7 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 11,
+		"stepid": 10,
 		"label": "Reaction Carry Assembly",
 		"state": [{
 			"name": "632",
@@ -715,7 +661,7 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 12,
+		"stepid": 11,
 		"label": "Reaction Sun Gear",
 		"state": [{
 			"name": "632",
@@ -775,7 +721,7 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 13,
+		"stepid": 12,
 		"label": "Sun Gear Assembly",
 		"state": [{
 			"name": "632",
@@ -835,7 +781,7 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 14,
+		"stepid": 13,
 		"label": "Support Roller Clutch",
 		"state": [{
 			"name": "632",
@@ -895,7 +841,7 @@
 			"animation": ""
 		}]
 	}, {
-		"stepid": 15,
+		"stepid": 14,
 		"label": "Forward Band",
 		"state": [{
 			"name": "632",

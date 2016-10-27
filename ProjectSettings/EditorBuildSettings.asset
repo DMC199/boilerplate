@@ -7,3 +7,5 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/_Scenes/multiple_fbx_animations_mvp.unity
+  - enabled: 0
+    path: Assets/stencil/stencil.unity
