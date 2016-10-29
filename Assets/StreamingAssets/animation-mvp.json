@@ -1,4 +1,5 @@
 {
+	"xray": ["632", "672", "673", "678", "682- 687", "688"],
 	"steps": [{
 		"stepid": 0,
 		"label": "Transmission",
@@ -86,6 +87,24 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "688-applied",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "689",
+			"visible": false,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"position": [],
+			"animation": ""
 		}]
 	}, {
 		"stepid": 1,
@@ -164,6 +183,17 @@
 			"name": "688",
 			"visible": false,
 			"position": [],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
 			"animation": ""
 		}]
 	}, {
@@ -245,6 +275,17 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"animation": ""
 		}]
 	}, {
 		"stepid": 3,
@@ -323,6 +364,17 @@
 			"name": "688",
 			"visible": false,
 			"position": [],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
 			"animation": ""
 		}]
 	}, {
@@ -405,6 +457,17 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"animation": ""
 		}]
 	}, {
 		"stepid": 5,
@@ -477,6 +540,17 @@
 			"name": "688",
 			"visible": false,
 			"position": [],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
 			"animation": ""
 		}]
 	}, {
@@ -557,6 +631,17 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"animation": ""
 		}]
 	}, {
 		"stepid": 7,
@@ -635,6 +720,17 @@
 			"name": "688",
 			"visible": false,
 			"position": [],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
 			"animation": ""
 		}]
 	}, {
@@ -715,6 +811,17 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"animation": ""
 		}]
 	}, {
 		"stepid": 9,
@@ -793,6 +900,17 @@
 			"name": "688",
 			"visible": false,
 			"position": [],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
 			"animation": ""
 		}]
 	}, {
@@ -873,6 +991,17 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"animation": ""
 		}]
 	}, {
 		"stepid": 11,
@@ -951,6 +1080,17 @@
 			"name": "688",
 			"visible": false,
 			"position": [],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
 			"animation": ""
 		}]
 	}, {
@@ -1031,6 +1171,17 @@
 			"visible": false,
 			"position": [],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"animation": ""
 		}]
 	}, {
 		"stepid": 13,
@@ -1109,6 +1260,17 @@
 			"name": "688",
 			"visible": true,
 			"position": [0, 0, -4],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": false
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
 			"animation": ""
 		}]
 	}, {
@@ -1189,6 +1351,204 @@
 			"visible": true,
 			"position": [0, 0, 20],
 			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": true,
+			"position": [0, -9.98, 22.05]
+		}, {
+			"name": "689",
+			"visible": false,
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": false,
+			"animation": ""
+		}]
+	}, {
+		"stepid": 15,
+		"label": "Final Drive Sun Gear",
+		"state": [{
+			"name": "632",
+			"visible": true,
+			"animation": "632- first gear"
+		}, {
+			"name": "664 and 668",
+			"visible": true,
+			"position": [0, 0, -1.48]
+		}, {
+			"name": "664 and 668- part 1",
+			"visible": true,
+			"position": [0, 0, 30.48],
+			"defaultPosition": [0, 0, 30.48],
+			"animation": "664 and 668- first gear"
+		}, {
+			"name": "664 and 668- part 2",
+			"visible": true,
+			"position": [0, 0, 30.48],
+			"defaultPosition": [0, 0, 30.48],
+			"animation": "664 and 668- first gear"
+		}, {
+			"name": "664 and 668- part 3",
+			"visible": true,
+			"position": [0, 0, 30.48],
+			"defaultPosition": [0, 0, 30.48],
+			"animation": "664 and 668- first gear"
+		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"position": [0, 0.3047996, 0],
+			"defaultPosition": [0, 0.3047996, 0],
+			"animation": ""
+		}, {
+			"name": "672",
+			"visible": true,
+			"position": [],
+			"animation": "672- first gear"
+		}, {
+			"name": "673",
+			"visible": true,
+			"position": [],
+			"animation": "673- first gear"
+		}, {
+			"name": "675-planet gears",
+			"visible": true,
+			"animation": "673 planet 1|624- first gear,673 planet 2|624- first gear,673 planet 3|624- first gear,673 planet 4|624- first gear"
+		}, {
+			"name": "672-planet gears",
+			"visible": true,
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+		}, {
+			"name": "678",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "681",
+			"visible": true,
+			"position": [],
+			"animation": "681- first gear"
+		}, {
+			"name": "682- 687",
+			"visible": true,
+			"position": [0, 0, 0],
+			"animation": "688- first gear"
+		}, {
+			"name": "688",
+			"visible": true,
+			"position": [0, 0, 20],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": true,
+			"position": [0, -9.98, 22.05]
+		}, {
+			"name": "689",
+			"visible": true,
+			"position": [0, 0, -10],
+			"animation": ""
+		}, {
+			"name": "697",
+			"visible": true,
+			"position": [0, 0, -10],
+			"animation": ""
+		}]
+	}, {
+		"stepid": 16,
+		"label": "Final Drive Sun Gear",
+		"state": [{
+			"name": "632",
+			"visible": true,
+			"animation": "632- first gear"
+		}, {
+			"name": "664 and 668",
+			"visible": true,
+			"position": [0, 0, -1.48]
+		}, {
+			"name": "664 and 668- part 1",
+			"visible": true,
+			"position": [0, 0, 30.48],
+			"defaultPosition": [0, 0, 30.48],
+			"animation": "664 and 668- first gear"
+		}, {
+			"name": "664 and 668- part 2",
+			"visible": true,
+			"position": [0, 0, 30.48],
+			"defaultPosition": [0, 0, 30.48],
+			"animation": "664 and 668- first gear"
+		}, {
+			"name": "664 and 668- part 3",
+			"visible": true,
+			"position": [0, 0, 30.48],
+			"defaultPosition": [0, 0, 30.48],
+			"animation": "664 and 668- first gear"
+		}, {
+			"name": "clutch pack 657",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "clutch pack 656",
+			"visible": true,
+			"position": [0, 0.3047996, 0],
+			"defaultPosition": [0, 0.3047996, 0],
+			"animation": ""
+		}, {
+			"name": "672",
+			"visible": true,
+			"position": [],
+			"animation": "672- first gear"
+		}, {
+			"name": "673",
+			"visible": true,
+			"position": [],
+			"animation": "673- first gear"
+		}, {
+			"name": "675-planet gears",
+			"visible": true,
+			"animation": "673 planet 1|624- first gear,673 planet 2|624- first gear,673 planet 3|624- first gear,673 planet 4|624- first gear"
+		}, {
+			"name": "672-planet gears",
+			"visible": true,
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+		}, {
+			"name": "678",
+			"visible": true,
+			"position": [],
+			"animation": ""
+		}, {
+			"name": "681",
+			"visible": true,
+			"position": [],
+			"animation": "681- first gear"
+		}, {
+			"name": "682- 687",
+			"visible": true,
+			"position": [0, 0, 0],
+			"animation": "688- first gear"
+		}, {
+			"name": "688",
+			"visible": true,
+			"position": [0, 0, 20],
+			"animation": ""
+		}, {
+			"name": "688-applied",
+			"visible": true,
+			"position": [0, -9.98, 22.05]
+		}, {
+			"name": "689",
+			"visible": true,
+			"position": [0, 0, -0.42],
+			"animation": "689- first gear"
+		}, {
+			"name": "697",
+			"visible": true,
+			"position": [0, 0, -0.42],
+			"animation": "697Action"
 		}]
 	}]
 }

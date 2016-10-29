@@ -15,12 +15,16 @@ public class Sequencer : MonoBehaviour {
     public string jsonFileName;
     public GameObject stepLabel;
 
+    public bool xRayState =false;
+    private float xRayAlpha = 0.3f;
 
     public GameObject callout;
 
     private int lastCurrentStep;
     private bool doLerp = false;
     private TextMesh stepLabelMesh;
+
+    private List<string> xrayModels;
 
     JSONNode root;
     List<StepInfo> steps;
@@ -57,13 +61,23 @@ public class Sequencer : MonoBehaviour {
 
     
         Application.SetStackTraceLogType( LogType.Log, StackTraceLogType.None );
+        xRayState = false;
 
         string path = Application.dataPath + "/StreamingAssets/" + jsonFileName + ".json";
         string jsonContents = File.ReadAllText(path);
         root = JSON.Parse(jsonContents);
 
+
+        xrayModels = new List<string>();
+        JSONArray jsonXray = root["xray"].AsArray;
+        for (int i = 0; i < jsonXray.Count; i++)
+        {
+            xrayModels.Add(jsonXray[i]);
+        }
+
+        print("xray models count: " + xrayModels.Count );
+
         steps = new List<StepInfo>();
-       
         JSONArray jsonSteps = root["steps"].AsArray;
 
         print("Step count: " + jsonSteps.Count);
@@ -78,23 +92,6 @@ public class Sequencer : MonoBehaviour {
             step.state = new List<ObjectStepInfo>();
 
             JSONArray objectsInStep = jStep["state"].AsArray;
-
-			/*
-            if (jStep["name"] != null)
-            {
-                step.name = stepInfo["name"];
-            }
-
-            if (jStep["callout"] != null)
-            {
-                JSONNode calloutInfo = stepInfo["callout"];
-                step.hasCallout = true;
-                step.calloutText = calloutInfo["text"];
-                step.calloutTarget = parseVector(calloutInfo["target"].AsArray);
-            } else
-            {
-                step.hasCallout = false;
-            }*/
             
             for (int o = 0; o < objectsInStep.Count; o++)
             {
@@ -187,7 +184,7 @@ public class Sequencer : MonoBehaviour {
         }
 
         currentStep = -1;
-        setActiveStep(0);
+        setActiveStep(7);
     }
 
     public void Awake()
@@ -241,7 +238,7 @@ public class Sequencer : MonoBehaviour {
         triggerActiveStep(step);
     }
 
-    public void LastStep()
+    public void PrevStep()
     {
         int step = currentStep - 1;
 
@@ -251,6 +248,52 @@ public class Sequencer : MonoBehaviour {
         }
 
         triggerActiveStep(step);
+    }
+
+    public void ToggleXray()
+    {
+        xRayState = !xRayState;
+
+        foreach ( string model in xrayModels)
+        {
+            GameObject go = GameObject.Find(model);
+            Renderer renderer = go.GetComponent<Renderer>();
+
+            if (renderer != null)
+            {
+                Material[] mats = go.GetComponent<Renderer>().materials;
+
+                for (int m = 0; m < mats.Length; m++)
+                {
+                    Material mat = mats[m];
+
+                    if (mat.name != "stripe (Instance)")
+                    {
+                        
+                        if (xRayState)
+                        {
+                            Color newColor = new Color(mat.color.r, mat.color.g, mat.color.b, xRayAlpha);
+                            mat.SetColor("_Color", newColor);
+
+                            //Debug.LogFormat("Transparency for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
+                            mat.SetFloat("_Mode", 2.0f);
+
+                            SetupMaterialWithBlendMode(mat, 2);
+                        }
+                        else
+                        {
+                            Color newColor = new Color(mat.color.r, mat.color.g, mat.color.b, 1.0f);
+                            mat.SetColor("_Color", newColor);
+                            
+                            //Debug.LogFormat("Opaque for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
+                            mat.SetFloat("_Mode", 0.0f);
+
+                            SetupMaterialWithBlendMode(mat, 0);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void NavigationGrammarRecognized(PhraseRecognizedEventArgs args)
@@ -271,8 +314,8 @@ public class Sequencer : MonoBehaviour {
                             NextStep();
                         }
                         else
-                        {
-                            LastStep();
+                        { 
+                            PrevStep();
                         }
                     }
 
@@ -294,6 +337,11 @@ public class Sequencer : MonoBehaviour {
                         {
                             room.Calibrate();
                         }
+                    }
+
+                    if ("xray".Equals(meaning.values[0]))
+                    {
+                        ToggleXray();
                     }
                 }
             }
@@ -322,7 +370,7 @@ public class Sequencer : MonoBehaviour {
             GameObject go = GameObject.Find(obj.name);
             if (go != null)
             {
-                //if(obj.visible == true) Debug.Log("Setting " + obj.name + "," + go.name + " to visible:" + obj.visible + " step:" + index);
+                Debug.Log("Setting " + obj.name + "," + go.name + " to visible:" + obj.visible + " step:" + index);
 
                 //enable up and down the hierarchy
                 Renderer parentRenderer = go.GetComponent<Renderer>();
@@ -377,11 +425,12 @@ public class Sequencer : MonoBehaviour {
                         //it's mutliple
                         string[] animations = obj.animation.Split(',');
                         Animation anim = go.GetComponent<Animation>();
+
                         foreach ( string a in animations)
                         {
                             AnimationState s = anim[a];
                             if(s != null) {
-                                //s.wrapMode = WrapMode.Loop;
+                                if( index != 6) s.wrapMode = WrapMode.Loop;//step 6 we want to apply only once
                                 s.enabled = true;
                                 s.blendMode = AnimationBlendMode.Blend;
                                 anim.Blend(a);
@@ -391,7 +440,6 @@ public class Sequencer : MonoBehaviour {
                                 print("Couldn't find animation " + a);
                             }
                         }
-
                     }
                     else
                     { 
@@ -416,7 +464,6 @@ public class Sequencer : MonoBehaviour {
                     Animation anim = go.GetComponent<Animation>();
                     if (anim != null)
                     {
-                        //print("Stopping anim...");
                         anim.Stop();
                     }
                 }
@@ -435,22 +482,29 @@ public class Sequencer : MonoBehaviour {
 
                             if (mat.name != "stripe (Instance)")
                             {
-                                Color newColor = new Color(mat.color.r, mat.color.g, mat.color.b, obj.alpha);
-                                mat.SetColor("_Color", newColor);
-
-                                if (obj.alpha != 1.0f)
+                               
+                                if (xRayState && xrayModels.Contains( obj.name ) )
                                 {
-                                    //Debug.LogFormat("Transparency for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
-                                    mat.SetFloat("_Mode", 2.0f);
+                                    Color newColor = new Color(mat.color.r, mat.color.g, mat.color.b, xRayAlpha);
+                                    mat.SetColor("_Color", newColor);
+                                } else {
+                                    Color newColor = new Color(mat.color.r, mat.color.g, mat.color.b, obj.alpha);
+                                    mat.SetColor("_Color", newColor);
 
-                                    SetupMaterialWithBlendMode(mat, 2);
-                                }
-                                else
-                                {
-                                    //Debug.LogFormat("Opaque for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
-                                    mat.SetFloat("_Mode", 0.0f);
+                                    if (obj.alpha != 1.0f)
+                                    {
+                                        //Debug.LogFormat("Transparency for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
+                                        mat.SetFloat("_Mode", 2.0f);
 
-                                    SetupMaterialWithBlendMode(mat, 0);
+                                        SetupMaterialWithBlendMode(mat, 2);
+                                    }
+                                    else
+                                    {
+                                        //Debug.LogFormat("Opaque for Material {0} {1} ", mat.name, mat.GetFloat("_Mode"));
+                                        mat.SetFloat("_Mode", 0.0f);
+
+                                        SetupMaterialWithBlendMode(mat, 0);
+                                    }
                                 }
                             }
                         }
@@ -458,19 +512,6 @@ public class Sequencer : MonoBehaviour {
                 }
             }
         }
-        /*
-        // Update the callout text overlay.
-        if (step.hasCallout)
-        {
-            TextMesh mesh = callout.GetComponent<TextMesh>();
-            mesh.text = step.calloutText;
-            mesh.color = new Color(1,1,1,1);
-            //mesh.transform.transform.
-        } else
-        {
-            TextMesh mesh = callout.GetComponent<TextMesh>();
-            mesh.color = new Color(1, 1, 1, 0);
-        }*/
     }
 
     Vector3 parseVector(JSONArray values)
@@ -512,15 +553,16 @@ public class Sequencer : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            LastStep();
+            PrevStep();
         }
 
-	    /*if(currentStep != lastCurrentStep)
+
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            lastCurrentStep = currentStep;
-            setActiveStep(currentStep);
-        }*/
-	}
+            ToggleXray();
+        }
+
+    }
 
     //helper function to move between render modes
     public static void SetupMaterialWithBlendMode(Material material, int blendMode)
