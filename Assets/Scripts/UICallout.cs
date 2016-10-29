@@ -7,44 +7,38 @@ public class UICallout : MonoBehaviour {
     public GameObject textLabel;
     public GameObject textBg;
 
-    //public GameObject indicatorLine;
-    //public GameObject indicatorMesh;
+    private GameObject prevBtn;
+    private GameObject nextBtn;
+    
 
-	// Use this for initialization
-	void Start () {
-	    
-	}
+    private Renderer txtRender;
+    private Renderer bgRender;
+
+    private Vector3 nextBtnSize;
+    
+
+    // Use this for initialization
+    void Start () {
+        prevBtn = transform.Find("Prev").gameObject;
+        nextBtn = transform.Find("Next").gameObject;
+
+        txtRender = textLabel.GetComponent<Renderer>();
+        bgRender = textBg.GetComponent<Renderer>();
+
+        nextBtnSize = nextBtn.GetComponent<Renderer>().bounds.size;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        /*
-        Vector2 cameraPos = new Vector2(targetCamera.transform.position.z, targetCamera.transform.position.x);
-        Vector2 billboardPos = new Vector2(textLabel.transform.position.z, textLabel.transform.position.x);
-        Vector2 delta = cameraPos - billboardPos;
-        
-        float angle = Vector2.Angle(delta, new Vector2(0, 1)) - 90;
+     
 
-        if (cameraPos.x > billboardPos.x)
-        {
-            angle *= -1;
-        }
+        Vector3 txtWidth = txtRender.bounds.size;
+        textBg.transform.localScale = txtWidth + (Vector3.right.normalized * 0.05f) + (Vector3.up.normalized * 0.005f);
+        textBg.transform.localPosition = new Vector3( textLabel.transform.localPosition.x + (txtWidth.x / 2.0f), textBg.transform.localPosition.y, textBg.transform.localPosition.z);
 
-        textLabel.transform.rotation = Quaternion.AngleAxis(angle, targetCamera.transform.up);
-        */
+        Vector3 bgWidth = bgRender.bounds.size;
+        nextBtn.transform.localPosition = new Vector3( bgWidth.x - nextBtnSize.x - (Vector3.right.normalized * 0.004f).x, nextBtn.transform.localPosition.y, nextBtn.transform.localPosition.z);
 
-        Vector3 sizeCalculated = textLabel.GetComponent<Renderer>().bounds.size;
-        textBg.transform.localScale = sizeCalculated + (Vector3.right.normalized * 0.05f) + (Vector3.up.normalized * 0.005f);
-        textBg.transform.position = new Vector3( textLabel.transform.position.x + ( sizeCalculated.x / 2.0f), textBg.transform.position.y, textBg.transform.position.z);
 
-        //textBg.transform.rotation = textLabel.transform.rotation;
-
-        /*
-        float indicatorScale = Vector3.Distance(textLabel.transform.position, targetCamera.transform.position);
-        print(indicatorScale);
-        
-        indicatorMesh.transform.lossyScale.Set(0.001f, indicatorScale / 2.0f, 0.001f);
-
-        indicatorLine.transform.LookAt(targetCamera.transform);
-        */
     }
 }

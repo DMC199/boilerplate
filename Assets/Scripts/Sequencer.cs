@@ -10,7 +10,7 @@ public class Sequencer : MonoBehaviour {
 
     //UnityEditor
     public CCCRoom room;
-    public int currentStep;
+    public int currentStep = -1;
     public float lerpTime = 1.0f;
     public string jsonFileName;
     public GameObject stepLabel;
@@ -45,6 +45,8 @@ public class Sequencer : MonoBehaviour {
         public string name;
         public bool visible;
         public Vector3 position;
+        public Vector3 defaultPosition;
+        public Vector3 fixedPosition;
         public float tweentime;
         public string animation;
         public float alpha;
@@ -118,6 +120,8 @@ public class Sequencer : MonoBehaviour {
                     print("ERROR!! All objects must have a name!");
                 }
 
+                GameObject go = GameObject.Find(objInfo.name);
+
                 if (infoNode["animation"] != null)
                 {
                     objInfo.animation = infoNode["animation"].Value;
@@ -133,8 +137,28 @@ public class Sequencer : MonoBehaviour {
                     objInfo.position = parseVector(infoNode["position"].AsArray);
                 } else
                 {
-                    objInfo.position = new Vector3();
+                    objInfo.position = Vector3.zero;
                 }
+
+                if (infoNode["defaultPosition"] != null)
+                {
+                    objInfo.defaultPosition = parseVector(infoNode["defaultPosition"].AsArray);
+                    if (infoNode["position"] == null) objInfo.position = objInfo.defaultPosition;
+                }
+                else
+                {
+                    objInfo.defaultPosition = Vector3.zero;
+                }
+
+                if (infoNode["fixedPosition"] != null)
+                {
+                    Debug.Log("found fixedPosition " + objInfo.name);
+                    objInfo.fixedPosition = parseVector(infoNode["fixedPosition"].AsArray);
+                }else
+                {
+                    objInfo.fixedPosition = Vector3.zero;
+                }
+
 
                 if (infoNode["tweentime"] != null)
                 {
@@ -159,10 +183,10 @@ public class Sequencer : MonoBehaviour {
 
             }
 
-            //StepInfo info = new StepInfo();
             steps.Add(step);
         }
 
+        currentStep = -1;
         setActiveStep(0);
     }
 
@@ -207,26 +231,26 @@ public class Sequencer : MonoBehaviour {
 
     public void NextStep()
     {
-        currentStep++;
+        int step = currentStep + 1;
         
-        if (currentStep >= steps.Count)
+        if (step >= steps.Count)
         {
-            currentStep = 0;          
+            step = 0;          
         }
 
-        triggerActiveStep(currentStep);
+        triggerActiveStep(step);
     }
 
     public void LastStep()
     {
-        currentStep--;
+        int step = currentStep - 1;
 
-        if(currentStep < 0)
+        if(step < 0)
         {
-            currentStep = steps.Count - 1;
+            step = steps.Count - 1;
         }
 
-        triggerActiveStep(currentStep);
+        triggerActiveStep(step);
     }
 
     public void NavigationGrammarRecognized(PhraseRecognizedEventArgs args)
@@ -255,9 +279,9 @@ public class Sequencer : MonoBehaviour {
                     if (meaning.key == "GoToStep")
                     {
                         string stepNumberString = meaning.values[0];
-                        currentStep = (int.Parse(stepNumberString) - 1);
+                        int step  = (int.Parse(stepNumberString) - 1);
 
-                        triggerActiveStep(currentStep);
+                        triggerActiveStep(step);
                     }
                 }
 
@@ -281,7 +305,11 @@ public class Sequencer : MonoBehaviour {
 
     public void setActiveStep(int index)
     {
+        Debug.Log("step " + index + " " + currentStep);
         if (currentStep == index) return;
+
+        if (index >= steps.Count) index = 0;
+        if (index < 0) index = 0;
 
         currentStep = index;
         
@@ -294,7 +322,7 @@ public class Sequencer : MonoBehaviour {
             GameObject go = GameObject.Find(obj.name);
             if (go != null)
             {
-                if(obj.visible == true) Debug.Log("Setting " + obj.name + "," + go.name + " to visible:" + obj.visible + " step:" + index);
+                //if(obj.visible == true) Debug.Log("Setting " + obj.name + "," + go.name + " to visible:" + obj.visible + " step:" + index);
 
                 //enable up and down the hierarchy
                 Renderer parentRenderer = go.GetComponent<Renderer>();
@@ -320,21 +348,27 @@ public class Sequencer : MonoBehaviour {
                     parentRenderer.enabled = obj.visible;
                 }
 
-                //set the location
-                if (!obj.position.Equals(Vector3.zero) && go.transform.localPosition.Equals(Vector3.zero))
+                //set the location                
+                Vector3 currentPos = go.transform.localPosition;
+                if (!obj.position.Equals(obj.defaultPosition) && currentPos.Equals( obj.defaultPosition ))
                 {
+                    Debug.Log("set the position for " + go.name+ " to " + obj.position);
                     go.transform.localPosition = obj.position;
                 }
-                else if (obj.position.Equals(Vector3.zero) && !go.transform.localPosition.Equals(Vector3.zero))
+                else if (obj.position.Equals(obj.defaultPosition) && !currentPos.Equals(obj.defaultPosition))
                 {
+                    Debug.Log("Move the position for " + go.name + " to " + obj.position + " from " + currentPos + " default " + obj.defaultPosition);
                     doLerp = true;
-                    LerpPart(go.transform, go.transform.localPosition, obj.position, obj.tweentime);
-                }else if(!obj.position.Equals(Vector3.zero) && !go.transform.localPosition.Equals(Vector3.zero))
-                {
-                    doLerp = true;
-                    LerpPart(go.transform, go.transform.localPosition, obj.position, obj.tweentime);
+                    LerpPart(go.transform, currentPos, obj.position, obj.tweentime);
                 }
-
+                else if(!obj.position.Equals(obj.defaultPosition) && !currentPos.Equals(obj.defaultPosition))
+                {
+                    Debug.Log("Sync the position for " + go.name + " to " + obj.position + " from " + currentPos + " default " + obj.defaultPosition);
+                    go.transform.localPosition = obj.position;
+                    //doLerp = true;
+                    //LerpPart(go.transform, currentPos, obj.position, obj.tweentime);
+                }
+            
                 //animate, blend multiple animations
                 if (!string.IsNullOrEmpty(obj.animation))
                 {
@@ -347,7 +381,7 @@ public class Sequencer : MonoBehaviour {
                         {
                             AnimationState s = anim[a];
                             if(s != null) {
-                                s.wrapMode = WrapMode.Loop;
+                                //s.wrapMode = WrapMode.Loop;
                                 s.enabled = true;
                                 s.blendMode = AnimationBlendMode.Blend;
                                 anim.Blend(a);
