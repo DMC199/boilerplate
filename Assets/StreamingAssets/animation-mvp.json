@@ -78,11 +78,6 @@
 			"position": [],
 			"animation": ""
 		}, {
-			"name": "682- 687",
-			"visible": false,
-			"position": [],
-			"animation": ""
-		}, {
 			"name": "688",
 			"visible": false,
 			"position": [],
@@ -563,25 +558,26 @@
 			"alpha": 0.3
 		}, {
 			"name": "664 and 668",
-			"visible": true
+			"visible": true,
+			"position": [0, 0, -1.48]
 		}, {
 			"name": "664 and 668- part 1",
 			"visible": true,
 			"position": [0, 0, 30.48],
 			"defaultPosition": [0, 0, 30.48],
-			"animation": ""
+			"animation": "664 and 668- first gear"
 		}, {
 			"name": "664 and 668- part 2",
 			"visible": true,
 			"position": [0, 0, 30.48],
 			"defaultPosition": [0, 0, 30.48],
-			"animation": ""
+			"animation": "664 and 668- first gear"
 		}, {
 			"name": "664 and 668- part 3",
 			"visible": true,
 			"position": [0, 0, 30.48],
 			"defaultPosition": [0, 0, 30.48],
-			"animation": ""
+			"animation": "664 and 668- first gear"
 		}, {
 			"name": "clutch pack 657",
 			"visible": true,
@@ -790,7 +786,8 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": false,
@@ -880,7 +877,8 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": false,
@@ -970,7 +968,8 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": false,
@@ -1060,7 +1059,8 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": true,
@@ -1150,12 +1150,14 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": true,
 			"position": [0, 0, 0],
-			"animation": "678- first gear"
+			"animation": "678- first gear",
+			"direction": "1"
 		}, {
 			"name": "681",
 			"visible": false,
@@ -1240,12 +1242,14 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": true,
 			"position": [],
-			"animation": "678- first gear"
+			"animation": "678- first gear",
+			"direction": "1"
 		}, {
 			"name": "681",
 			"visible": true,
@@ -1330,22 +1334,26 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": true,
 			"position": [],
-			"animation": ""
-		}, {
+			"animation": "678- first gear",
+			"direction": "1"
+		},{
 			"name": "681",
 			"visible": true,
 			"position": [],
-			"animation": "681- first gear"
-		}, {
+			"animation": "681- first gear",
+			"direction": "-1"
+		},{
 			"name": "682- 687",
 			"visible": true,
 			"position": [0, 0, 0],
-			"animation": "688- first gear"
+			"animation": "688- first gear",
+			"direction": "-1"
 		}, {
 			"name": "688",
 			"visible": true,
@@ -1421,22 +1429,26 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": true,
 			"position": [],
-			"animation": ""
+			"animation": "",
+			"direction": "-1"
 		}, {
 			"name": "681",
 			"visible": true,
 			"position": [],
-			"animation": "681- first gear"
+			"animation": "",
+			"direction": "1"
 		}, {
 			"name": "682- 687",
 			"visible": true,
 			"position": [0, 0, 0],
-			"animation": ""
+			"animation": "",
+			"direction": "1"
 		}, {
 			"name": "688",
 			"visible": true,
@@ -1514,22 +1526,24 @@
 		}, {
 			"name": "672-planet gears",
 			"visible": true,
-			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear"
+			"animation": "planet 1|planet 1- first gear,planet 2|planet 2- first gear,planet 3|planet 3- first gear,planet 4|planet 4- first gear",
+			"direction": "-1"
 		}, {
 			"name": "678",
 			"visible": true,
 			"position": [],
-			"animation": ""
+			"animation": "-1"
 		}, {
 			"name": "681",
 			"visible": true,
 			"position": [],
-			"animation": "681- first gear"
-		}, {
+			"animation": ""
+		},{
 			"name": "682- 687",
 			"visible": true,
 			"position": [0, 0, 0],
-			"animation": ""
+			"animation": "",
+			"direction": "-1"
 		}, {
 			"name": "688",
 			"visible": true,
@@ -1548,7 +1562,7 @@
 			"name": "697",
 			"visible": true,
 			"position": [0, 0, -0.42],
-			"animation": ""
+			"animation": "697Action"
 		}]
 	}]
 }

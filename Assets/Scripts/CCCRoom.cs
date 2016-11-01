@@ -245,7 +245,8 @@ public class CCCRoom : MonoBehaviour {
         Quaternion targetRotation = Camera.main.transform.rotation;
         localAnchor.transform.rotation = targetRotation;
 
-        Vector3 modelPostition = targetPosition + (Vector3.up.normalized * 0.4f) + (Vector3.right.normalized * 0.4f);
+        //Vector3 modelPostition = targetPosition + (Vector3.up.normalized * 0.4f) + (Vector3.right.normalized * 0.4f);
+        Vector3 modelPostition = targetPosition + (Vector3.up.normalized * 0.1f) + (Vector3.right.normalized * 0.3f);
         targetModel.transform.position = modelPostition;
 
         Vector3 lookatPostition = new Vector3(Camera.main.transform.position.x,

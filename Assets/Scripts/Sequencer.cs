@@ -57,6 +57,7 @@ public class Sequencer : MonoBehaviour {
         public float tweentime;
         public string animation;
         public float alpha;
+        public int animiation_direction;
     }
 
 	// Use this for initialization
@@ -179,6 +180,15 @@ public class Sequencer : MonoBehaviour {
                 } else
                 {
                     objInfo.alpha = 1.0f;
+                }
+
+                if( infoNode["direction"] != null)
+                {
+                    objInfo.animiation_direction = infoNode["direction"].AsInt;
+                }
+                else
+                {
+                    objInfo.animiation_direction = 1;
                 }
 
                 step.state.Add(objInfo);
@@ -443,6 +453,8 @@ public class Sequencer : MonoBehaviour {
                             AnimationState s = anim[a];
                             if(s != null) {
                                 if( index != 6) s.wrapMode = WrapMode.Loop;//step 6 we want to apply only once
+                                s.speed = obj.animiation_direction;
+                                if (s.speed == -1) s.time = s.length;
                                 s.enabled = true;
                                 s.blendMode = AnimationBlendMode.Blend;
                                 anim.Blend(a);
@@ -461,6 +473,8 @@ public class Sequencer : MonoBehaviour {
                             AnimationState s = anim[obj.animation];
                             if(s != null) {
                                 s.wrapMode = WrapMode.Loop;
+                                s.speed = obj.animiation_direction;
+                                if (s.speed == -1) s.time = s.length;
                                 s.enabled = true;
                                 anim.Play(obj.animation);
                             }
