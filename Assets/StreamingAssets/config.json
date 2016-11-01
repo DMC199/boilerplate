@@ -1,2 +1,2 @@
 { "comment" : "this config file will be used when found in the Local State Folder of the app on the hololens. Use device manager-file explorer to upload" , 
-"ipAddress": "192.168.1.5"}
+"ipAddress": "10.83.3.93"}
