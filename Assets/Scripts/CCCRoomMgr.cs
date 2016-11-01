@@ -74,6 +74,7 @@ public class CCCRoomMgr : MonoBehaviour
 
         try
         {
+            //store config.json in LocalState or the deployed app: http://127.0.0.1:10080/FileExplorer.htm
             Windows.Storage.StorageFile configFile = await storageFolder.GetFileAsync("config.json");
 
             var buffer = await Windows.Storage.FileIO.ReadBufferAsync(configFile);

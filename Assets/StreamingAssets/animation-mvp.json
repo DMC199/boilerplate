@@ -2,7 +2,7 @@
 	"xray": ["632", "672", "673", "678", "682- 687", "688"],
 	"steps": [{
 		"stepid": 0,
-		"label": "Transmission",
+		"label": "4T60-E Transmission Powerflow",
 		"state": [{
 			"name": "632",
 			"visible": false,
@@ -1353,7 +1353,7 @@
 			"animation": ""
 		}, {
 			"name": "688-applied",
-			"visible": true,
+			"visible": false,
 			"position": [0, -9.98, 22.05]
 		}, {
 			"name": "689",
@@ -1436,7 +1436,7 @@
 			"name": "682- 687",
 			"visible": true,
 			"position": [0, 0, 0],
-			"animation": "688- first gear"
+			"animation": ""
 		}, {
 			"name": "688",
 			"visible": true,
@@ -1529,7 +1529,7 @@
 			"name": "682- 687",
 			"visible": true,
 			"position": [0, 0, 0],
-			"animation": "688- first gear"
+			"animation": ""
 		}, {
 			"name": "688",
 			"visible": true,
@@ -1548,7 +1548,7 @@
 			"name": "697",
 			"visible": true,
 			"position": [0, 0, -0.42],
-			"animation": "697Action"
+			"animation": ""
 		}]
 	}]
 }

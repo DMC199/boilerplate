@@ -6,6 +6,8 @@ using UnityEngine.Windows.Speech;
 using System.IO;
 using System;
 
+using UnityEngine.VR.WSA.Input;
+
 public class Sequencer : MonoBehaviour {
 
     //UnityEditor
@@ -13,7 +15,7 @@ public class Sequencer : MonoBehaviour {
     public int currentStep = -1;
     public float lerpTime = 1.0f;
     public string jsonFileName;
-    public GameObject stepLabel;
+    public UICallout stepLabel;
 
     public bool xRayState =false;
     private float xRayAlpha = 0.3f;
@@ -22,9 +24,10 @@ public class Sequencer : MonoBehaviour {
 
     private int lastCurrentStep;
     private bool doLerp = false;
-    private TextMesh stepLabelMesh;
-
+    
     private List<string> xrayModels;
+
+    GestureRecognizer gestureRecognizer;
 
     JSONNode root;
     List<StepInfo> steps;
@@ -63,6 +66,12 @@ public class Sequencer : MonoBehaviour {
         Application.SetStackTraceLogType( LogType.Log, StackTraceLogType.None );
         xRayState = false;
 
+        // Create a new GestureRecognizer. Sign up for tapped events.
+        gestureRecognizer = new GestureRecognizer();
+        gestureRecognizer.SetRecognizableGestures(GestureSettings.Tap);
+        gestureRecognizer.TappedEvent += GestureRecognizer_TappedEvent;
+        gestureRecognizer.StartCapturingGestures();
+
         string path = Application.dataPath + "/StreamingAssets/" + jsonFileName + ".json";
         string jsonContents = File.ReadAllText(path);
         root = JSON.Parse(jsonContents);
@@ -74,9 +83,7 @@ public class Sequencer : MonoBehaviour {
         {
             xrayModels.Add(jsonXray[i]);
         }
-
-        print("xray models count: " + xrayModels.Count );
-
+        
         steps = new List<StepInfo>();
         JSONArray jsonSteps = root["steps"].AsArray;
 
@@ -149,7 +156,6 @@ public class Sequencer : MonoBehaviour {
 
                 if (infoNode["fixedPosition"] != null)
                 {
-                    Debug.Log("found fixedPosition " + objInfo.name);
                     objInfo.fixedPosition = parseVector(infoNode["fixedPosition"].AsArray);
                 }else
                 {
@@ -169,7 +175,6 @@ public class Sequencer : MonoBehaviour {
 
                 if (infoNode["alpha"] != null)
                 {
-                    Debug.LogFormat("Obj {0} alpha {1}", objInfo.name, infoNode["alpha"]);
                     objInfo.alpha = infoNode["alpha"].AsFloat;
                 } else
                 {
@@ -184,7 +189,15 @@ public class Sequencer : MonoBehaviour {
         }
 
         currentStep = -1;
-        setActiveStep(7);
+        setActiveStep(0);
+    }
+
+    private void GestureRecognizer_TappedEvent(InteractionSourceKind source, int tapCount, Ray headRay)
+    {
+        if( HoloToolkit.Unity.GazeManager.Instance.FocusedObject == null)
+        {
+            NextStep();
+        }
     }
 
     public void Awake()
@@ -193,10 +206,6 @@ public class Sequencer : MonoBehaviour {
         {
             room.OnPropagateRoomEvent += Room_OnPropagateRoomEvent;
 
-            if (stepLabel != null)
-            {
-                stepLabelMesh = stepLabel.GetComponent<TextMesh>();
-            }
         }
         else
         {
@@ -298,7 +307,7 @@ public class Sequencer : MonoBehaviour {
 
     public void NavigationGrammarRecognized(PhraseRecognizedEventArgs args)
     {
-
+        
         try
         {
             foreach (SemanticMeaning meaning in args.semanticMeanings)
@@ -330,7 +339,6 @@ public class Sequencer : MonoBehaviour {
 
                 if (meaning.key == "Action")
                 {
-                    Debug.Log("Calibrating");
                     if ("calibrate".Equals(meaning.values[0]))
                     {
                         if (room != null)
@@ -363,14 +371,18 @@ public class Sequencer : MonoBehaviour {
         
         StepInfo step = steps[currentStep];
 
-        if(stepLabelMesh!=null) stepLabelMesh.text = step.stepid + ": " + step.label;
+        if (stepLabel != null)
+        {
+            if( index == 0 ) stepLabel.SetText( step.label);
+            else stepLabel.SetText(step.stepid + ": " + step.label);
+        }
         
         foreach (ObjectStepInfo obj in step.state)
         {
             GameObject go = GameObject.Find(obj.name);
             if (go != null)
             {
-                Debug.Log("Setting " + obj.name + "," + go.name + " to visible:" + obj.visible + " step:" + index);
+                //Debug.Log("Setting " + obj.name + "," + go.name + " to visible:" + obj.visible + " step:" + index);
 
                 //enable up and down the hierarchy
                 Renderer parentRenderer = go.GetComponent<Renderer>();
@@ -400,18 +412,18 @@ public class Sequencer : MonoBehaviour {
                 Vector3 currentPos = go.transform.localPosition;
                 if (!obj.position.Equals(obj.defaultPosition) && currentPos.Equals( obj.defaultPosition ))
                 {
-                    Debug.Log("set the position for " + go.name+ " to " + obj.position);
+                    //Debug.Log("set the position for " + go.name+ " to " + obj.position);
                     go.transform.localPosition = obj.position;
                 }
                 else if (obj.position.Equals(obj.defaultPosition) && !currentPos.Equals(obj.defaultPosition))
                 {
-                    Debug.Log("Move the position for " + go.name + " to " + obj.position + " from " + currentPos + " default " + obj.defaultPosition);
+                    //Debug.Log("Move the position for " + go.name + " to " + obj.position + " from " + currentPos + " default " + obj.defaultPosition);
                     doLerp = true;
                     LerpPart(go.transform, currentPos, obj.position, obj.tweentime);
                 }
                 else if(!obj.position.Equals(obj.defaultPosition) && !currentPos.Equals(obj.defaultPosition))
                 {
-                    Debug.Log("Sync the position for " + go.name + " to " + obj.position + " from " + currentPos + " default " + obj.defaultPosition);
+                    //Debug.Log("Sync the position for " + go.name + " to " + obj.position + " from " + currentPos + " default " + obj.defaultPosition);
                     go.transform.localPosition = obj.position;
                     //doLerp = true;
                     //LerpPart(go.transform, currentPos, obj.position, obj.tweentime);
@@ -561,6 +573,16 @@ public class Sequencer : MonoBehaviour {
         {
             ToggleXray();
         }
+
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (room != null)
+            {
+                room.Calibrate();
+            }
+        }
+
 
     }
 

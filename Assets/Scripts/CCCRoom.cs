@@ -234,6 +234,7 @@ public class CCCRoom : MonoBehaviour {
 
     public void Calibrate()
     {
+        Debug.Log("Calibrate");
         Vector3 camTransform = Camera.main.transform.position;
         Vector3 forward = Camera.main.transform.forward.normalized;//z - how far away
 

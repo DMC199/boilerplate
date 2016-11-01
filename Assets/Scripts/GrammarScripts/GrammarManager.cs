@@ -33,6 +33,9 @@ public class GrammarManager : MonoBehaviour {
         if (loadGrammar(grammarFileToLoad))
         {
             setGrammar(grammarFileToLoad);
+        }else
+        {
+            Debug.LogError("Did not load grammar " + grammarFileToLoad);
         }
     }
 
@@ -45,9 +48,10 @@ public class GrammarManager : MonoBehaviour {
 
             if (grammars.TryGetValue(name, out gm))
             {
-                print("Activating grammar: " + name);
                 gm.Start();
-            } else
+                Debug.Log("Activated grammar: " + name);
+            }
+            else
             {
                 print("Unable to find grammar: " + name);
             }
@@ -60,9 +64,11 @@ public class GrammarManager : MonoBehaviour {
         if (System.IO.File.Exists(path))
         { 
             GrammarRecognizer gm = new GrammarRecognizer(path, ConfidenceLevel.Low);
-            gm.OnPhraseRecognized += Grammar_onPhraseRecognized;
 
+            gm.OnPhraseRecognized += Grammar_onPhraseRecognized;          
             grammars.Add(name, gm);
+
+            Debug.Log("Grammar loaded");
             return true;
         }
         else

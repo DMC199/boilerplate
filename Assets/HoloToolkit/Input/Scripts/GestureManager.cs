@@ -169,10 +169,12 @@ namespace HoloToolkit.Unity
 
         private void OnTap()
         {
+           
             if (FocusedObject != null)
             {
                 FocusedObject.SendMessage("OnSelect", SendMessageOptions.DontRequireReceiver);
             }
+
         }
 
         private void OnRecognitionStarted()
